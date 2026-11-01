@@ -1,0 +1,111 @@
+{
+  "scope": "Floating-point consistency checks, not a proof of global optimality.",
+  "normalization": "Omega=1, H_delta=(ux sigma_x+uy sigma_y+delta sigma_z)/2",
+  "segments": [
+    {
+      "ux": 1,
+      "uy": 0,
+      "duration": 1.0471975511965976
+    },
+    {
+      "ux": -1,
+      "uy": 0,
+      "duration": 5.235987755982989
+    },
+    {
+      "ux": 1,
+      "uy": 0,
+      "duration": 1.0471975511965976
+    }
+  ],
+  "total_time": 7.330382858376184,
+  "total_time_over_pi": 2.333333333333333,
+  "target": "-R_x(pi)",
+  "signed_rotation_angle": -3.141592653589794,
+  "gate_error_fro": 4.1910000110727263e-16,
+  "unitarity_error_fro": 4.509747244882934e-16,
+  "frechet_nominal_agreement_fro": 2.603703785810335e-16,
+  "detuning_derivative_fro": 1.8619006149354548e-16,
+  "analytic_error_vector": [
+    0.0,
+    5.551115123125783e-16,
+    3.3306690738754696e-16
+  ],
+  "quadrature_error_vector": [
+    0.0,
+    5.130234616030488e-15,
+    1.9905951886833861e-16
+  ],
+  "derivative_integral_identity_error_fro": 3.656169488775217e-15,
+  "curve_join_coordinates_xyz": [
+    [
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.4999999999999999,
+      0.8660254037844386
+    ],
+    [
+      0.0,
+      -0.4999999999999999,
+      0.8660254037844384
+    ],
+    [
+      0.0,
+      5.551115123125783e-16,
+      3.3306690738754696e-16
+    ]
+  ],
+  "initial_tangent_xyz": [
+    0.0,
+    0.0,
+    1.0
+  ],
+  "final_tangent_xyz": [
+    0.0,
+    7.657137397853899e-16,
+    -1.0
+  ],
+  "small_detuning_scaling": [
+    {
+      "delta": 0.08,
+      "symmetric_gate_error_fro": 0.014921186734703837,
+      "error_over_delta_squared": 2.3314354272974747,
+      "previous_error_over_current": null
+    },
+    {
+      "delta": 0.04,
+      "symmetric_gate_error_fro": 0.003735132111334939,
+      "error_over_delta_squared": 2.3344575695843366,
+      "previous_error_over_current": 3.9948216796462908
+    },
+    {
+      "delta": 0.02,
+      "symmetric_gate_error_fro": 0.0009340854264415097,
+      "error_over_delta_squared": 2.335213566103774,
+      "previous_error_over_current": 3.998705049456014
+    },
+    {
+      "delta": 0.01,
+      "symmetric_gate_error_fro": 0.00023354025940549013,
+      "error_over_delta_squared": 2.335402594054901,
+      "previous_error_over_current": 3.999676239203282
+    },
+    {
+      "delta": 0.005,
+      "symmetric_gate_error_fro": 5.8386246321017334e-05,
+      "error_over_delta_squared": 2.3354498528406933,
+      "previous_error_over_current": 3.999919058359169
+    },
+    {
+      "delta": 0.0025,
+      "symmetric_gate_error_fro": 1.459663542281266e-05,
+      "error_over_delta_squared": 2.3354616676500255,
+      "previous_error_over_current": 3.9999797644988213
+    }
+  ],
+  "checks_passed": true
+}

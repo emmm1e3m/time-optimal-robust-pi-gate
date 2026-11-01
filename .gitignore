@@ -1,0 +1,18 @@
+# TeX 编译中间文件
+*.aux
+*.log
+*.out
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*Notes.bib
+*.toc
+# Lean 依赖与本机构建
+.lake/
+*.olean
+*.ilean
+*.trace
+# Python 环境及缓存
+__pycache__/
+.venv/

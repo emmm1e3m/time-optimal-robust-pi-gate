@@ -1,0 +1,361 @@
+\documentclass[aps,pra,reprint,superscriptaddress,amsmath,amssymb,longbibliography]{revtex4-2}
+\usepackage[UTF8,scheme=plain]{ctex}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{定理}
+\renewcommand{\proofname}{证明}
+\renewcommand{\acknowledgmentsname}{致谢}
+\renewcommand{\refname}{参考文献}
+\renewcommand{\figurename}{FIG.}
+\renewcommand{\abstractname}{摘要}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\nvec}{\mathbf n}
+\newcommand{\rvec}{\mathbf r}
+\newcommand{\vvec}{\mathbf v}
+\newcommand{\ez}{\mathbf e_z}
+\newcommand{\sigmavec}{\boldsymbol\sigma}
+
+\input{figure_captions.tex}
+
+\begin{document}
+\title{一阶静态失谐稳健量子比特 \texorpdfstring{$\pi$}{π} 门的精确时间极限}
+\author{Tingyu Zhang}
+\email{23300190021@m.fudan.edu.cn}
+\affiliation{Department of Physics, Fudan University, Shanghai, China}
+\author{Yan Cen}
+\email[Corresponding author: ]{cenyan@fudan.edu.cn}
+\affiliation{Department of Physics, Fudan University, Shanghai, China}
+
+\begin{abstract}
+我们确定了消除一阶静态失谐误差的量子比特 $\pi$ 门的精确最短时间。对于满足 $u_x^2+u_y^2\le\Omega^2$ 的任意可测横向控制，最短时间为 $7\pi/(3\Omega)$。除零测集上的改动外，达到这一时间的控制只有已知的 short-CORPSE 序列及其整体负号。因此，第二个可独立控制的横轴对这一任务不带来时间优势。下界来自一个适用于任意不小于二的空间维数的锐不等式：速度不超过一、端点互为反极且时间平均为零的单位向量曲线，其持续时间至少为 $7\pi/3$。向曲线在时间中点的取值作投影，即得到所需比较并确定其等号情形。论证直接涵盖可测控制，无需分类极值轨迹。
+\end{abstract}
+\maketitle
+
+\section{引言}
+
+驱动幅度有限时，在量子门中抑制系统误差需要付出时间代价。独立的幅度和相位控制扩展了可用的脉冲形状，由此产生一个问题：这种自由度能否降低时间代价？本文研究两个横向控制满足联合幅度约束时，对静态失谐具有一阶稳健性的完整量子比特 $\pi$ 门。
+
+short-CORPSE 序列的持续时间为 $7\pi/(3\Omega)$，且在三个基本脉冲构成的对称族内最优~\cite{kukita2022}。单控制轴下也已发展出相关的平面几何构造~\cite{zeng2018}。当存在两个独立横向控制时，short-CORPSE 的时间最优性仍需单独解决：Pontryagin 分析将其确定为候选解~\cite{kukita2024}，数值优化则给出接近 $2.33\pi/\Omega$ 的一阶稳健 $X$ 门时长~\cite{cao2024}。
+
+这一控制问题与有界曲率路径密切相关。在 Sigalotti 和 Chitour 的可控性构造中，回到起点而切向反向的平面三弧轨迹以泪滴形轨迹出现~\cite[注~2.2]{sigalotti2006}。Kim 和 Cheong 明确给出了 $7\pi/3$：这是起终位置重合、方向相反时的最短平面有界曲率路径长度~\cite[图~7 及 $d=0$ 的情形]{kim2013}。相应的空间问题允许更多轨迹：一般三维最短路径与可达性分析包含非平面极值轨迹~\cite{sussmann1995,bae2025,bae2026}；相关的空间分支也出现在 $\infty$-弹性线的分类中~\cite{moser2022}。
+
+本文证明，short-CORPSE 在全部可测双轴控制中仍然时间最优。关键是一个空间曲线比较不等式，它给出了平面问题之外所需的下界。这一 Schur 型切向比较~\cite{sullivan2008} 向中点切向作投影，并利用反极端点约束曲线的前后两半。等号情形迫使曲线位于同一平面内，再结合完整量子门条件，将控制确定为 short-CORPSE 及其整体负号。
+
+\section{控制模型与主要结果}
+\label{sec:model}
+
+取 $\hbar=1$，Pauli 矩阵的本征值为 $\pm1$。传播算符满足
+\begin{equation}
+ \begin{aligned}
+ \dot U_\delta(t)&=-\frac{i}{2}
+ \bigl[u_x(t)\sigma_x+u_y(t)\sigma_y+\delta\sigma_z\bigr]U_\delta(t),
+ \\
+ U_\delta(0)&=I.
+ \end{aligned}
+ \label{eq:dynamics}
+\end{equation}
+其中 $\delta$ 为未知常数；实控制函数可测、与 $\delta$ 无关，并满足幅度约束
+\begin{equation}
+ u_x(t)^2+u_y(t)^2\le\Omega^2
+ \quad\text{几乎处处},
+ \label{eq:disk}
+\end{equation}
+其中 $\Omega>0$ 为给定常数。模型中没有独立的纵向控制。控制相位的改变只改变此后的横向驱动，不施加额外的瞬时量子门。允许的控制包括降低幅度、零控制区间和任意相位切换。
+
+记 $R_x(\theta)=\exp(-i\theta\sigma_x/2)$。设 $T_*$ 为满足以下条件的允许控制所需的所有持续时间 $T>0$ 的下确界：
+\begin{equation}
+ \begin{aligned}
+ U_0(T)&=\pm R_x(\pi),\\
+ \left.\partial_\delta U_\delta(T)\right|_{\delta=0}&=0.
+ \end{aligned}
+ \label{eq:target}
+\end{equation}
+正负号表示忽略整体相位。导数条件是算符恒等式，因此稳健性对所有输入态成立。
+
+\begin{theorem}[稳健量子门的精确时间]
+\label{thm:gate}
+对于控制类~\eqref{eq:disk} 和目标~\eqref{eq:target}，有
+\begin{equation}
+ \boxed{T_* = \frac{7\pi}{3\Omega}.}
+ \label{eq:main}
+\end{equation}
+除零测集上的改动外，全部最优控制满足 $u_y=0$ 和 $u_x=\pm\Omega q(\Omega t)$，其中 $q$ 为三个相继的常值段，取值依次为 $+1,-1,+1$，无量纲持续时间依次为 $\pi/3,5\pi/3,\pi/3$。
+\end{theorem}
+
+因此，第二个横向控制轴不能缩短这一稳健量子门的时间。下界适用于全部可测控制；平面性和三段结构则由等号情形推出。
+
+\subsection{切换参考系中的误差曲线}
+
+为得到下界，引入切换参考系中的噪声方向及其积分：
+\begin{equation}
+ \begin{aligned}
+ \nvec(t)\cdot\sigmavec&=U_0(t)^\dagger\sigma_zU_0(t),\\
+ \rvec(t)&=\int_0^t\nvec(s)\,\dd s.
+ \end{aligned}
+ \label{eq:curve}
+\end{equation}
+这就是几何稳健控制中使用的误差曲线表示~\cite{zeng2018,piliouras2026}。这里所需的恒等式可由式~\eqref{eq:dynamics} 直接推出。对常参数 $\delta$ 求导，利用常数变易公式可得
+\begin{equation}
+ \begin{aligned}
+ \left.\partial_\delta U_\delta(T)\right|_0
+ &=-\frac{i}{2}U_0(T)
+ \int_0^T U_0(t)^\dagger\sigma_zU_0(t)\,\dd t
+ \\
+ &=-\frac{i}{2}U_0(T)\,\rvec(T)\cdot\sigmavec.
+ \end{aligned}
+ \label{eq:variation}
+\end{equation}
+因此，一阶失谐抵消等价于 $\rvec(T)=0$。
+
+酉共轭保持 Pauli 内积，故 $|\nvec|=1$。分别对 $\sigma_x,\sigma_y,\sigma_z$ 作共轭，定义正交归一向量 $\mathbf a,\mathbf b,\nvec$。对式~\eqref{eq:curve} 求导，其中的对易子给出
+\begin{equation}
+ \begin{aligned}
+ \dot{\nvec}&=u_x\mathbf b-u_y\mathbf a,\\
+ |\dot{\nvec}|&=\sqrt{u_x^2+u_y^2}\le\Omega
+ \quad\text{几乎处处}
+ \end{aligned}
+ \label{eq:speed}
+\end{equation}
+由于 $R_x(\pi)^\dagger\sigma_zR_x(\pi)=-\sigma_z$，终点量子门要求
+\begin{equation}
+ \nvec(0)=\ez,
+ \qquad
+ \nvec(T)=-\ez,
+ \label{eq:antipodes}
+\end{equation}
+对于有界可测控制，$U_0$ 和 $\nvec$ 都是 Lipschitz 连续的，且 $\rvec\in W^{2,\infty}$；上述微分恒等式均几乎处处成立。
+
+用 $s=\Omega t$ 重标度时间，便得到持续时间为 $L=\Omega T$ 的绝对连续单位向量曲线，速度不超过一、端点互为反极且积分为零。下面的定理证明 $L\ge7\pi/3$。下界论证仅使用从控制到曲线的正向映射；第~\ref{sec:attainment} 节通过直接计算，在量子门模型中证明下界可以达到。
+
+\section{锐中点比较}
+\label{sec:midpoint}
+
+\begin{theorem}[反极端点的零均值球面曲线]
+\label{thm:sphere}
+设 $d\ge2$，$\nvec:[0,L]\to S^{d-1}$ 绝对连续，且 $L>0$。若
+\begin{equation}
+ \begin{gathered}
+ |\nvec'(t)|\le1\quad\text{几乎处处},\qquad
+ \nvec(L)=-\nvec(0),\\
+ \int_0^L\nvec(t)\,\dd t=0.
+ \end{gathered}
+ \label{eq:spherical-assumptions}
+\end{equation}
+则 $L\ge7\pi/3$，且此常数为锐常数。
+\end{theorem}
+
+\begin{proof}
+令 $c=L/2$，$\vvec=\nvec(c)$。球面距离不超过曲线长度，因此
+\begin{equation}
+ d_S(\nvec(s),\nvec(t))\le|t-s|.
+ \label{eq:lipschitz-sphere}
+\end{equation}
+若 $c<\pi$，则
+\begin{equation}
+ \begin{aligned}
+ \vvec\cdot\int_0^{2c}\nvec(t)\,\dd t
+ &\ge\int_0^{2c}\cos|t-c|\,\dd t\\
+ &=2\sin c>0,
+ \end{aligned}
+ \label{eq:first-lower}
+\end{equation}
+与积分为零矛盾。因此下文可设 $c\ge\pi$。
+
+令 $\alpha=d_S(\vvec,\nvec(0))$。另一反极端点到 $\vvec$ 的距离为 $\pi-\alpha$。考虑曲线的任意一半，将其从端点朝 $\vvec$ 定向，记作 $\mathbf m:[0,c]\to S^{d-1}$。若 $\beta=d_S(\vvec,\mathbf m(0))$，由三角不等式及式~\eqref{eq:lipschitz-sphere} 可得
+\begin{equation}
+ d_S(\vvec,\mathbf m(t))
+ \le\min\{\beta+t,c-t,\pi\}.
+ \label{eq:envelope}
+\end{equation}
+由于余弦在 $[0,\pi]$ 上单调递减，
+\begin{equation}
+ \int_0^c\vvec\cdot\mathbf m(t)\,\dd t
+ \ge A(c,\beta),
+ \label{eq:half-bound}
+\end{equation}
+其中直接积分得到
+\begin{align}
+ A(c,\beta)
+ &:=\int_0^c
+ \cos\bigl(\min\{\beta+t,c-t,\pi\}\bigr)\,\dd t
+ \nonumber\\
+ &=\begin{cases}
+ 2\sin\bigl((c+\beta)/2\bigr)-\sin\beta,
+       &c+\beta\le2\pi,\\[1mm]
+ 2\pi-c-\beta-\sin\beta,
+       &c+\beta\ge2\pi.
+ \end{cases}
+ \label{eq:A}
+\end{align}
+具体而言，第一种情形中，两个仿射上界在 $t=(c-\beta)/2$ 相交；第二种情形中，它们的最小值在长度为 $c+\beta-2\pi$ 的区间上被截为 $\pi$。由于 $0\le\beta\le\pi\le c$，上述公式适用。对两半曲线分别应用式~\eqref{eq:half-bound}，得到
+\begin{equation}
+ 0\ge A(c,\alpha)+A(c,\pi-\alpha).
+ \label{eq:necessary}
+\end{equation}
+
+在 $c_*=7\pi/6$ 处计算右侧。记
+\begin{equation}
+ B(\alpha)=A(c_*,\alpha)+A(c_*,\pi-\alpha).
+ \label{eq:B}
+\end{equation}
+由对称性，只需考虑 $0\le\alpha\le\pi/2$。若 $\pi/6\le\alpha\le\pi/2$，两项均采用式~\eqref{eq:A} 的第一分支。令 $x=\cos(\alpha/2-\pi/4)\in[\sqrt3/2,1]$，可得
+\begin{align}
+ B(\alpha)
+ &=4\sin(5\pi/6)x-2\sin\alpha\nonumber\\
+ &=2x-2(2x^2-1)
+ =2(1-x)(2x+1)\ge0.
+ \label{eq:B-middle}
+\end{align}
+若 $0\le\alpha\le\pi/6$，式~\eqref{eq:B} 的第二项采用截断分支，因此
+\begin{equation}
+ \begin{aligned}
+ B(\alpha)={}&2\sin(7\pi/12+\alpha/2)\\
+ &+\alpha-\pi/6-2\sin\alpha.
+ \end{aligned}
+ \label{eq:B-edge}
+\end{equation}
+其导数在此区间上严格为负：
+\begin{equation}
+ \begin{aligned}
+ B'(\alpha)&=\cos(7\pi/12+\alpha/2)+1-2\cos\alpha\\
+ &<0.
+ \end{aligned}
+ \label{eq:B-edge-derivative}
+\end{equation}
+于是 $B(\alpha)\ge B(\pi/6)=\sqrt3-1>0$。结合对称性，得到
+\begin{equation}
+ \begin{gathered}
+ B(\alpha)\ge0\quad(0\le\alpha\le\pi),\\
+ B(\alpha)=0\ \Longleftrightarrow\ \alpha=\pi/2.
+ \end{gathered}
+ \label{eq:B-positive}
+\end{equation}
+
+最后，固定 $\beta\in[0,\pi]$。当 $\pi<c\le c_*$ 时，$A$ 对 $c$ 的导数在未截断分支上为 $\cos((c+\beta)/2)<0$，在截断分支上为 $-1$；两导数在分支交界处相等。因此，只要 $\pi\le c<c_*$，就有
+\begin{equation}
+ A(c,\beta)>A(c_*,\beta).
+ \label{eq:strict-monotonicity}
+\end{equation}
+式~\eqref{eq:necessary}、\eqref{eq:B-positive} 和~\eqref{eq:strict-monotonicity} 将给出
+\begin{equation}
+ 0\ge A(c,\alpha)+A(c,\pi-\alpha)>B(\alpha)\ge0,
+\end{equation}
+产生矛盾。故 $c\ge c_*$，即 $L\ge7\pi/3$。第~\ref{sec:attainment} 节构造的平面曲线达到等号，并可嵌入任意 $d\ge2$ 的 $S^{d-1}$ 中。
+\end{proof}
+
+同一结果也可直接表述为空间曲线的性质。若曲线 $\rvec\in W^{2,\infty}([0,L];\mathbb R^d)$ 满足 $|\rvec'|=1$、$|\rvec''|\le1$ 几乎处处成立，且 $\rvec(L)=\rvec(0)$、$\rvec'(L)=-\rvec'(0)$，则其长度至少为 $7\pi/3$。取 $\nvec=\rvec'$ 即得此结论。这里允许自交和曲率不连续。
+
+\section{下界的达到及全部等号情形}
+\label{sec:attainment}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{assets/short_corpse_geometry.pdf}
+\caption{\shortcorpsecaption}
+\label{fig:attainment}
+\end{figure*}
+
+\subsection{达到下界的脉冲}
+
+为使论证完整，下面在与下界相同的归一化约定下核验已知的达到脉冲，见图~\ref{fig:attainment}。采用无量纲时间 $s=\Omega t$，令 $u_y=0$，并取
+\begin{equation}
+ \frac{u_x}{\Omega}=q(s):=
+ \begin{cases}
+ +1,&0\le s<\pi/3,\\
+ -1,&\pi/3\le s<2\pi,\\
+ +1,&2\pi\le s\le7\pi/3.
+ \end{cases}
+ \label{eq:short-corpse}
+\end{equation}
+设 $\phi(s)$ 为累积的有符号旋转角。三个相继的段末端处，其取值依次为 $\pi/3$、$-4\pi/3$ 和 $-\pi$。由于三段哈密顿量彼此对易，
+\begin{equation}
+ U_0(T)=R_x(-\pi)=-R_x(\pi).
+ \label{eq:attaining-gate}
+\end{equation}
+此外，
+\begin{equation}
+ \nvec(s)=(0,\sin\phi(s),\cos\phi(s)).
+ \label{eq:attaining-tangent}
+\end{equation}
+其积分的 $x$ 分量为零。对于其余两个分量，逐段积分可得
+\begin{align}
+ i\int_0^{7\pi/3}e^{i\phi(s)}\,\dd s
+ &=2e^{i\pi/3}-2e^{-i4\pi/3}
+ \nonumber\\
+ &\quad+e^{-i\pi}-1=0.
+ \label{eq:attaining-error}
+\end{align}
+实部和虚部因此给出 $\rvec(T)=0$，再由式~\eqref{eq:variation} 得到量子门的一阶稳健性。这给出了与定理~\ref{thm:sphere} 相匹配的上界。
+
+这一脉冲也解释了中点比较为何是锐的。在 $c_*=7\pi/6$ 处，累积角为 $-\pi/2$，故中点切向 $\vvec=-\mathbf e_y$ 与两个端点切向都正交。将曲线的任意一半从端点朝中点定向，其到 $\vvec$ 的球面距离恰为
+\begin{equation}
+ \begin{gathered}
+ d_S(\vvec,\mathbf m(t))=\min\{\pi/2+t,c_*-t\},\\
+ 0\le t\le c_*.
+ \end{gathered}
+ \label{eq:saturating-envelope}
+\end{equation}
+每一半的投影积分均为 $A(c_*,\pi/2)=2\sin(5\pi/6)-1=0$。因此，该脉冲同时使逐点距离比较和积分后的零下界取等号。
+
+\subsection{几何刚性与控制的唯一性}
+比较论证还确定了全部最优解。设 $L=7\pi/3$。由式~\eqref{eq:B-positive} 必有 $\alpha=\pi/2$。式~\eqref{eq:half-bound} 中两个连续、非负的差值必须恒为零。将每半段从中点朝其端点定向，记为 $\mathbf m:[0,c_*]\to S^{d-1}$，其到 $\vvec$ 的距离因此为
+\begin{equation}
+ f(s)=\min\{s,5\pi/3-s\},\qquad 0\le s\le c_*.
+ \label{eq:rigidity-f}
+\end{equation}
+对 $s>0$，写成
+\begin{equation}
+ \mathbf m(s)=\cos f(s)\,\vvec+\sin f(s)\,\mathbf e(s),
+\end{equation}
+其中 $\mathbf e(s)\perp\vvec$ 且 $|\mathbf e(s)|=1$。由于 $0<f(s)\le5\pi/6<\pi$，向量 $\mathbf e$ 在每个 $[\varepsilon,c_*]$ 上绝对连续。该区间上几乎处处有
+\begin{equation}
+ |\mathbf m'|^2=(f')^2+\sin^2 f\,|\mathbf e'|^2\le1.
+ \label{eq:rigidity-speed}
+\end{equation}
+而 $|f'|=1$ 几乎处处成立，故 $\mathbf e$ 为常向量。两个端点处均有 $f(c_*)=\pi/2$，所以相应常向量分别为 $\nvec(0)$ 和 $-\nvec(0)$。因此，两半曲线位于同一大圆内，全部等号曲线均为上述三弧轨迹，仅整体朝向可以任意选择。
+
+在量子门问题中，这也确定了控制。给定一条中点切向为 $\vvec\perp\ez$ 的等号曲线，令 $\mathbf a=\ez\times\vvec$。显式的固定轴演化
+$U_a(t)=\exp[-i\phi(\Omega t)\mathbf a\cdot\sigmavec/2]$
+生成该曲线，其中 $\phi$ 是脉冲~\eqref{eq:short-corpse} 的累积有符号角。若另一允许的演化 $U_0$ 生成相同的 $\nvec$，则 $W=U_0U_a^\dagger$ 与 $\sigma_z$ 对易，因而是对角矩阵。其导数满足
+\begin{equation}
+ \dot W=-iH_0W+iWH_a,
+ \label{eq:lift-uniqueness}
+\end{equation}
+其中两个理想哈密顿量 $H_0,H_a$ 在 $\sigma_z$ 基下的对角元全为零。右侧的对角元全为零，而 $\dot W$ 为对角矩阵。因此 $\dot W=0$ 几乎处处成立，从而 $W=I$。最后，$U_a(T)=i\mathbf a\cdot\sigmavec$ 仅当 $\mathbf a=\pm\mathbf e_x$ 时等于 $\pm R_x(\pi)$。因此，除零测集上的改动外，全部时间最优控制就是式~\eqref{eq:short-corpse} 及其整体负号。
+这完成了定理~\ref{thm:gate} 中唯一性结论的证明。
+
+配套源码包含 Lean 4 形式化证明，覆盖精确最短时间、达到性和全部最优控制的分类。
+
+
+
+\section{讨论}
+
+无误差 $\pi$ 门的最短时间为 $\pi/\Omega$：端点条件~\eqref{eq:antipodes} 要求球面距离为 $\pi$，而幅度为 $\Omega$ 的常值驱动达到这一时间。消除一阶静态失谐使精确最短时间增至原来的 $7/3$。从几何上看，误差抵消要求噪声方向的积分返回原点。其转向速率受可用驱动限制，而中点比较定量给出了平衡这一积分所需的额外时间。
+
+允许第二个横向分量，会将噪声方向的可行路径扩展为空间曲线。定理~\ref{thm:sphere} 对整个曲线类给出的界，与平面三弧轨迹所达到的常数相同。这解释了为什么在所述 $\pi$ 门任务中，独立的相位控制不带来时间优势。证明通过单一的几乎处处速度约束，统一涵盖了任意切换和未饱和幅度。
+
+空间下界证明了已知的 $7\pi/3$ 平面构造~\cite{kukita2022,sigalotti2006,kim2013} 在完整控制圆盘内的最优性。其等号条件解释了为何新增的空间自由度不能产生其他最优控制。特殊的反极端点恒等式对比较论证至关重要。其他目标角度携带不同的端点信息，完整量子门合成还存在额外的标架约束。确定这些任务的最短稳健时间需要另行分析。
+
+经典 Schur 比较所要求的凸平面参考弧条件~\cite[定理~5.1]{sullivan2008}，并不适用于这一三弧回返轨迹。Moser 关于 $\infty$-弹性线的全局最优性充分判据~\cite[定理~3]{moser2022}，在无权情形下要求存在非零辅助函数 $g$，对某一常向量 $\boldsymbol\lambda$ 满足 $0\le g\le-\boldsymbol\lambda\cdot\nvec$。总位移为零会强制 $\int g=0$，因此该判据在这里不适用。中点估计则给出了专门适用于反极切向和零位移的比较。
+
+\section{结论}
+\label{sec:conclusion}
+
+在任意可测横向控制满足联合幅度约束的条件下，一阶静态失谐稳健量子比特 $\pi$ 门的精确最短时间为 $7\pi/(3\Omega)$。只有 short-CORPSE 及其整体负号达到这一时间，三段持续时间为 $(\pi/3,5\pi/3,\pi/3)/\Omega$。锐中点比较在保留完整量子门条件的同时，确定了时间极限及其等号结构。因此，第二个横向控制轴无法降低这一量子门消除一阶静态失谐所需的时间代价。
+
+\begin{acknowledgments}
+[ACKNOWLEDGMENTS AND FUNDING TO BE COMPLETED]
+\end{acknowledgments}
+
+\section*{数据与代码可用性}
+[DATA AND CODE AVAILABILITY TO BE CONFIRMED]
+
+\section*{声明}
+[DECLARATIONS TO BE CONFIRMED]
+
+% PRA 自动采用 apsrev4-2，并由 longbibliography 启用文献题名。
+\bibliography{references}
+\end{document}
