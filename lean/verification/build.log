@@ -1,0 +1,289 @@
+⚠ [9046/9071] Replayed RobustPiGate.ACCalculus
+warning: RobustPiGate\ACCalculus.lean: imports `Mathlib.MeasureTheory.Integral.IntervalIntegral.AbsolutelyContinuousFun` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RobustPiGate\ACCalculus.lean: imports `Mathlib.Analysis.Normed.Module.HahnBanach` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RobustPiGate\ACCalculus.lean: imports `Mathlib.Analysis.Calculus.Deriv.Mul` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RobustPiGate\ACCalculus.lean: imports `Mathlib.Analysis.Calculus.Deriv.Star` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RobustPiGate\ACCalculus.lean: imports `Mathlib.Analysis.Calculus.FDeriv.Measurable` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RobustPiGate\ACCalculus.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RobustPiGate/ACCalculus.lean:86:0: automatically included section variable(s) unused in theorem `RobustPiGate.Dynamics.ac_mul`:
+  [NormedAlgebra ℝ A]
+  [CompleteSpace A]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NormedAlgebra ℝ A] [CompleteSpace A] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [9047/9071] Replayed RobustPiGate.Dynamics
+warning: RobustPiGate\Dynamics.lean: imports `Mathlib.Analysis.CStarAlgebra.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RobustPiGate/Dynamics.lean:21:0: automatically included section variable(s) unused in theorem `RobustPiGate.Dynamics.IsACSolution.restrict`:
+  [CompleteSpace A]
+  [StarRing A]
+  [NormedStarGroup A]
+  [StarModule ℝ A]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace A] [StarRing A] [NormedStarGroup A] [StarModule ℝ A] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: RobustPiGate/Dynamics.lean:27:0: automatically included section variable(s) unused in theorem `RobustPiGate.Dynamics.ac_star`:
+  [NormedAlgebra ℝ A]
+  [CompleteSpace A]
+  [StarModule ℝ A]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NormedAlgebra ℝ A] [CompleteSpace A] [StarModule ℝ A] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: RobustPiGate/Dynamics.lean:65:57: This simp argument is unused:
+  smul_mul_assoc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [star_mul, hgt ht, add_mul, mul_add, mul_assoc, mul_smul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: RobustPiGate/Dynamics.lean:65:73: This simp argument is unused:
+  mul_smul_comm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [star_mul, hgt ht, add_mul, mul_add, mul_assoc, smul_mul_assoc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: RobustPiGate/Dynamics.lean:96:0: automatically included section variable(s) unused in theorem `RobustPiGate.Dynamics.skew_perturbed`:
+  [CompleteSpace A]
+  [CStarRing A]
+  [IsDedekindFiniteMonoid A]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace A] [CStarRing A] [IsDedekindFiniteMonoid A] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+info: RobustPiGate/Dynamics.lean:160:66: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+⚠ [9048/9071] Replayed RobustPiGate.Rigidity
+warning: RobustPiGate\Rigidity.lean: imports `Mathlib.Geometry.Euclidean.Angle.Unoriented.TriangleInequality` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RobustPiGate\Rigidity.lean: imports `Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RobustPiGate\Rigidity.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+info: RobustPiGate/Rigidity.lean:357:0: 'RobustPiGate.Rigidity.continuous_nonneg_pair_integral_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RobustPiGate/Rigidity.lean:358:0: 'RobustPiGate.Rigidity.half_direction_eq_endpoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RobustPiGate/Rigidity.lean:359:0: 'RobustPiGate.Rigidity.half_curve_rigidity_of_integral_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RobustPiGate/Rigidity.lean:360:0: 'RobustPiGate.Rigidity.spherical_equality_rigidity' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [9050/9071] Replayed RobustPiGate.Quantum
+warning: RobustPiGate\Quantum.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RobustPiGate/Quantum.lean:33:53: This simp argument is unused:
+  Complex.I_sq
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [pauli, Matrix.mul_apply, Fin.sum_univ_two]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: RobustPiGate/Quantum.lean:34:54: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: RobustPiGate/Quantum.lean:34:4: Unused tactic linter: `push_cast` does nothing.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: RobustPiGate/Quantum.lean:34:50: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: RobustPiGate/Quantum.lean:34:54: Unused tactic linter: `ring` does nothing.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: RobustPiGate/Quantum.lean:53:4: Unused tactic linter: `push_cast` does nothing.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: RobustPiGate/Quantum.lean:66:45: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: RobustPiGate/Quantum.lean:66:57: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: RobustPiGate/Quantum.lean:68:46: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: RobustPiGate/Quantum.lean:68:58: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: RobustPiGate/Quantum.lean:74:50: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: RobustPiGate/Quantum.lean:66:45: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: RobustPiGate/Quantum.lean:66:57: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: RobustPiGate/Quantum.lean:68:46: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: RobustPiGate/Quantum.lean:68:58: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: RobustPiGate/Quantum.lean:74:50: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: RobustPiGate/Quantum.lean:123:2: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [shortNoise, Fin.sum_univ_succ]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: RobustPiGate/Quantum.lean:250:41: This simp argument is unused:
+  Matrix.mul_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [sigmaX, sigmaY, sigmaZ, pauli, Fin.sum_univ_two]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: RobustPiGate/Quantum.lean:250:59: This simp argument is unused:
+  Fin.sum_univ_two
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [sigmaX, sigmaY, sigmaZ, pauli, Matrix.mul_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: RobustPiGate/Quantum.lean:309:4: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [ey, ez, Fin.sum_univ_succ, add_comm]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [9051/9071] Replayed RobustPiGate.Basic
+warning: RobustPiGate\Basic.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+ℹ [9052/9071] Replayed RobustPiGate.Scalar
+info: RobustPiGate/Scalar.lean:149:0: 'RobustPiGate.critical_sum_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RobustPiGate/Scalar.lean:150:0: 'RobustPiGate.critical_sum_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RobustPiGate/Scalar.lean:151:0: 'RobustPiGate.halfBound_strictAntiOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RobustPiGate/Scalar.lean:152:0: 'RobustPiGate.criticalHalf_le_of_sum_nonpos' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [9054/9071] Replayed RobustPiGate.Geometry
+warning: RobustPiGate\Geometry.lean: imports `Mathlib.Geometry.Euclidean.Angle.Unoriented.TriangleInequality` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RobustPiGate/Geometry.lean:25:5: Variable name `hx` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hx
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: RobustPiGate/Geometry.lean:25:20: Variable name `hy` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hy
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: RobustPiGate/Geometry.lean:25:35: Variable name `hz` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hz
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [9055/9071] Replayed RobustPiGate.SharpLength
+warning: RobustPiGate/SharpLength.lean:66:22: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: RobustPiGate/SharpLength.lean:66:34: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: RobustPiGate/SharpLength.lean:66:22: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: RobustPiGate/SharpLength.lean:66:34: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [9058/9071] Replayed RobustPiGate.BlochBridge
+warning: RobustPiGate/BlochBridge.lean:23:38: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: RobustPiGate/BlochBridge.lean:23:38: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: RobustPiGate/BlochBridge.lean:39:75: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: RobustPiGate/BlochBridge.lean:39:75: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+info: RobustPiGate/BlochBridge.lean:226:0: 'RobustPiGate.Quantum.actual_noise_curve' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RobustPiGate/BlochBridge.lean:227:0: 'RobustPiGate.Quantum.actual_gate_time_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9059/9071] Replayed RobustPiGate.ShortEvolution
+info: RobustPiGate/ShortEvolution.lean:355:0: 'RobustPiGate.Quantum.shortDetunedPropagator_isQubitEvolution' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: RobustPiGate/ShortEvolution.lean:356:0: 'RobustPiGate.Quantum.shortDetunedPropagator_nominal' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RobustPiGate/ShortEvolution.lean:357:0: 'RobustPiGate.Quantum.shortDetunedPropagator_first_order_robust' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: RobustPiGate/ShortEvolution.lean:358:0: 'RobustPiGate.Quantum.shortDetunedPropagator_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RobustPiGate/ShortEvolution.lean:359:0: 'RobustPiGate.Quantum.scaledShortPropagator_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [9060/9071] Replayed RobustPiGate.PhysicalMain
+warning: RobustPiGate/PhysicalMain.lean:8:13: Ambiguous namespace `Dynamics`: it is interpreted as `_root_.RobustPiGate.Dynamics` because this `open` occurs inside `namespace RobustPiGate`, while `_root_.Dynamics` is silently not opened. Specify the namespace unambiguously, e.g. `_root_.RobustPiGate.Dynamics`. The warning can sometimes also be addressed by moving the `open` outside of the surrounding `namespace`.
+
+Note: This linter can be disabled with `set_option linter.ambiguousOpen false`
+warning: RobustPiGate/PhysicalMain.lean:35:4: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [rx] at he
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: RobustPiGate/PhysicalMain.lean:37:4: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [rx] at he
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+info: RobustPiGate/PhysicalMain.lean:83:0: 'RobustPiGate.robust_pi_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RobustPiGate/PhysicalMain.lean:84:0: 'RobustPiGate.robust_pi_infimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9062/9071] Replayed RobustPiGate.Equality
+info: RobustPiGate/Equality.lean:193:0: 'RobustPiGate.radial_equalities_of_critical_curve' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RobustPiGate/Equality.lean:194:0: 'RobustPiGate.spherical_curve_equality_rigidity' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9063/9071] Replayed RobustPiGate.LiftUniqueness
+info: RobustPiGate/LiftUniqueness.lean:229:0: 'RobustPiGate.Quantum.relative_hasDerivAt_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RobustPiGate/LiftUniqueness.lean:230:0: 'RobustPiGate.Quantum.hamiltonian_lift_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RobustPiGate/LiftUniqueness.lean:231:0: 'RobustPiGate.Quantum.transverse_controls_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RobustPiGate/LiftUniqueness.lean:232:0: 'RobustPiGate.Quantum.terminal_axis_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9064/9071] Replayed RobustPiGate.OptimalControls
+info: RobustPiGate/OptimalControls.lean:139:0: 'RobustPiGate.Quantum.optimal_controls_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9065/9071] Replayed RobustPiGate.EvolutionScaling
+info: RobustPiGate/EvolutionScaling.lean:161:0: 'RobustPiGate.Quantum.optimal_controls_unique_scaled' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [9066/9071] Replayed RobustPiGate.SignSymmetry
+warning: RobustPiGate/SignSymmetry.lean:19:48: This simp argument is unused:
+  Matrix.star_eq_conjTranspose
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [sigmaZ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [9067/9071] Replayed RobustPiGate.DimensionSharpness
+warning: RobustPiGate/DimensionSharpness.lean:18:0: automatically included section variable(s) unused in theorem `RobustPiGate.DimensionSharpness.norm_plane_combination_sq`:
+  [CompleteSpace E]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace E] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: RobustPiGate/DimensionSharpness.lean:32:0: automatically included section variable(s) unused in theorem `RobustPiGate.DimensionSharpness.planePath_antipodal`:
+  [CompleteSpace E]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace E] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: RobustPiGate/DimensionSharpness.lean:48:0: automatically included section variable(s) unused in theorem `RobustPiGate.DimensionSharpness.hasDerivAt_planeArc`:
+  [CompleteSpace E]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace E] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: RobustPiGate/DimensionSharpness.lean:57:4: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [add_comm]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: RobustPiGate/DimensionSharpness.lean:113:67: This simp argument is unused:
+  PiLp.single_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [EuclideanSpace.inner_single_left, EuclideanSpace.single, hij]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ℹ [9069/9071] Built RobustPiGate.Main (16s)
+info: RobustPiGate/Main.lean:53:0: 'RobustPiGate.exact_time_and_all_minimizers' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RobustPiGate/Main.lean:54:0: 'RobustPiGate.both_short_signs_attain' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [9070/9071] Built RobustPiGate (16s)
+Build completed successfully (9071 jobs).

@@ -1,0 +1,18 @@
+'Review067.original_evolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Review067.original_fidelity_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Review067.original_attaining_controls' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Review067.original_geometric_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Review067.actual_limit_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Review067.every_dimension_attains' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Review067.rectangular_endpoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Review067.both_rectangular_signs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Review067.robust_endpoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Review067.no_sub_pi_gate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Review067.zero_sensitivity_iff_first_order' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.exact_frontier_and_all_minimizers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.both_frontier_signs_attain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.frontier_sum_eq_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Quantum.scaledFrontierPropagator_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Quantum.negativeScaledFrontierPropagator_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

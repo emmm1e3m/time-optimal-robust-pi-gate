@@ -1,0 +1,31 @@
+import RobustPiGate
+
+-- 最终审查：读取正式顶层模块的实际公理依赖与完整出口类型。
+#print RobustPiGate.AdmissibleRobustPi
+#print RobustPiGate.robustPiDurations
+#check @RobustPiGate.exact_time_and_all_minimizers
+#check @RobustPiGate.both_short_signs_attain
+#check @RobustPiGate.robust_pi_infimum
+#check @RobustPiGate.ac_spherical_curve_length_lower_bound
+#check @RobustPiGate.DimensionSharpness.euclidean_minimum
+#check @RobustPiGate.spherical_curve_equality_rigidity
+
+#print axioms RobustPiGate.exact_time_and_all_minimizers
+#print axioms RobustPiGate.both_short_signs_attain
+#print axioms RobustPiGate.robust_pi_minimum
+#print axioms RobustPiGate.robust_pi_infimum
+#print axioms RobustPiGate.AdmissibleRobustPi.robust_hasDerivAt
+#print axioms RobustPiGate.AdmissibleRobustPi.duration_pos
+#print axioms RobustPiGate.Quantum.actual_gate_time_lower_bound
+#print axioms RobustPiGate.Quantum.actual_noise_curve
+#print axioms RobustPiGate.Dynamics.qubit_parameter_hasDerivAt
+#print axioms RobustPiGate.Dynamics.qubit_first_order_robust_iff
+#print axioms RobustPiGate.Quantum.scaledShortPropagator_certificate
+#print axioms RobustPiGate.Quantum.negativeScaledShortPropagator_certificate
+#print axioms RobustPiGate.Quantum.optimal_controls_unique_scaled
+#print axioms RobustPiGate.Quantum.optimal_controls_unique
+#print axioms RobustPiGate.ac_spherical_curve_length_lower_bound
+#print axioms RobustPiGate.spherical_curve_equality_rigidity
+#print axioms RobustPiGate.DimensionSharpness.euclidean_minimum
+#print axioms RobustPiGate.DimensionSharpness.euclidean_sInf
+#print axioms RobustPiGate.geometric_minimum

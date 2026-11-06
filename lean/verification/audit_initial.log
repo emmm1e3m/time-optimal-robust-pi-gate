@@ -1,0 +1,57 @@
+'RobustPiGate.Dynamics.integral_eq_sub_of_ac_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Dynamics.lipschitzOnWith_of_ac_deriv_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Dynamics.solution_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Dynamics.duhamel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Dynamics.parameter_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Dynamics.first_order_robust_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Dynamics.qubit_generator_model' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Dynamics.qubit_parameter_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Dynamics.qubit_first_order_robust_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Quantum.shortDetunedPropagator_isQubitEvolution' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RobustPiGate.Quantum.shortDetunedPropagator_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.sphericalSpeedBound_of_euclideanSpeedBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.spherical_curve_length_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.ac_spherical_curve_length_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.spherical_curve_time_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.geometric_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.geometric_sInf' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.spherical_curve_equality_rigidity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Quantum.transverse_controls_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Quantum.terminal_axis_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+@RobustPiGate.Dynamics.IsACSolution : {A : Type u_1} →
+  [inst : NormedRing A] → [NormedAlgebra ℝ A] → (ℝ → A) → (ℝ → A) → ℝ → Prop
+RobustPiGate.Dynamics.IsQubitEvolution : (ℝ → ℝ) → (ℝ → ℝ) → (ℝ → ℝ → RobustPiGate.Quantum.QubitMatrix) → ℝ → Prop
+@RobustPiGate.Dynamics.qubit_parameter_hasDerivAt : ∀ {ux uy : ℝ → ℝ} {U : ℝ → ℝ → RobustPiGate.Quantum.QubitMatrix}
+  {T : ℝ},
+  RobustPiGate.Dynamics.IsQubitEvolution ux uy U T →
+    HasDerivAt (fun δ => U δ T)
+      ((-Complex.I / 2) •
+        (U 0 T * ∫ (t : ℝ) in 0..T, Matrix.conjTranspose (U 0 t) * RobustPiGate.Quantum.sigmaZ * U 0 t))
+      0
+@RobustPiGate.ac_spherical_curve_length_lower_bound : ∀ {E : Type u_1} [inst : NormedAddCommGroup E]
+  [inst_1 : InnerProductSpace ℝ E] [CompleteSpace E] [FiniteDimensional ℝ E] {n : ℝ → E} {L : ℝ},
+  0 < L →
+    AbsolutelyContinuousOnInterval n 0 L →
+      (∀ t ∈ Set.Icc 0 L, ‖n t‖ = 1) →
+        (∀ᵐ (t : ℝ), t ∈ Set.Icc 0 L → ‖deriv n t‖ ≤ 1) → n L = -n 0 → ∫ (t : ℝ) in 0..L, n t = 0 → 7 * Real.pi / 3 ≤ L
+@RobustPiGate.spherical_curve_equality_rigidity : ∀ {E : Type u_1} [inst : NormedAddCommGroup E]
+  [inst_1 : InnerProductSpace ℝ E] [CompleteSpace E] {n : ℝ → E},
+  ContinuousOn n (Set.Icc 0 (7 * Real.pi / 3)) →
+    (∀ t ∈ Set.Icc 0 (7 * Real.pi / 3), ‖n t‖ = 1) →
+      RobustPiGate.SphericalSpeedBound n 0 (7 * Real.pi / 3) →
+        n (7 * Real.pi / 3) = -n 0 →
+          ∫ (t : ℝ) in 0..7 * Real.pi / 3, n t = 0 →
+            inner ℝ (n RobustPiGate.Rigidity.halfDuration) (n 0) = 0 ∧
+              ∀ t ∈ Set.Icc 0 (7 * Real.pi / 3),
+                n t =
+                  Real.cos (RobustPiGate.Rigidity.threeArcPhase t) • n RobustPiGate.Rigidity.halfDuration +
+                    Real.sin (RobustPiGate.Rigidity.threeArcPhase t) • n 0
+RobustPiGate.Quantum.shortDetunedPropagator_certificate : Measurable RobustPiGate.Quantum.shortControl ∧
+  (∀ (t : ℝ), RobustPiGate.Quantum.shortControl t ^ 2 + 0 ^ 2 ≤ 1) ∧
+    RobustPiGate.Dynamics.IsQubitEvolution RobustPiGate.Quantum.shortControl (fun x => 0)
+        RobustPiGate.Quantum.shortDetunedPropagator (7 * Real.pi / 3) ∧
+      (∀ (δ t : ℝ), RobustPiGate.Quantum.shortDetunedPropagator δ t ∈ unitary RobustPiGate.Quantum.QubitMatrix) ∧
+        RobustPiGate.Quantum.shortDetunedPropagator 0 (7 * Real.pi / 3) = -RobustPiGate.Quantum.rx Real.pi ∧
+          HasDerivAt (fun δ => RobustPiGate.Quantum.shortDetunedPropagator δ (7 * Real.pi / 3)) 0 0

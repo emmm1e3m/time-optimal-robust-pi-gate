@@ -1,19 +1,31 @@
-# Exact time limit for first-order detuning-robust qubit π gates
+# Minimum first-order detuning residual for qubit π gates at fixed duration
 
-**Tingyu Zhang and Yan Cen**  
+**Tingyu Zhang and Yan Cen**
 Department of Physics, Fudan University, Shanghai, China
 
 For arbitrary measurable transverse controls satisfying
-$u_x^2+u_y^2\le\Omega^2$, the exact minimum duration of a full qubit π gate
-that cancels static detuning to first order is
+$u_x^2+u_y^2\le\Omega^2$ and an exact nominal full qubit π gate,
+define the dimensionless first-order detuning residual
+$\mathbf R=\Omega\int_0^T\mathbf n(t)\,dt$, where
+$\mathbf n(t)\cdot\boldsymbol\sigma=U_0(t)^\dagger\sigma_zU_0(t)$.
+Its exact minimum is
 
-$$T_{\min}=\frac{7\pi}{3\Omega}.$$
+$$\min_u|\mathbf R|=4\cos\frac{L-\pi}{4}-2,\qquad
+\pi\le L=\Omega T\le\frac{7\pi}{3}.$$
 
-Every minimizing control is, almost everywhere, the known short-CORPSE
-sequence or its overall negative: three segments along one axis with
-durations $(\pi/3,5\pi/3,\pi/3)/\Omega$. A second independent transverse
-control axis gives no time advantage for this task. The proof uses a sharp
-midpoint comparison for zero-mean spherical curves with antipodal endpoints.
+All attaining controls are the same-axis three-segment family and its
+overall negative, with durations $(a,2a+\pi,a)/\Omega$ and $a=(L-\pi)/4$.
+A midpoint comparison proves the bound and all equality cases.
+The zero-residual endpoint gives the minimum first-order robust time
+$7\pi/(3\Omega)$.
+
+The manuscript completes this proof before developing the physical
+consequences. It then derives the fidelity coefficient
+$\chi=|\mathbf R|^2/6$, the known weak-dissipation time cost, and the
+optimal compensation level in the leading combined-noise budget.
+Average gate fidelity, fidelity susceptibility and additive weak-noise
+budgets are established quantities, attributed to their original sources
+in Sec. V. The two manuscripts share 23 references.
 
 ## Papers
 
@@ -44,16 +56,19 @@ xelatex -interaction=nonstopmode -halt-on-error manuscript_zh.tex
 ```
 
 The checked-in PDFs and generated `.bbl` files correspond to the source
-files. Both languages share the same scientific figure and English caption.
+files. Both languages share four scientific figures and English captions. The author-annotated revision contains 10 English pages and 8 Chinese pages; its 43 numbered equations are preserved, with dense inline relations moved to unnumbered displays.
 
 ## Lean 4 formalization
 
 [Proof overview and build instructions](lean/README.md)
 
-The 23 source modules formalize the original AC/a.e. Schrödinger model,
-the actual detuning-parameter derivative, the sharp time bound, explicit
-attaining evolutions and all minimizing controls for every Ω>0. The geometric
-bound and sharpness in each dimension d≥2 are also included.
+The 47 source modules formalize the original AC/a.e. quantum dynamics,
+the true fidelity susceptibility, the full continuous frontier, and every
+attaining control for arbitrary Ω>0. They also prove the weak Lindblad
+expansion from the actual channel average, its fourth-order averaged
+remainder, and the global leading-budget working-point results.
+The geometric minimum is attained in every dimension d≥2.
+All 1237 project declarations passed an exhaustive axiom audit.
 
 ```sh
 cd lean
@@ -72,14 +87,17 @@ on `propext`, `Classical.choice` and `Quot.sound`.
 python -m pip install -r requirements.txt
 python numerics/verify_solution.py
 python paper/build_figure.py
+python paper/build_frontier_figure.py
 ```
 
 The numerical script uses direct 2×2 matrix exponentials and Fréchet
 derivatives. Its recorded output is in [verification.json](numerics/verification.json).
 Floating-point calculations check conventions and implementation; the
-global optimality result follows from the analytical and formal proofs.
-The figure script reconstructs the vector PDF/SVG and PNG from analytic arcs.
+original robust-time result follows from the analytical and formal proofs.
+The figure scripts reconstruct the direction and error curves, the two distance-envelope branches, the short-CORPSE pulse, and the analytical frontier with its leading-order working points. The working-point solver
+compares all stationary points with both endpoint pulses; its generated
+data accompany the figure in `paper/assets/`.
 
 本仓库包含中英双语论文、共享参考文献与科学图、Lean 4 证明及必要复现脚本。
-论文主线为“原量子控制模型—球面中点锐界—精确时间—全部最优控制”。
+论文主线为“完整门与失谐响应—球面中点锐界—完整速度与敏感度边界—补偿程度选择”。
 作者待核定的非实质声明集中列在校阅说明中。

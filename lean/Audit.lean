@@ -15,3 +15,16 @@ import RobustPiGate
 #print axioms RobustPiGate.Quantum.negativeScaledShortPropagator_certificate
 #print axioms RobustPiGate.both_short_signs_attain
 #print axioms RobustPiGate.exact_time_and_all_minimizers
+
+#print axioms RobustPiGate.exact_frontier_and_all_minimizers
+#print axioms RobustPiGate.both_frontier_signs_attain
+#print axioms RobustPiGate.AdmissiblePi.nominal_time_lower_bound
+#print axioms RobustPiGate.FrontierDimension.euclidean_minimum
+#print axioms RobustPiGate.Quantum.avgGateFidelity_sensitivity_limit
+#print axioms RobustPiGate.Quantum.avgGateFidelity_cubic_remainder_isBigO
+#print axioms RobustPiGate.Quantum.single_axis_avgGateFidelity_even
+#print axioms RobustPiGate.FrontierNoise.lindblad_weak_noise_budget
+#print axioms RobustPiGate.FrontierNoise.weak_dissipation_rate_remainder
+#print axioms RobustPiGate.global_leading_budget_attained
+#print axioms RobustPiGate.budget_global_shortening_isBigO
+#print axioms RobustPiGate.budget_rectangular_global_min_of_large_ratio

@@ -1,74 +1,45 @@
-# Lean 4 proof
+# Lean 4 形式化证明
 
-This project formalizes the exact time and all minimizing controls for a
-first-order detuning-robust full qubit π gate with arbitrary measurable
-transverse controls and a joint amplitude bound Ω>0.
+本工程从原始 AC/a.e. 量子动力学出发，证明完整 π 门的精确速度—失谐敏感度边界、全部达到控制，以及弱耗散下的前导预算和全局工作点。固定 Lean 4.35.0、mathlib v4.35.0。
 
-## Main statements
+## 主要入口
 
-All names below are in namespace `RobustPiGate`.
+下列名称位于 `RobustPiGate` 命名空间。
 
-| Theorem | Statement |
+| 入口 | 已形式化内容 |
 | --- | --- |
-| `exact_time_and_all_minimizers` | The physical feasible-time set has minimum 7π/(3Ω), with the complete a.e. control classification |
-| `robust_pi_infimum` | The corresponding infimum equals 7π/(3Ω) |
-| `both_short_signs_attain` | Both signs of short-CORPSE have actual detuned evolution families that attain the minimum |
-| `Quantum.optimal_controls_unique_scaled` | Every minimizing control is a.e. ±Ωq(Ωt) along x, with zero y control |
-| `ac_spherical_curve_length_lower_bound` | The finite-dimensional AC spherical-curve lower bound |
-| `spherical_curve_equality_rigidity` | Every critical curve follows the same great-circle three-arc pattern |
-| `DimensionSharpness.euclidean_minimum` | The spherical minimum is attained in every dimension d≥2 |
-| `Dynamics.qubit_parameter_hasDerivAt` | The actual derivative with respect to the physical detuning parameter |
+| [FrontierMain.lean](RobustPiGate/FrontierMain.lean)：`exact_frontier_and_all_minimizers` | 任意 Ω>0、π≤ΩT≤7π/3 的真实敏感度最小元及全部达到者 |
+| `both_frontier_signs_attain` | 两种整体符号的全失谐演化真实达到边界，包括 a=0 |
+| `AdmissiblePi.nominal_time_lower_bound` | 原完整门条件推出 ΩT≥π |
+| [FrontierFidelity.lean](RobustPiGate/FrontierFidelity.lean)：`Quantum.avgGateFidelity_sensitivity_limit` | 实际平均门保真度的穿孔极限 χ=Ω²‖∫n‖²/6 |
+| [FrontierFidelityRemainder.lean](RobustPiGate/FrontierFidelityRemainder.lean) / [FrontierFidelitySymmetry.lean](RobustPiGate/FrontierFidelitySymmetry.lean) | 明确三阶静态余项、单轴控制的精确失谐偶性 |
+| [FrontierDimension.lean](RobustPiGate/FrontierDimension.lean)：`FrontierDimension.euclidean_minimum` | 每个 d≥2、每个区间内时长，在原 AC/a.e. 曲线类上取得几何最小元 |
+| [FrontierCombinedNoise.lean](RobustPiGate/FrontierCombinedNoise.lean)：`FrontierNoise.lindblad_weak_noise_budget` | 原 Lindblad 初值问题、实际纯输入球面平均、真实方差和 χ 的联合 O(η⁴) 预算 |
+| `FrontierNoise.weak_dissipation_rate_remainder` | 波形无关的一阶耗散及显式 O((ΓT)²) 余项 |
+| [FrontierOptimization.lean](RobustPiGate/FrontierOptimization.lean)：`global_leading_budget_attained` | 全部物理时长及全部原控制中的前导预算存在实际达到的全局最小门 |
+| [FrontierBudget.lean](RobustPiGate/FrontierBudget.lean)：`budget_global_shortening_isBigO` | 每个全局最优点均满足 h=4λ+O(λ²) |
+| [FrontierBudgetEndpoints.lean](RobustPiGate/FrontierBudgetEndpoints.lean) | λ≥2/3 时矩形 π 脉冲全局最优的充分条件 |
+| [Main.lean](RobustPiGate/Main.lean)：`exact_time_and_all_minimizers` | 保留原零敏感度端点的精确时间与全部控制分类 |
 
-Start with [Main.lean](RobustPiGate/Main.lean) and
-[PhysicalMain.lean](RobustPiGate/PhysicalMain.lean).
+## 构建与审计
 
-## Build
-
-Lean **4.35.0**; mathlib **v4.35.0** at commit
-`56a005855ea17e0b0958f73ec801ae140b0a1679`.
-The manifest pins all dependencies.
-
-```sh
+```powershell
 lake exe cache get
 lake build
 lake env lean Audit.lean
+lake env lean verification/AllDeclarationsAudit.lean
+lake env lean verification/FrontierAudit.lean
+lake env lean verification/NoiseAudit.lean
 ```
 
-The project was successfully built with this toolchain. The axiom audit
-uses only `propext`, `Classical.choice`, and `Quot.sound`; no project axiom,
-`sorry`, `admit`, or `native_decide` is used. Dependency caches and build
-products are intentionally not versioned.
+2026-11-04 全部 47 个数学模块及顶层导入构建成功。逐模块枚举的 1237 个项目声明（其中 1057 个定理声明，包含自动生成项）全部通过公理审计，仅依赖 `propext`、`Classical.choice`、`Quot.sound`。正式数学源码无 `sorry`、`admit`、自建公理、`unsafe` 或 `native_decide`。源码包不含 `.lake` 缓存。
 
-## Model and proof chain
+[完整构建日志](verification/full-build.log)、[逐声明审计](verification/all-declarations.log)、[关键出口审计](verification/key-axioms.log)、[前沿原始前提探针](verification/FrontierAudit.lean)、[物理预算探针](verification/NoiseAudit.lean)均随源码提供。
 
-`AdmissibleRobustPi` uses actual complex 2×2 matrices, controls that are
-`AEMeasurable` on the evolution interval, an a.e. amplitude disk bound,
-absolutely continuous propagators satisfying the original ODE a.e., a
-unit initial propagator, the full target ±Rx(π), and zero first-order
-detuning derivative. The controls do not depend on the static detuning.
+## 模型与证明连接
 
-Unitarity, Duhamel's identity, parameter differentiability and the Bloch
-curve are derived from the ODE. In particular, the `deriv = 0` condition
-does not use the default value of `deriv` at a nondifferentiable point:
-actual `HasDerivAt` is proved. Admissible objects pair a control with its
-ODE solution family. Solution uniqueness and the explicit attaining
-families are proved; a separate general existence theorem for every
-measurable linear ODE is not needed for these statements.
+`AdmissiblePi` 只要求控制在区间上 a.e. 可测、联合幅度受限、传播子满足原 AC/a.e. 薛定谔方程并实现完整 ±Rx(π)。没有预设平面、饱和、有限段数、残差或鲁棒性。幺正性、真实失谐可导性、噪声曲线和敏感度极限均由方程推出；达到族显式构造全部 δ 下的矩阵指数演化。
 
-1. `ACCalculus`, `Dynamics`, `QubitDynamics`: AC calculus, unitarity,
-   Duhamel and the detuning derivative with a quadratic remainder.
-2. `Quantum`, `BlochBridge`: Pauli algebra and the actual noise curve,
-   including its unit norm, speed, antipodal endpoints and zero integral.
-3. `Geometry`, `Envelope`, `Scalar`, `SharpLength`, `TimeScaling`:
-   angular-distance bounds and the sharp midpoint comparison.
-4. `ShortEvolution`, `SignSymmetry`: both actual attaining evolution families.
-5. `Rigidity`, `Equality`, `RotatedShort`, `LiftUniqueness`,
-   `OptimalControls`, `EvolutionScaling`: geometric rigidity, unique
-   transverse lifts and all minimizing controls in the original time variable.
-6. `DimensionSharpness`, `PhysicalMain`, `Main`: sharpness in every
-   dimension and the physical minimum.
+弱噪声部分采用 δ=ηξ、Γj=η²γj，γj≥0，固定时长，对称 ξ 具有有限四阶矩。`IsNoisyLindbladChannel` 规定真实仿射 Bloch 初值问题，包含平移初值 c(0)=0；最终定理主动给出全部输入的原 Lindblad 方程及其初值。平均门保真度由实际 z、φ 球面积分定义，方差使用 Mathlib 的 `ProbabilityTheory.variance`。Dyson 余项对全部实 ξ 一致成立，随机解族的连续性、可测性及可积性由原 ODE 和收缩推出。
 
-The formal proof follows the manuscript's midpoint argument. Some local
-steps use equivalent proofs, including subdivision for the angular speed
-bound and spherical-geodesic equality for rigidity. Literature attribution,
-figures and floating-point calculations are not Lean propositions.
+工作点结论针对前导弱噪声泛函。图中的 2.085π 和 4.91% 是独立复核的数值示例；两端预算相等、全局最优性原则及渐近关系有精确形式化。文献归属和优先权判断不属于 Lean 命题。一般可测有界系数的线性 ODE 存在性没有另设通用存在定理，工程对原方程的 AC 解作量化，并显式提供达到控制的幺正演化。

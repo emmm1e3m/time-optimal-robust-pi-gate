@@ -1,0 +1,82 @@
+structure RobustPiGate.AdmissibleRobustPi (Ω : NNReal) (T : ℝ) (ux uy : ℝ → ℝ)
+  (U : ℝ → ℝ → RobustPiGate.Quantum.QubitMatrix) : Prop
+number of parameters: 5
+fields:
+  RobustPiGate.AdmissibleRobustPi.nonneg_duration : 0 ≤ T
+  RobustPiGate.AdmissibleRobustPi.measurable_x : AEMeasurable ux (MeasureTheory.volume.restrict (Set.uIcc 0 T))
+  RobustPiGate.AdmissibleRobustPi.measurable_y : AEMeasurable uy (MeasureTheory.volume.restrict (Set.uIcc 0 T))
+  RobustPiGate.AdmissibleRobustPi.evolution : RobustPiGate.Dynamics.IsQubitEvolution ux uy U T
+  RobustPiGate.AdmissibleRobustPi.amplitude : ∀ᵐ (t : ℝ), t ∈ Set.uIcc 0 T → ux t ^ 2 + uy t ^ 2 ≤ ↑Ω ^ 2
+  RobustPiGate.AdmissibleRobustPi.gate : U 0 T = RobustPiGate.Quantum.rx Real.pi ∨
+      U 0 T = -RobustPiGate.Quantum.rx Real.pi
+  RobustPiGate.AdmissibleRobustPi.robust : deriv (fun δ => U δ T) 0 = 0
+constructor:
+  RobustPiGate.AdmissibleRobustPi.mk {Ω : NNReal} {T : ℝ} {ux uy : ℝ → ℝ} {U : ℝ → ℝ → RobustPiGate.Quantum.QubitMatrix}
+    (nonneg_duration : 0 ≤ T) (measurable_x : AEMeasurable ux (MeasureTheory.volume.restrict (Set.uIcc 0 T)))
+    (measurable_y : AEMeasurable uy (MeasureTheory.volume.restrict (Set.uIcc 0 T)))
+    (evolution : RobustPiGate.Dynamics.IsQubitEvolution ux uy U T)
+    (amplitude : ∀ᵐ (t : ℝ), t ∈ Set.uIcc 0 T → ux t ^ 2 + uy t ^ 2 ≤ ↑Ω ^ 2)
+    (gate : U 0 T = RobustPiGate.Quantum.rx Real.pi ∨ U 0 T = -RobustPiGate.Quantum.rx Real.pi)
+    (robust : deriv (fun δ => U δ T) 0 = 0) : RobustPiGate.AdmissibleRobustPi Ω T ux uy U
+def RobustPiGate.robustPiDurations : NNReal → Set ℝ :=
+fun Ω => {T | ∃ ux uy U, RobustPiGate.AdmissibleRobustPi Ω T ux uy U}
+@RobustPiGate.exact_time_and_all_minimizers : ∀ {Ω : NNReal},
+  0 < Ω →
+    IsLeast (RobustPiGate.robustPiDurations Ω) (7 * Real.pi / (3 * ↑Ω)) ∧
+      ∀ (ux uy : ℝ → ℝ) (U : ℝ → ℝ → RobustPiGate.Quantum.QubitMatrix),
+        RobustPiGate.AdmissibleRobustPi Ω (7 * Real.pi / (3 * ↑Ω)) ux uy U →
+          (∀ᵐ (t : ℝ),
+              t ∈ Set.Icc 0 (7 * Real.pi / (3 * ↑Ω)) →
+                ux t = ↑Ω * RobustPiGate.Quantum.shortControl (↑Ω * t) ∧ uy t = 0) ∨
+            ∀ᵐ (t : ℝ),
+              t ∈ Set.Icc 0 (7 * Real.pi / (3 * ↑Ω)) →
+                ux t = -(↑Ω * RobustPiGate.Quantum.shortControl (↑Ω * t)) ∧ uy t = 0
+@RobustPiGate.both_short_signs_attain : ∀ {Ω : NNReal},
+  0 < Ω →
+    RobustPiGate.AdmissibleRobustPi Ω (7 * Real.pi / (3 * ↑Ω)) (RobustPiGate.Quantum.scaledShortControl ↑Ω) (fun x => 0)
+        (RobustPiGate.Quantum.scaledShortPropagator ↑Ω) ∧
+      RobustPiGate.AdmissibleRobustPi Ω (7 * Real.pi / (3 * ↑Ω)) (RobustPiGate.Quantum.negativeScaledShortControl ↑Ω)
+        (fun x => 0) (RobustPiGate.Quantum.negativeScaledShortPropagator ↑Ω)
+@RobustPiGate.robust_pi_infimum : ∀ {Ω : NNReal},
+  0 < Ω → sInf (RobustPiGate.robustPiDurations Ω) = 7 * Real.pi / (3 * ↑Ω)
+@RobustPiGate.ac_spherical_curve_length_lower_bound : ∀ {E : Type u_1} [inst : NormedAddCommGroup E]
+  [inst_1 : InnerProductSpace ℝ E] [CompleteSpace E] [FiniteDimensional ℝ E] {n : ℝ → E} {L : ℝ},
+  0 < L →
+    AbsolutelyContinuousOnInterval n 0 L →
+      (∀ t ∈ Set.Icc 0 L, ‖n t‖ = 1) →
+        (∀ᵐ (t : ℝ), t ∈ Set.Icc 0 L → ‖deriv n t‖ ≤ 1) → n L = -n 0 → ∫ (t : ℝ) in 0..L, n t = 0 → 7 * Real.pi / 3 ≤ L
+@RobustPiGate.DimensionSharpness.euclidean_minimum : ∀ {d : ℕ},
+  2 ≤ d → IsLeast (RobustPiGate.DimensionSharpness.durations (EuclideanSpace ℝ (Fin d))) (7 * Real.pi / 3)
+@RobustPiGate.spherical_curve_equality_rigidity : ∀ {E : Type u_1} [inst : NormedAddCommGroup E]
+  [inst_1 : InnerProductSpace ℝ E] [CompleteSpace E] {n : ℝ → E},
+  ContinuousOn n (Set.Icc 0 (7 * Real.pi / 3)) →
+    (∀ t ∈ Set.Icc 0 (7 * Real.pi / 3), ‖n t‖ = 1) →
+      RobustPiGate.SphericalSpeedBound n 0 (7 * Real.pi / 3) →
+        n (7 * Real.pi / 3) = -n 0 →
+          ∫ (t : ℝ) in 0..7 * Real.pi / 3, n t = 0 →
+            inner ℝ (n RobustPiGate.Rigidity.halfDuration) (n 0) = 0 ∧
+              ∀ t ∈ Set.Icc 0 (7 * Real.pi / 3),
+                n t =
+                  Real.cos (RobustPiGate.Rigidity.threeArcPhase t) • n RobustPiGate.Rigidity.halfDuration +
+                    Real.sin (RobustPiGate.Rigidity.threeArcPhase t) • n 0
+'RobustPiGate.exact_time_and_all_minimizers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.both_short_signs_attain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.robust_pi_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.robust_pi_infimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.AdmissibleRobustPi.robust_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.AdmissibleRobustPi.duration_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Quantum.actual_gate_time_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Quantum.actual_noise_curve' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Dynamics.qubit_parameter_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Dynamics.qubit_first_order_robust_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Quantum.scaledShortPropagator_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Quantum.negativeScaledShortPropagator_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RobustPiGate.Quantum.optimal_controls_unique_scaled' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.Quantum.optimal_controls_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.ac_spherical_curve_length_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.spherical_curve_equality_rigidity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.DimensionSharpness.euclidean_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.DimensionSharpness.euclidean_sInf' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RobustPiGate.geometric_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]

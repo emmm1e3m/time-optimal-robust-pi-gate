@@ -1,16 +1,19 @@
-\documentclass[aps,pra,reprint,superscriptaddress,longbibliography]{revtex4-2}
+\documentclass[aps,pra,reprint,raggedbottom,superscriptaddress,longbibliography]{revtex4-2}
 
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{microtype}
 \usepackage{graphicx}
+\usepackage[section]{placeins}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \graphicspath{{assets/}}
 
 \newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
 \newcommand{\dd}{\mathrm{d}}
 \newcommand{\nvec}{\mathbf n}
 \newcommand{\rvec}{\mathbf r}
+\newcommand{\Rvec}{\mathbf R}
 \newcommand{\vvec}{\mathbf v}
 \newcommand{\ez}{\mathbf e_z}
 \newcommand{\sigmavec}{\boldsymbol\sigma}
@@ -19,8 +22,8 @@
 
 \begin{document}
 
-\title{Exact time limit for first-order detuning-robust qubit
-\texorpdfstring{$\pi$}{pi} gates}
+\title{Minimum first-order detuning residual for qubit
+\texorpdfstring{$\pi$}{pi} gates at fixed duration}
 \author{Tingyu Zhang}
 \email{23300190021@m.fudan.edu.cn}
 \affiliation{Department of Physics, Fudan University, Shanghai, China}
@@ -29,235 +32,322 @@
 \affiliation{Department of Physics, Fudan University, Shanghai, China}
 
 \begin{abstract}
-We establish the exact minimum duration of a qubit $\pi$ gate that
-cancels a constant detuning error to first order. For arbitrary measurable
-transverse controls satisfying $u_x^2+u_y^2\le\Omega^2$, the minimum is
-$7\pi/(3\Omega)$. The only controls attaining it are the known
-short-CORPSE sequence and its overall negative, up to changes on sets of
-measure zero. A second independently controlled transverse axis therefore
-provides no time advantage for this task. The lower bound follows from a
-sharp inequality valid in every dimension at least two: a unit-vector
-curve with speed at most one, antipodal endpoints, and zero time average
-has duration at least $7\pi/3$. Projection onto the curve's value at the
-time midpoint gives the comparison and determines its equality cases.
-The argument applies directly to measurable controls without requiring a
-classification of extremal trajectories.
+Suppressing static detuning errors in a quantum gate requires additional
+control time, which can increase the loss from dissipation. For a full
+qubit $\pi$ gate driven by arbitrary measurable transverse controls
+with joint amplitude bound $\Omega$, we determine the smallest
+first-order detuning residual at every duration between the shortest
+nominal gate and the shortest first-order robust gate. The bound is
+attained only by a single-axis three-segment pulse family and its
+overall negative. This family continuously connects a rectangular
+$\pi$ pulse to short-CORPSE, and establishes $7\pi/(3\Omega)$ as the
+minimum time for first-order detuning cancellation over the full
+two-axis control class. The proof uses a geometric projection onto
+the midpoint noise direction and avoids classifying control
+extremals. The result yields a sharp duration-dependent lower bound
+on the coefficient of the quadratic term in the small-detuning
+expansion of average gate infidelity. With weak, drive-independent
+Markovian dissipation, it also
+reduces the choice of compensation level to an optimization over gate
+duration. Slightly shortening a fully compensated gate saves
+dissipative error to first order in the time reduction, while its
+detuning penalty enters only at second order. Partial compensation
+can therefore lower the leading gate error relative to complete
+first-order cancellation.
 \end{abstract}
 \maketitle
 
 \section{Introduction}
 
-A finite drive amplitude sets a time cost for suppressing systematic
-errors during a quantum gate. Independent amplitude and phase control
-enlarge the available pulse shapes, raising the question of whether this
-freedom can reduce that cost. We address this question for a full qubit
-$\pi$ gate with first-order robustness against static detuning, under a
-joint amplitude bound on two transverse controls.
+A gate that implements its target exactly on resonance can still
+respond at first order to a static detuning. Composite pulses suppress
+this response by canceling the error accumulated during different
+parts of the drive, at the cost of a longer
+duration~\cite{cummins2000,cummins2003}. This creates a resource
+question: how much detuning error can be removed within a given time,
+and how much time is needed to remove its first-order contribution
+completely?
 
-The short-CORPSE sequence has duration $7\pi/(3\Omega)$ and is optimal
-within a symmetric family of three elementary pulses~\cite{kukita2022}.
-Related planar geometric
-constructions were developed for a single control
-axis~\cite{zeng2018}. With two independent transverse controls, the
-time-optimality of short-CORPSE has remained a separate question:
-Pontryagin analysis identifies it as a candidate~\cite{kukita2024}, and
-numerical optimization gives first-order robust $X$-gate durations near
-$2.33\pi/\Omega$~\cite{cao2024}.
+Gate fidelity susceptibility and robustness--duration trade-offs have
+been formulated in general quantum-control settings~\cite{poggi2024}.
+For single-qubit gates, numerical optimization has estimated the
+minimum times needed at prescribed robustness orders~\cite{cao2024}.
+Partial detuning compensation is also a practical design variable in
+Rydberg-gate optimization~\cite{bataille2026}. A continuous
+relation between duration and residual error would allow the
+compensation level to be selected from the available time or from
+competition with other noise sources.
 
-The control problem is closely related to bounded-curvature paths. The planar
-three-arc return with reversed tangent appears as a teardrop trajectory
-in the controllability construction of Sigalotti and
-Chitour~\cite[Remark~2.2]{sigalotti2006}. Kim and Cheong explicitly give
-$7\pi/3$ as the shortest planar bounded-curvature path between coincident
-positions with opposite directions~\cite[Fig.~7 and the case $d=0$]{kim2013}.
-The corresponding spatial problem permits additional trajectories:
-general three-dimensional shortest-path and reachability analyses
-include nonplanar extremals~\cite{sussmann1995,bae2025,bae2026}; related
-spatial branches also occur in the classification of
-$\infty$-elastica~\cite{moser2022}.
+For a qubit $\pi$ gate, the known short-CORPSE sequence achieves
+complete first-order detuning cancellation in time
+$7\pi/(3\Omega)$~\cite{cummins2003}. It is optimal within a symmetric
+family of three elementary pulses~\cite{kukita2022}.
+Pontryagin analysis identifies it as a time-optimal
+candidate~\cite{kukita2024}, while numerical optimization gives
+first-order robust $X$-gate times near $2.33\pi/\Omega$~\cite{cao2024}.
 
-Here we prove that short-CORPSE remains time optimal over the full class
-of measurable two-axis controls. The key step is a comparison inequality
-for spatial curves, which supplies the lower bound beyond the planar
-problem. This Schur-type tangent comparison~\cite{sullivan2008} projects
-onto the midpoint tangent and uses the antipodal endpoints to constrain
-both halves of the curve. Equality forces the curve into a single plane
-and, with the full gate condition, fixes the control to short-CORPSE or
-its overall negative.
+With the full nominal $\pi$ gate imposed exactly and two transverse
+controls subject to a joint amplitude bound, the main research
+questions are:
+\begin{enumerate}
+\item What is the smallest first-order detuning residual at each
+prescribed duration?
+\item Does the known three-segment pulse family attain the global
+minimum over all measurable two-axis controls?
+\item Which controls attain this minimum?
+\end{enumerate}
 
-\section{Control model and main result}
+The geometric representation of detuning errors turns these questions
+into a problem about curves with bounded
+curvature~\cite{zeng2018,zeng2019,piliouras2026}. The planar
+three-arc return with reversed tangent occurs in the controllability
+construction of Sigalotti and Chitour~\cite{sigalotti2006},
+and its shortest length $7\pi/3$ is given explicitly by Kim and
+Cheong~\cite{kim2013}.
+Spatial shortest-path and reachability problems admit additional,
+nonplanar extremals~\cite{sussmann1995,bae2025,bae2026,moser2022}.
+A planar construction therefore establishes an achievable duration,
+but a lower bound for the full two-axis control class must also account
+for nonplanar curves.
+
+The main results are:
+\begin{enumerate}
+\item We determine the minimum first-order detuning residual over
+the entire duration interval from the shortest rectangular $\pi$
+pulse to short-CORPSE.
+\item The attaining controls are exactly the single-axis three-segment
+family and its overall negative. The first zero of the minimum
+residual gives the shortest first-order robust gate time,
+$7\pi/(3\Omega)$.
+\item A Schur-type tangent comparison~\cite{sullivan2008} proves the
+bound by projecting onto the noise direction at the midpoint of the
+gate. The argument applies in every dimension $d\ge2$, avoids
+classifying control extremals, and determines the geometric equality
+cases. Equality forces the curve into one plane, and the full gate
+condition fixes the control axis.
+\item The residual bound gives the minimum coefficient of the
+quadratic detuning contribution to average gate infidelity. Combining
+it with the known first-order effect of weak Markovian
+dissipation~\cite{abad2022} determines the compensation level that
+minimizes the leading total gate error through a single optimization
+over duration.
+\end{enumerate}
+
+\section{Control model and minimum detuning residual}
 \label{sec:model}
 
-We set $\hbar=1$ and take Pauli matrices with eigenvalues $\pm1$. The
+The control model specifies both the available drives and the complete
+unitary target. We then express its first-order response to detuning
+as the endpoint displacement of an error curve, which allows the
+minimum residual to be stated geometrically.
+
+We allow two transverse drives and no independent longitudinal
+control. Changing the drive phase changes only the subsequent
+transverse Hamiltonian; it does not apply an additional instantaneous
+gate. Reduced amplitudes, zero-control intervals, and arbitrary phase
+changes are allowed. The detuning is constant during each gate, and
+the controls do not depend on this unknown detuning. With $\hbar=1$
+and Pauli matrices of eigenvalues $\pm1$, the
 propagator obeys
 \begin{equation}
  \begin{aligned}
- \dot U_\delta(t)&=-\frac{i}{2}
- \bigl[u_x(t)\sigma_x+u_y(t)\sigma_y+\delta\sigma_z\bigr]U_\delta(t),
- \\
- U_\delta(0)&=I.
+ \dot U_\delta(t)&=-iH_\delta(t)U_\delta(t),\qquad U_\delta(0)=I,\\
+ H_\delta(t)&=\frac{u_x(t)\sigma_x+u_y(t)\sigma_y+\delta\sigma_z}{2}.
  \end{aligned}
  \label{eq:dynamics}
 \end{equation}
-Here $\delta$ is an unknown constant and the real controls are
-measurable, independent of $\delta$, and satisfy the amplitude bound
+The real controls $u=(u_x,u_y)$ are measurable and satisfy
 \begin{equation}
  u_x(t)^2+u_y(t)^2\le\Omega^2
  \quad\text{for almost every }t,
  \label{eq:disk}
 \end{equation}
-where $\Omega>0$ is fixed. There is no independent longitudinal control.
-A change of control
-phase changes the subsequent transverse drive; it does not apply an
-additional instantaneous gate. The admissible class includes reduced
-amplitudes, zero-control intervals, and arbitrary phase changes.
+where $\Omega>0$ is the fixed maximum drive amplitude.
 
-Write $R_x(\theta)=\exp(-i\theta\sigma_x/2)$. Let $T_*$ be the
-infimum of all durations $T>0$ for which an admissible control satisfies
+Let $R_x(\theta)=\exp(-i\theta\sigma_x/2)$. At zero detuning we
+require the full nominal gate
 \begin{equation}
- \begin{aligned}
- U_0(T)&=\pm R_x(\pi),\\
- \left.\partial_\delta U_\delta(T)\right|_{\delta=0}&=0.
- \end{aligned}
+ U_0(T)=\pm R_x(\pi).
  \label{eq:target}
 \end{equation}
-The sign ignores an overall phase. The derivative condition is an
-operator identity, so robustness holds for every input state.
+The sign allows an overall phase. This operator identity fixes the
+gate's action on every input state, so matching a single state
+transfer is insufficient.
 
-\begin{theorem}[Exact robust gate time]
-\label{thm:gate}
-For the control class~\eqref{eq:disk} and target~\eqref{eq:target},
-\begin{equation}
- \boxed{T_* = \frac{7\pi}{3\Omega}.}
- \label{eq:main}
-\end{equation}
-Apart from changes on sets of measure zero, the only minimizing controls
-have $u_y=0$ and $u_x=\pm\Omega q(\Omega t)$, where $q$ has three
-successive constant segments of values $+1,-1,+1$ and dimensionless
-durations $\pi/3,5\pi/3,\pi/3$.
-\end{theorem}
-
-Thus the second transverse axis does not shorten this robust gate.
-The lower bound applies to the full measurable control class;
-planarity and the three-segment structure follow from equality.
-
-\subsection{The toggling-frame error curve}
-
-To obtain the lower bound, introduce the toggling-frame noise direction
-and its integral:
+To express the first-order detuning residual geometrically, set
+$\sigmavec=(\sigma_x,\sigma_y,\sigma_z)$ and define
 \begin{equation}
  \begin{aligned}
  \nvec(t)\cdot\sigmavec&=U_0(t)^\dagger\sigma_zU_0(t),\\
- \rvec(t)&=\int_0^t\nvec(s)\,\dd s.
+ \rvec(t)&=\int_0^t\nvec(t')\,\dd t'.
  \end{aligned}
  \label{eq:curve}
 \end{equation}
+The unit vector $\nvec(t)$ is the detuning direction in the ideal
+rotating frame, and $\rvec(t)$ accumulates that direction over time.
 This is the error-curve representation used in geometric robust
-control~\cite{zeng2018,piliouras2026}. The identities needed here follow
-directly from~\eqref{eq:dynamics}. Differentiation with respect to the
-constant parameter $\delta$ gives the variation-of-constants formula
+control~\cite{zeng2019,piliouras2026}. Differentiating the evolution
+with respect to the constant detuning gives
 \begin{equation}
- \begin{aligned}
  \left.\partial_\delta U_\delta(T)\right|_0
- &=-\frac{i}{2}U_0(T)
- \int_0^T U_0(t)^\dagger\sigma_zU_0(t)\,\dd t
- \\
- &=-\frac{i}{2}U_0(T)\,\rvec(T)\cdot\sigmavec.
- \end{aligned}
+ =-\frac{i}{2}U_0(T)\,\rvec(T)\cdot\sigmavec.
  \label{eq:variation}
 \end{equation}
-Hence first-order detuning cancellation is equivalent to
-$\rvec(T)=0$.
+Thus the endpoint displacement $\rvec(T)$ determines the full
+first-order response. Canceling that response is equivalent to closing
+the error curve, $\rvec(T)=0$.
 
-Unitary conjugation preserves the Pauli inner product, so $|\nvec|=1$.
-Define the orthonormal vectors $\mathbf a,\mathbf b,\nvec$ by conjugating
-$\sigma_x,\sigma_y,\sigma_z$, respectively. The commutator in the
-derivative of~\eqref{eq:curve} yields
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{residual_geometry.pdf}
+\caption{\residualgeometrycaption}
+\label{fig:geometry}
+\end{figure}
+
+Unitary conjugation preserves the Pauli inner product, so $|\nvec|=1$
+and the error curve has unit speed, $|\dot\rvec|=1$.
+Let $\mathbf a_0,\mathbf b_0,\nvec$ be the orthonormal vectors obtained
+by conjugating $\sigma_x,\sigma_y,\sigma_z$, respectively. The
+commutator in the derivative of~\eqref{eq:curve} yields
 \begin{equation}
- \begin{aligned}
- \dot{\nvec}&=u_x\mathbf b-u_y\mathbf a,\\
- |\dot{\nvec}|&=\sqrt{u_x^2+u_y^2}\le\Omega
+ \dot\nvec=u_x\mathbf b_0-u_y\mathbf a_0,\qquad
+ |\dot\nvec|=\sqrt{u_x^2+u_y^2}\le\Omega
  \quad\text{a.e.}
- \end{aligned}
  \label{eq:speed}
 \end{equation}
-The endpoint gate imposes
+Writing $\ez$ for the unit vector along $z$, the target imposes
 \begin{equation}
- \nvec(0)=\ez,
- \qquad
- \nvec(T)=-\ez,
+ \nvec(0)=\ez,\qquad \nvec(T)=-\ez.
  \label{eq:antipodes}
 \end{equation}
-because $R_x(\pi)^\dagger\sigma_zR_x(\pi)=-\sigma_z$.
-For bounded measurable controls, $U_0$ and $\nvec$ are Lipschitz and
-$\rvec\in W^{2,\infty}$; all differential identities above hold almost
-everywhere.
+The shortest path on the unit sphere between these antipodal
+directions has length $\pi$. Since the direction turns at speed no
+greater than $\Omega$, every admissible gate requires $\Omega T\ge\pi$.
+For bounded measurable controls, $U_0$ and $\nvec$ are Lipschitz,
+$\rvec\in W^{2,\infty}$, and the differential identities hold almost
+everywhere. In particular, the model permits self-intersections of the
+error curve and discontinuous changes in its curvature at pulse
+switches.
 
-Rescaling time by $s=\Omega t$ thus produces an absolutely continuous
-unit-vector curve of duration $L=\Omega T$, speed at most one,
-antipodal endpoints, and zero integral. The following theorem proves
-$L\ge7\pi/3$. The argument uses this forward map from controls to
-curves; a direct calculation in Sec.~\ref{sec:attainment} establishes
-attainment in the gate model.
+Define $L=\Omega T$ and rescale time by $\tau=\Omega t$, retaining
+$\nvec$ for the rescaled direction. The dimensionless residual is
+\begin{equation}
+ \Rvec=\int_0^L\nvec(\tau)\,\dd\tau=\Omega\rvec(T).
+ \label{eq:rescaled-error}
+\end{equation}
+Every admissible full gate therefore gives an absolutely continuous
+unit-vector curve with antipodal endpoints and speed at most one.
+Figures~\ref{fig:geometry}(a) and \ref{fig:geometry}(b) show the two
+geometric views: $\nvec$ moves on the unit sphere, while its integral
+traces the error curve in Euclidean space. The first view constrains
+how quickly the detuning direction can turn; the second identifies
+the residual with the separation between the error-curve endpoints.
+The following theorem gives the smallest such residual under the
+full gate constraint.
 
-\section{A sharp midpoint comparison}
+
+
+
+\begin{theorem}[Minimum detuning residual]
+\label{thm:gate}
+For each fixed $L\in[\pi,7\pi/3]$, among all controls satisfying
+\eqref{eq:disk} and the full nominal gate~\eqref{eq:target},
+\begin{equation}
+ \boxed{\min_u|\Rvec|=g(L),\qquad
+ g(L)=4\cos\frac{L-\pi}{4}-2.}
+ \label{eq:residual-minimum}
+\end{equation}
+Apart from changes on sets of measure zero, all attaining controls have
+$u_y=0$ and consist of the successive values
+$u_x=+\Omega,-\Omega,+\Omega$, or their overall negative, with durations
+\begin{equation}
+ \frac{1}{\Omega}(a,2a+\pi,a),\qquad
+ a=\frac{L-\pi}{4}.
+ \label{eq:family-durations}
+\end{equation}
+At $L=\pi$ the two outer segments have zero duration.
+\end{theorem}
+
+The minimum decreases from $2$ at $L=\pi$ to zero at $L=7\pi/3$.
+It therefore quantifies the best possible partial compensation at
+every duration before complete first-order cancellation becomes
+possible. We prove the geometric lower bound in
+Sec.~\ref{sec:midpoint}, then establish attainment and characterize
+all full-gate equality cases in Sec.~\ref{sec:attainment}.
+
+\section{Proof of the geometric lower bound}
 \label{sec:midpoint}
 
-\begin{theorem}[Antipodal zero-mean spherical curves]
+The central step is to project the accumulated detuning direction
+onto its value at the midpoint of the gate. On each half of the
+trajectory, the speed limit bounds the angular distance from that
+midpoint direction. Integrating the resulting lower bound on the
+projection gives a lower bound on the residual norm. The argument
+uses only the antipodal endpoints and the speed limit, so it applies
+to a larger class of curves than those produced by the physical
+control model.
+
+\begin{theorem}[Antipodal spherical curves]
 \label{thm:sphere}
-Let $d\ge2$ and let $\nvec:[0,L]\to S^{d-1}$ be absolutely continuous,
-where $L>0$. Suppose that
+Let $d\ge2$ and $\pi\le L\le7\pi/3$. For every absolutely continuous
+$\nvec:[0,L]\to S^{d-1}$ satisfying $|\nvec'|\le1$ almost everywhere
+and $\nvec(L)=-\nvec(0)$, set $\vvec=\nvec(L/2)$ and
+$\Rvec=\int_0^L\nvec(\tau)\,\dd\tau$. Then
 \begin{equation}
- \begin{gathered}
- |\nvec'(t)|\le1\quad\text{a.e.},\qquad
- \nvec(L)=-\nvec(0),\\
- \int_0^L\nvec(t)\,\dd t=0.
- \end{gathered}
- \label{eq:spherical-assumptions}
+ |\Rvec|\ge\vvec\cdot\Rvec\ge g(L)\ge0.
+ \label{eq:sphere-bound}
 \end{equation}
-Then $L\ge7\pi/3$. The constant is sharp.
+The bound is attained for every $L$ in the stated interval and every
+$d\ge2$.
 \end{theorem}
 
 \begin{proof}
-Set $c=L/2$ and $\vvec=\nvec(c)$. Spherical distance is bounded by
-curve length, so
+Set $c=L/2$ and let $d_S$ denote spherical geodesic distance. For unit
+vectors $\mathbf p$ and $\mathbf q$, this distance is the angle
+between them:
+\begin{equation*}
+ d_S(\mathbf p,\mathbf q)=\arccos(\mathbf p\cdot\mathbf q).
+\end{equation*}
+The geodesic distance between two points is no greater than the length
+of any spherical path connecting them. The condition $|\nvec'|\le1$
+bounds the length traveled during a time interval by the length of
+that interval. Consequently,
 \begin{equation}
- d_S(\nvec(s),\nvec(t))\le|t-s|.
+ d_S(\nvec(\tau_1),\nvec(\tau_2))\le|\tau_2-\tau_1|.
  \label{eq:lipschitz-sphere}
 \end{equation}
-If $c<\pi$, this gives
+Let $\alpha=d_S(\vvec,\nvec(0))$. Because the endpoints are antipodal,
+their distances from $\vvec$ sum to $\pi$, so the other endpoint is
+at distance $\pi-\alpha$. Each endpoint must be reachable from the
+midpoint in time $c$. Thus both $\alpha\le c$ and $\pi-\alpha\le c$,
+which give
 \begin{equation}
- \begin{aligned}
- \vvec\cdot\int_0^{2c}\nvec(t)\,\dd t
- &\ge\int_0^{2c}\cos|t-c|\,\dd t\\
- &=2\sin c>0,
- \end{aligned}
- \label{eq:first-lower}
+ \max(0,\pi-c)\le\alpha\le\min(\pi,c).
+ \label{eq:feasible-alpha}
 \end{equation}
-contrary to the zero integral. We may therefore assume $c\ge\pi$.
 
-Let $\alpha=d_S(\vvec,\nvec(0))$. The antipodal endpoint has distance
-$\pi-\alpha$ from $\vvec$. Consider either half of the curve, oriented
-from its endpoint towards $\vvec$, and denote it by
-$\mathbf m:[0,c]\to S^{d-1}$. If
-$\beta=d_S(\vvec,\mathbf m(0))$, the triangle inequality and
-\eqref{eq:lipschitz-sphere} imply
+To treat the two halves with the same argument, parameterize each
+from its outer endpoint toward the midpoint and call it
+$\mathbf m:[0,c]\to S^{d-1}$. Its initial distance from $\vvec$ is
+$\beta\in\{\alpha,\pi-\alpha\}$, and $\mathbf m(c)=\vvec$.
+At time $t$, the distance from $\vvec$ cannot exceed $\beta+t$,
+because the curve has traveled for only time $t$ from its starting
+point. It also cannot exceed $c-t$, because that much time remains
+to reach $\vvec$. Finally, spherical geodesic distance never exceeds
+$\pi$. Combining the three restrictions gives the angular envelope
 \begin{equation}
- d_S(\vvec,\mathbf m(t))
- \le\min\{\beta+t,c-t,\pi\}.
+ d_S(\vvec,\mathbf m(t))\le\min\{\beta+t,c-t,\pi\}.
  \label{eq:envelope}
 \end{equation}
-Since cosine is decreasing on $[0,\pi]$,
-\begin{equation}
- \int_0^c\vvec\cdot\mathbf m(t)\,\dd t
- \ge A(c,\beta),
- \label{eq:half-bound}
-\end{equation}
-where direct integration gives
+The two affine bounds form a tent, which is truncated at height
+$\pi$ if its peak exceeds that value; see Fig.~\ref{fig:envelope}.
+Since the projection is
+$\vvec\cdot\mathbf m(t)=\cos d_S(\vvec,\mathbf m(t))$ and cosine
+decreases on $[0,\pi]$, the largest allowed distance gives the
+smallest allowed projection. Integrating this lower bound yields
 \begin{align}
  A(c,\beta)
- &:=\int_0^c
- \cos\bigl(\min\{\beta+t,c-t,\pi\}\bigr)\,\dd t
+ &:=\int_0^c\cos\bigl(\min\{\beta+t,c-t,\pi\}\bigr)\,\dd t
  \nonumber\\
  &=\begin{cases}
  2\sin\bigl((c+\beta)/2\bigr)-\sin\beta,
@@ -267,259 +357,695 @@ where direct integration gives
  \end{cases}
  \label{eq:A}
 \end{align}
-Indeed, in the first case the two affine bounds meet at
-$t=(c-\beta)/2$. In the second, their minimum is capped at $\pi$ for
-an interval of length $c+\beta-2\pi$. The formula applies because
-$0\le\beta\le\pi\le c$. Applied to both halves,
-\eqref{eq:half-bound} yields
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\columnwidth]{midpoint_envelope.pdf}
+\caption{\midpointenvelopecaption}
+\label{fig:envelope}
+\end{figure}
+
+The two branches have a direct geometric origin. The affine bounds
+meet at time $(c-\beta)/2$, which lies in the half-interval because
+$0\le\beta\le\min(\pi,c)$. Their common height is $(c+\beta)/2$.
+If this height is at most $\pi$, the envelope has only the two sloping
+pieces shown in Fig.~\ref{fig:envelope}(a). Otherwise a plateau of
+length $c+\beta-2\pi$ replaces the peak, as in
+Fig.~\ref{fig:envelope}(b). Integrating cosine over these pieces gives
+the two expressions in Eq.~\eqref{eq:A}. Adding the half-integrals
+then gives
 \begin{equation}
- 0\ge A(c,\alpha)+A(c,\pi-\alpha).
- \label{eq:necessary}
+ \vvec\cdot\Rvec\ge P(c,\alpha)
+ :=A(c,\alpha)+A(c,\pi-\alpha).
+ \label{eq:half-sum}
 \end{equation}
 
-We evaluate the right-hand side at $c_*=7\pi/6$. Write
+It remains to minimize this scalar bound over the allowed position
+of the midpoint. First suppose neither half-envelope is truncated.
+Introduce
+\begin{equation*}
+ K=\sin\left(\frac c2+\frac\pi4\right),\qquad
+ x=\cos\left(\frac\alpha2-\frac\pi4\right).
+\end{equation*}
+The stated ranges of $c$ and $\alpha$ imply
+$1/2\le K\le1$ and $1/\sqrt2\le x\le1$. Using
+$\sin\alpha=2x^2-1$, the sum simplifies to
 \begin{equation}
- B(\alpha)=A(c_*,\alpha)+A(c_*,\pi-\alpha).
- \label{eq:B}
+ P(c,\alpha)=4Kx-4x^2+2.
 \end{equation}
-By symmetry, it suffices to consider $0\le\alpha\le\pi/2$.
-If $\pi/6\le\alpha\le\pi/2$, both terms use the first branch
-of~\eqref{eq:A}. With
-$x=\cos(\alpha/2-\pi/4)\in[\sqrt3/2,1]$, one obtains
-\begin{align}
- B(\alpha)
- &=4\sin(5\pi/6)x-2\sin\alpha\nonumber\\
- &=2x-2(2x^2-1)
- =2(1-x)(2x+1)\ge0.
- \label{eq:B-middle}
-\end{align}
-If $0\le\alpha\le\pi/6$, the second term in~\eqref{eq:B}
-uses the capped branch, so
+Its difference from the desired lower bound factors as
 \begin{equation}
- \begin{aligned}
- B(\alpha)={}&2\sin(7\pi/12+\alpha/2)\\
- &+\alpha-\pi/6-2\sin\alpha.
- \end{aligned}
- \label{eq:B-edge}
+ P(c,\alpha)-(4K-2)=4(1-x)(1+x-K)\ge0.
+ \label{eq:factor}
 \end{equation}
-Its derivative is strictly negative on this interval:
-\begin{equation}
- \begin{aligned}
- B'(\alpha)&=\cos(7\pi/12+\alpha/2)+1-2\cos\alpha\\
- &<0.
- \end{aligned}
- \label{eq:B-edge-derivative}
-\end{equation}
-Consequently $B(\alpha)\ge B(\pi/6)=\sqrt3-1>0$.
-Together with symmetry, these calculations show
-\begin{equation}
- \begin{gathered}
- B(\alpha)\ge0\quad(0\le\alpha\le\pi),\\
- B(\alpha)=0\ \Longleftrightarrow\ \alpha=\pi/2.
- \end{gathered}
- \label{eq:B-positive}
-\end{equation}
+The second factor is strictly positive. Hence equality requires
+$x=1$, or $\alpha=\pi/2$: the midpoint direction must be equally
+distant from the two endpoints. For $c\le\pi$, neither half-envelope
+can reach above $\pi$, so this case already covers every feasible
+$\alpha$.
 
-Finally, fix $\beta\in[0,\pi]$. For $\pi<c\le c_*$,
-the derivative of $A$ with respect to $c$ is either
-$\cos((c+\beta)/2)<0$ in the uncapped branch or $-1$ in the
-capped branch. These derivatives agree at the branch boundary.
-Thus, whenever $\pi\le c<c_*$,
+For the remaining durations, one half-envelope may be truncated.
+Exchanging the endpoints leaves $P$ unchanged, so take
+$\alpha\le\pi/2$. The half with initial distance $\alpha$ remains
+untruncated. The other half is truncated only when
+$c+(\pi-\alpha)\ge2\pi$, leaving the region
 \begin{equation}
- A(c,\beta)>A(c_*,\beta).
- \label{eq:strict-monotonicity}
+ \pi\le c\le7\pi/6,\qquad 0\le\alpha\le c-\pi\le\pi/6.
+ \label{eq:cap-region}
 \end{equation}
-Equations~\eqref{eq:necessary}, \eqref{eq:B-positive}, and
-\eqref{eq:strict-monotonicity} would then give
+Substituting the appropriate branch of Eq.~\eqref{eq:A} for each
+half gives
 \begin{equation}
- 0\ge A(c,\alpha)+A(c,\pi-\alpha)>B(\alpha)\ge0,
+ P(c,\alpha)=2\sin\frac{c+\alpha}{2}
+              +\pi-c+\alpha-2\sin\alpha.
 \end{equation}
-a contradiction. Hence $c\ge c_*$, or $L\ge7\pi/3$.
-The planar curve constructed in Sec.~\ref{sec:attainment} attains
-equality and embeds into every $S^{d-1}$ with $d\ge2$.
+Because $(c+\alpha)/2\in[\pi/2,2\pi/3]$,
+\begin{equation}
+ \partial_\alpha P
+ =\cos\frac{c+\alpha}{2}+1-2\cos\alpha
+ \le1-\sqrt3<0.
+ \label{eq:cap-monotonicity}
+\end{equation}
+The smallest value in this truncated region therefore occurs at its
+boundary, where the plateau has just disappeared:
+\begin{equation*}
+ P(c,\alpha)\ge P(c,c-\pi)>4K-2.
+\end{equation*}
+The last inequality follows from Eq.~\eqref{eq:factor}, which applies
+at the boundary. It is strict because $\alpha=c-\pi\le\pi/6$ cannot
+meet the equality condition $\alpha=\pi/2$. The truncated case thus
+cannot lower the bound or supply an additional equality case.
+Combining the two cases yields
+\begin{equation}
+ P(c,\alpha)\ge4\sin(c/2+\pi/4)-2=g(L),
+ \label{eq:scalar-bound}
+\end{equation}
+with equality only at $\alpha=\pi/2$. Since $|\vvec|=1$ and
+$g(L)\ge0$, this proves~\eqref{eq:sphere-bound}. The planar family
+constructed next attains the bound and embeds into every dimension
+$d\ge2$.
 \end{proof}
 
-The same result can be stated directly for spatial curves. If
-$\rvec\in W^{2,\infty}([0,L];\mathbb R^d)$ has
-$|\rvec'|=1$, $|\rvec''|\le1$ almost everywhere,
-$\rvec(L)=\rvec(0)$, and $\rvec'(L)=-\rvec'(0)$, then its length is
-at least $7\pi/3$. Taking $\nvec=\rvec'$ proves this assertion.
-Self-intersections and curvature discontinuities are allowed.
+In the error-curve picture, the theorem bounds the endpoint displacement
+of every unit-speed curve of length $L$ with curvature at most one and
+opposite endpoint tangents. A nonzero lower bound prevents that curve
+from closing. Its first zero, at $L=7\pi/3$, is therefore the earliest
+duration at which the geometry permits first-order cancellation.
 
 \section{Attainment and all equality cases}
 \label{sec:attainment}
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=0.92\textwidth]{short_corpse_geometry.pdf}
-\caption{\shortcorpsecaption}
-\label{fig:attainment}
-\end{figure*}
+The geometric comparison gives a lower bound for every admissible
+control. To establish the minimum for a full quantum gate, we now
+construct controls that reach the bound and then show that every
+equality curve satisfying the complete propagator condition belongs
+to this family.
 
-\subsection{The attaining pulse}
+\FloatBarrier
+\subsection{The attaining three-segment family}
 
-For completeness, we verify the known attaining pulse in the same
-normalization as the lower bound; see Fig.~\ref{fig:attainment}.
-Use dimensionless time $s=\Omega t$
-and set $u_y=0$ and
+The attaining family uses the maximum drive amplitude along one fixed
+axis, reversing its sign twice. Its single parameter controls the
+duration and the degree of detuning compensation while preserving
+the nominal gate.
+
+For $a=(L-\pi)/4\in[0,\pi/3]$, take $u_y=0$ and
 \begin{equation}
- \frac{u_x}{\Omega}=q(s):=
+ \frac{u_x}{\Omega}=q_a(\tau):=
  \begin{cases}
- +1,&0\le s<\pi/3,\\
- -1,&\pi/3\le s<2\pi,\\
- +1,&2\pi\le s\le7\pi/3.
+ +1,&0\le\tau<a,\\
+ -1,&a\le\tau<3a+\pi,\\
+ +1,&3a+\pi\le\tau\le4a+\pi.
  \end{cases}
- \label{eq:short-corpse}
+ \label{eq:attaining-pulse}
 \end{equation}
-Let $\phi(s)$ be the accumulated signed rotation angle. At the three
-successive segment endpoints it takes the values
-$\pi/3$, $-4\pi/3$, and $-\pi$. At zero detuning, the three
-Hamiltonians commute, so
+The accumulated signed angle is
+\begin{equation*}
+ \phi(\tau)=\int_0^\tau q_a(\tau')\,\dd\tau'.
+\end{equation*}
+Its successive segment-end values are $a,-a-\pi,-\pi$.
+The zero-detuning Hamiltonians commute, and hence
 \begin{equation}
  U_0(T)=R_x(-\pi)=-R_x(\pi).
  \label{eq:attaining-gate}
 \end{equation}
-Moreover,
+The noise direction is
 \begin{equation}
- \nvec(s)=(0,\sin\phi(s),\cos\phi(s)).
+ \nvec(\tau)=(0,\sin\phi(\tau),\cos\phi(\tau)).
  \label{eq:attaining-tangent}
 \end{equation}
-The $x$ component of its integral vanishes. For the other two,
-integration on the three segments gives
+Integration on the three segments gives
 \begin{align}
- i\int_0^{7\pi/3}e^{i\phi(s)}\,\dd s
- &=2e^{i\pi/3}-2e^{-i4\pi/3}
- \nonumber\\
- &\quad+e^{-i\pi}-1=0.
+ i\int_0^L e^{i\phi(\tau)}\,\dd\tau
+ &=2e^{ia}-2e^{-i(a+\pi)}+e^{-i\pi}-1\nonumber\\
+ &=4\cos a-2=g(L).
  \label{eq:attaining-error}
 \end{align}
-The real and imaginary parts therefore establish $\rvec(T)=0$,
-and~\eqref{eq:variation} proves first-order gate robustness.
-This supplies the upper bound matching Theorem~\ref{thm:sphere}.
+The same family integral appears in Appendix D, Eq.~(D2), of
+Ref.~\cite{kukita2024}. In dimensionless time, its cosine integral
+for target angle $\theta_f$ and positive switching angle
+$\Theta_{\rm SB}$ reads
+\begin{equation*}
+ I_c:=\int_0^L\cos\Theta(\tau)\,\dd\tau
+ =4\sin\Theta_{\rm SB}-2\sin\frac{\theta_f}{2}.
+\end{equation*}
+For the pulse used here, the shifted accumulated angle and parameters
+are
+\begin{equation*}
+ \Theta=-\phi-\frac\pi2,\qquad
+ \theta_f=\pi,\qquad \Theta_{\rm SB}=\frac\pi2+a.
+\end{equation*}
+The angle $\Theta$ runs successively from $-\pi/2$ to
+$-\Theta_{\rm SB}$, then to $+\Theta_{\rm SB}$, and finally to
+$+\pi/2$. The integral is therefore $I_c=4\cos a-2$, consistent
+with Eq.~\eqref{eq:attaining-error}.
 
-The pulse also explains sharpness of the midpoint comparison. At
-$c_*=7\pi/6$ its accumulated angle is $-\pi/2$, so the midpoint
-tangent is $\vvec=-\mathbf e_y$, perpendicular to both endpoint
-tangents. On either half of the curve, oriented from its endpoint
-towards the midpoint, the spherical distance to $\vvec$ is exactly
-\begin{equation}
- \begin{gathered}
- d_S(\vvec,\mathbf m(t))=\min\{\pi/2+t,c_*-t\},\\
- 0\le t\le c_*.
- \end{gathered}
- \label{eq:saturating-envelope}
-\end{equation}
-Its projected integral is
-$A(c_*,\pi/2)=2\sin(5\pi/6)-1=0$ on each half.
-Thus the pulse attains both the pointwise distance comparison and its
-integrated zero bound.
+Equation~\eqref{eq:attaining-error} gives
+$\Rvec=-g(L)\mathbf e_y$. The midpoint satisfies
+$\phi(L/2)=-\pi/2$, so $\vvec=-\mathbf e_y$. Thus the residual is
+parallel to the projection direction, and the norm and projection
+bounds in Eq.~\eqref{eq:sphere-bound} are both attained. Reversing the overall sign
+of the control preserves the residual norm and realizes the other
+sign of the nominal target.
 
+At $a=\pi/3$, the family is short-CORPSE and the error curve closes,
+as shown in Fig.~\ref{fig:attainment}. At $a=0$, it is a single
+rectangular $\pi$ pulse. Thus the known robust construction and the
+shortest nominal gate are endpoints of one globally attaining family.
+
+
+
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\columnwidth]{short_corpse_geometry.pdf}
+\caption{\shortcorpsecaption}
+\label{fig:attainment}
+\end{figure}
+
+\FloatBarrier
 \subsection{Geometric rigidity and uniqueness of the control}
-The comparison also determines all minimizers. Suppose that
-$L=7\pi/3$. Equation~\eqref{eq:B-positive} forces $\alpha=\pi/2$.
-The two continuous, nonnegative gaps in~\eqref{eq:half-bound} must
-then vanish identically. Orient each half from the midpoint towards
-its endpoint, calling it $\mathbf m:[0,c_*]\to S^{d-1}$. Its distance
-from $\vvec$ is therefore
+
+Equality in the integral bound is restrictive: each half of the
+direction curve must reach its distance envelope at every time.
+This condition fixes the curve to a single plane. The full gate
+condition then determines the orientation of that plane and hence
+the physical control.
+
+Suppose $|\Rvec|=g(L)$. Every step in
 \begin{equation}
- f(s)=\min\{s,5\pi/3-s\},\qquad 0\le s\le c_*.
- \label{eq:rigidity-f}
+ g(L)=|\Rvec|\ge\vvec\cdot\Rvec
+ \ge P(c,\alpha)\ge g(L)
+ \label{eq:equality-chain}
 \end{equation}
-For $s>0$, write
+must be an equality, including at the zero $g(L)=0$.
+Thus $\alpha=\pi/2$. The pointwise gaps in the two projected
+half-integrals are continuous and nonnegative, with total integral
+zero, so they vanish identically. Orient each half now from the
+midpoint towards its endpoint. Its distance from $\vvec$ must be
 \begin{equation}
- \mathbf m(s)=\cos f(s)\,\vvec+\sin f(s)\,\mathbf e(s),
+ \theta(\ell)=\min\{\ell,c+\pi/2-\ell\},\qquad 0\le\ell\le c.
+ \label{eq:rigidity-angle}
 \end{equation}
-where $\mathbf e(s)\perp\vvec$ and $|\mathbf e(s)|=1$.
-Because $0<f(s)\le5\pi/6<\pi$, the vector $\mathbf e$ is absolutely
-continuous on every $[\varepsilon,c_*]$. Almost everywhere there,
+For $\ell>0$, write the half-curve as
 \begin{equation}
- |\mathbf m'|^2=(f')^2+\sin^2 f\,|\mathbf e'|^2\le1.
+ \mathbf m(\ell)=\cos\theta(\ell)\,\vvec
+              +\sin\theta(\ell)\,\mathbf e(\ell),
+\end{equation}
+where $\mathbf e\perp\vvec$ and $|\mathbf e|=1$.
+Since $0<\theta(\ell)\le c/2+\pi/4\le5\pi/6<\pi$, the vector
+$\mathbf e$ is absolutely continuous on every $[\varepsilon,c]$.
+Almost everywhere on that interval,
+\begin{equation}
+ |\mathbf m'|^2=(\theta')^2
+       +\sin^2\theta\,|\mathbf e'|^2\le1.
  \label{eq:rigidity-speed}
 \end{equation}
-As $|f'|=1$ almost everywhere, $\mathbf e$ is constant. At the two
-endpoints $f(c_*)=\pi/2$, so these constants are respectively
-$\nvec(0)$ and $-\nvec(0)$. Thus both halves lie in the same great
-circle, and the only equality curves are the three-arc trajectory
-above, with arbitrary overall orientation.
+The distance from $\vvec$ already changes at the full allowed rate,
+$|\theta'|=1$ almost everywhere. Equation~\eqref{eq:rigidity-speed}
+therefore leaves no speed for motion in the orthogonal direction:
+$\mathbf e$ must be constant. As $\theta(c)=\pi/2$, the constants
+for the two halves are respectively
+$\nvec(0)$ and $-\nvec(0)$. Both halves therefore lie in the same
+great circle and have precisely the shape generated by
+\eqref{eq:attaining-pulse}. This also holds when $L=\pi$, where the
+outer segments disappear.
 
-For the gate problem this also fixes the controls. Given an equality
-curve with midpoint tangent $\vvec\perp\ez$, let
-$\mathbf a=\ez\times\vvec$. The explicit fixed-axis evolution
-$U_a(t)=\exp[-i\phi(\Omega t)\mathbf a\cdot\sigmavec/2]$ generates
-that curve, where $\phi$ is the accumulated signed angle of
-pulse~\eqref{eq:short-corpse}.
-If another admissible evolution $U_0$ generates the same $\nvec$,
-then $W=U_0U_a^\dagger$ commutes with $\sigma_z$, hence is diagonal.
-Its derivative satisfies
+The full gate condition fixes the remaining plane orientation. Given
+$\vvec\perp\ez$, set $\mathbf a=\ez\times\vvec$. The fixed-axis
+evolution
+\begin{equation*}
+ U_a(t)=\exp\left[-\frac{i}{2}\phi(\Omega t)
+                  \mathbf a\cdot\sigmavec\right]
+\end{equation*}
+generates the equality curve. To determine whether the same curve
+could come from a different control, suppose a transverse evolution $U_0$
+generates the same $\nvec$. Then $W=U_0U_a^\dagger$ commutes with
+$\sigma_z$ and is diagonal in its eigenbasis. On the other hand,
 \begin{equation}
  \dot W=-iH_0W+iWH_a,
  \label{eq:lift-uniqueness}
 \end{equation}
-where both nominal Hamiltonians $H_0,H_a$ are off-diagonal in the
-$\sigma_z$ basis. The right-hand side is off-diagonal, whereas
-$\dot W$ is diagonal. Therefore $\dot W=0$ almost everywhere and
-$W=I$. Finally, $U_a(T)=i\mathbf a\cdot\sigmavec$ equals
-$\pm R_x(\pi)$ only when $\mathbf a=\pm\mathbf e_x$. Up to changes
-on null sets, the only time-optimal controls are consequently
-\eqref{eq:short-corpse} and its overall negative.
-This completes the uniqueness assertion in Theorem~\ref{thm:gate}.
+where both nominal Hamiltonians are off-diagonal because no
+longitudinal control is available. Since $W$ is diagonal, the
+right-hand side is off-diagonal, whereas $\dot W$ is diagonal.
+Consequently $\dot W=0$ almost
+everywhere. With $W(0)=I$, this gives $W=I$. Finally,
+$U_a(T)=i\mathbf a\cdot\sigmavec$ equals $\pm R_x(\pi)$ only for
+$\mathbf a=\pm\mathbf e_x$. Hence the controls in
+Theorem~\ref{thm:gate} exhaust every attaining case. Together with the
+midpoint bound and the explicit construction, this completes the proof
+of Theorem~\ref{thm:gate}. The zero of the residual bound has a direct control interpretation:
+it is the earliest time at which the error curve can close, and the
+construction above realizes closure with the required full gate.
 
-A Lean 4 formalization of the exact minimum time, attainment, and
-classification of all minimizing controls accompanies the source files.
+\begin{corollary}[Minimum time for first-order cancellation]
+\label{cor:robust-time}
+The minimum duration of an admissible control satisfying
+\eqref{eq:target} and
+$\left.\partial_\delta U_\delta(T)\right|_{\delta=0}=0$ is
+\begin{equation}
+ T_* = \frac{7\pi}{3\Omega}.
+ \label{eq:robust-time}
+\end{equation}
+Only short-CORPSE and its overall negative attain it, with segment
+durations $(\pi/3,5\pi/3,\pi/3)/\Omega$.
+\end{corollary}
+
+\begin{proof}
+Equation~\eqref{eq:variation} makes first-order cancellation equivalent
+to $\Rvec=0$. The antipodal endpoint condition already requires
+$L\ge\pi$, and $g(L)>0$ for $\pi\le L<7\pi/3$.
+Theorem~\ref{thm:gate} therefore excludes cancellation before
+$7\pi/(3\Omega)$ and shows that the two stated controls attain this
+time. Its equality classification also gives their uniqueness up to
+changes on sets of measure zero.
+\end{proof}
+
+\section{Physical consequences of the residual bound}
+\label{sec:dissipation}
+
+The residual bound measures the propagator response to first order
+in detuning. To connect it to gate performance, we first derive the
+associated average gate infidelity. We then include weak Markovian
+dissipation, for which a longer gate incurs a larger leading loss.
+Balancing these contributions determines the degree of detuning
+compensation that minimizes the leading total gate error.
+
+\FloatBarrier
+\subsection{Detuning sensitivity and average gate infidelity}
+
+Consider first unitary evolution at a fixed static detuning. We use
+the standard average gate fidelity, obtained by averaging the state
+fidelity uniformly over all pure input
+states~\cite{bowdrey2002,nielsen2002}. For a fixed admissible control
+$u=(u_x,u_y)$, define the dimensionless detuning $f=\delta/\Omega$
+and compare the actual gate with its nominal value:
+\begin{equation}
+ \begin{aligned}
+ V_f&=U_0(T)^\dagger U_{\Omega f}(T),\\
+ F_{\rm avg}[u;f]&=\frac{|\operatorname{Tr}V_f|^2+2}{6},\\
+ \chi[u]&=\lim_{f\to0}\frac{1-F_{\rm avg}[u;f]}{f^2}.
+ \end{aligned}
+ \label{eq:sensitivity}
+\end{equation}
+The coefficient $\chi$ is the leading infidelity per squared
+dimensionless detuning. It is related to the gate fidelity
+susceptibility of Ref.~\cite{poggi2024} by a change of fidelity and
+detuning conventions. Explicitly, if
+\begin{equation*}
+ F_U=\frac{|\operatorname{Tr}V_f|^2}{4},\qquad
+ 1-F_U=\chi_U\delta^2+o(\delta^2),
+\end{equation*}
+then
+\begin{equation*}
+ F_{\rm avg}=\frac{2F_U+1}{3},\qquad
+ \chi=\frac{2\Omega^2}{3}\chi_U.
+\end{equation*}
+
+To obtain $\chi$ from the error curve, write the relative propagator
+in its $SU(2)$ form,
+\begin{equation*}
+ \begin{aligned}
+ U_0(T)^\dagger U_\delta(T)
+   &=w_\delta I-i\mathbf b_\delta\cdot\sigmavec,\\
+ w_\delta^2+|\mathbf b_\delta|^2&=1,
+ \end{aligned}
+\end{equation*}
+where $w_\delta$ and $\mathbf b_\delta$ are real.
+Equation~\eqref{eq:variation} fixes its vector part to first order
+in detuning:
+\begin{equation*}
+ \mathbf b_\delta=\frac{\delta}{2}\rvec(T)+O(\delta^2).
+\end{equation*}
+Substituting into the fidelity gives
+\begin{equation}
+ \begin{aligned}
+ 1-F_{\rm avg}&=\frac23|\mathbf b_\delta|^2
+ =\frac{\delta^2}{6}|\rvec(T)|^2+O(\delta^3),\\
+ \chi[u]&=\frac{\Omega^2}{6}|\rvec(T)|^2.
+ \end{aligned}
+ \label{eq:chi-curve}
+\end{equation}
+Thus the propagator response to first order in detuning produces a
+quadratic contribution to the infidelity, with coefficient proportional
+to the squared endpoint displacement. In particular, $\chi=0$ is
+equivalent to the vanishing of the term linear in detuning in the
+full propagator and to closure of the error curve.
+
+Theorem~\ref{thm:gate} now determines the minimum sensitivity at
+each duration:
+\begin{equation}
+ \boxed{\chi_{\min}(L)=\frac{g(L)^2}{6}
+ =\frac16\left[4\cos\frac{L-\pi}{4}-2\right]^2.}
+ \label{eq:main}
+\end{equation}
+The controls in Eq.~\eqref{eq:attaining-pulse} and their overall
+negative attain this speed--sensitivity frontier throughout
+$\pi\le L\le7\pi/3$. The frontier decreases from
+$\chi_{\min}(\pi)=2/3$ for the rectangular $\pi$ pulse to zero for
+short-CORPSE. It gives a quantitative limit on the fidelity improvement
+available from extra control time; access to a second transverse
+axis cannot improve that limit. As an intermediate example,
+\begin{equation*}
+ \chi_{\min}(2\pi)
+ =\frac{(2\sqrt2-2)^2}{6}\simeq0.11438.
+\end{equation*}
+This gate uses $6/7$ of the time required for complete first-order
+cancellation while substantially reducing the sensitivity relative
+to a rectangular pulse.
+
+\FloatBarrier
+\subsection{Weak dissipation and the joint error budget}
+
+To include the cost of spending more time under control, assume
+Markovian relaxation and pure dephasing with rates that are
+independent of the drive. The static detuning is drawn from a
+symmetric, zero-mean quasistatic distribution and is independent of
+these dissipative processes. The dynamics take the standard Lindblad
+form~\cite{gorini1976,lindblad1976},
+\begin{equation}
+ \dot\rho=-i[H_\delta,\rho]
+ +\Gamma_1\mathcal D[\sigma_-]\rho
+ +\frac{\Gamma_\phi}{2}\mathcal D[\sigma_z]\rho,
+ \label{eq:lindblad}
+\end{equation}
+with
+\begin{equation*}
+ \begin{aligned}
+ \mathcal D[A]\rho
+   &=A\rho A^\dagger-\frac12\{A^\dagger A,\rho\},\\
+ \sigma_-&=\frac{\sigma_x-i\sigma_y}{2}.
+ \end{aligned}
+\end{equation*}
+In this convention, $\Gamma_\phi$ is the pure-dephasing rate and the
+transverse decay rate is $\Gamma_2=\Gamma_1/2+\Gamma_\phi$. The
+average fidelity now compares the noisy quantum channel with the
+same nominal unitary gate.
+
+First set $\delta=0$ and retain the first order in the decay rates.
+The homogeneous damping matrix in the Bloch equation is
+\begin{equation*}
+ D=\operatorname{diag}(-\Gamma_2,-\Gamma_2,-\Gamma_1).
+\end{equation*}
+Let $O_0(t)$ be the ideal Bloch rotation and
+$\Gamma=\Gamma_1+\Gamma_\phi$. In the ideal rotating frame, the
+homogeneous part of the channel is
+\begin{equation*}
+ M=I+\int_0^T O_0(t)^{\mathsf T}D O_0(t)\,\dd t
+       +O((\Gamma T)^2).
+\end{equation*}
+For an affine Bloch map, the average fidelity relative to the identity
+is~\cite{bowdrey2002,nielsen2002}
+\begin{equation*}
+ \mathbf q\mapsto M\mathbf q+\mathbf c,
+ \qquad F_{\rm avg}=\frac12+\frac{\operatorname{Tr}M}{6}.
+\end{equation*}
+The translation $\mathbf c$ makes no contribution because the
+average input Bloch vector vanishes. Since rotations preserve
+$\operatorname{Tr}D$, the resulting first-order loss is
+\begin{equation}
+ 1-F_{\rm avg}
+ =\frac{\Gamma_1+\Gamma_\phi}{3}T+O((\Gamma T)^2),
+ \qquad\Gamma=\Gamma_1+\Gamma_\phi.
+ \label{eq:weak-dissipation}
+\end{equation}
+This is the single-qubit specialization of the universal first-order
+fidelity reduction~\cite{abad2022}.
+For this noise model, changing the waveform rotates the damping
+directions but does not change their trace. The leading dissipative
+loss therefore depends only on the gate duration. This is the
+physical cost that competes with detuning compensation.
 
 
+
+To combine the two errors at the same perturbative order, take the
+weak-noise limit
+\begin{equation*}
+ \delta=\eta\xi,\qquad
+ \Gamma_j=\eta^2\gamma_j\quad(j=1,\phi),\qquad \eta\to0.
+\end{equation*}
+Here the $\gamma_j$, the control, and its bounded duration are fixed,
+and the symmetric distribution of $\xi$ has a finite fourth moment.
+This scaling makes the quadratic detuning loss and the linear
+dissipative loss both of order $\eta^2$. Define their dimensionless
+strengths by
+\begin{equation}
+ s^2=\frac{\operatorname{Var}(\delta)}{\Omega^2},
+ \qquad
+ \kappa=\frac{\Gamma_1+\Gamma_\phi}{3\Omega}.
+ \label{eq:noise-parameters}
+\end{equation}
+In the ensemble average, symmetry removes odd powers of $\delta$,
+including the cubic detuning term and the leading mixed
+detuning--dissipation term. The first omitted contributions are of
+order $\eta^4$: fourth order in detuning, second order in the decay
+rates, or second order in detuning together with first order in a
+decay rate. The finite fourth moment controls the averaged detuning
+remainder. Combining the static-error expansion with
+Eq.~\eqref{eq:weak-dissipation} therefore gives
+\begin{equation}
+ \mathbb E[1-F_{\rm avg}]
+ =s^2\chi[u]+\kappa L+O(\eta^4).
+ \label{eq:combined-expansion}
+\end{equation}
+For the attaining single-axis family, the unitary fidelity is already
+even in $\delta$ before averaging. Indeed,
+\begin{equation*}
+ H_{-\delta}=\sigma_xH_\delta\sigma_x,
+\end{equation*}
+and the nominal target commutes with $\sigma_x$.
+
+Equation~\eqref{eq:combined-expansion} separates the two leading
+physical losses: $s^2\chi[u]$ measures sensitivity to the spread of
+static detunings, while $\kappa L$ measures exposure to dissipation.
+The $O(\eta^4)$ remainder contains the higher-order effects excluded
+from this budget; in particular, zero first-order sensitivity need
+not mean zero infidelity at finite noise. Leading-order addition of
+coherent and dissipative losses also appears in weak-dissipation
+expansions~\cite{abad2022} and comparisons of short and robust
+Rydberg gates~\cite{fromonteil2023}.
+
+At a fixed $L\in[\pi,7\pi/3]$, all admissible waveforms have the
+same leading dissipative cost. Minimizing the total leading loss
+therefore requires precisely the minimum sensitivity already found:
+\begin{equation}
+ \boxed{\mathcal E_{\min}(L)=s^2\chi_{\min}(L)+\kappa L.}
+ \label{eq:budget}
+\end{equation}
+The three-segment family~\eqref{eq:attaining-pulse} attains this value.
+The remaining choice is how long to run that pulse, which determines
+the balance between the two error contributions.
+
+
+
+\FloatBarrier
+\subsection{Balancing detuning suppression and dissipation}
+
+Canceling the first-order detuning response removes the quadratic
+loss, but it requires the longest gate on the frontier. When
+dissipation is present, the relevant objective is the sum of the
+remaining detuning loss and the dissipative loss accumulated during
+the pulse. We therefore minimize Eq.~\eqref{eq:budget} over duration.
+The frontier is attainable and globally optimal at each duration,
+so this one-variable minimization covers every admissible waveform.
+
+For $\kappa>0$, it is enough to consider $\pi\le L\le7\pi/3$.
+The lower endpoint is fixed by the nominal gate, and any longer
+duration than $7\pi/3$ has a dissipative cost alone greater than
+$\kappa(7\pi/3)$, the complete leading budget at the robust endpoint.
+Thus a pulse longer than short-CORPSE cannot improve this objective,
+regardless of its detuning sensitivity.
+
+For $s^2>0$, introduce the ratio of dissipative to detuning cost,
+\begin{equation*}
+ \lambda=\frac{\kappa}{s^2},\qquad
+ J(L)=\frac{\mathcal E_{\min}(L)}{s^2}
+     =\chi_{\min}(L)+\lambda L.
+\end{equation*}
+The noise strengths fix $\lambda$, and the duration selects a point
+on this curve. At an interior optimum, the reduction in detuning
+sensitivity obtained from a little more time must balance the
+additional dissipative cost:
+\begin{equation}
+ J'(L)=\lambda-\frac{g(L)}{3}\sin\frac{L-\pi}{4}=0.
+ \label{eq:working-point}
+\end{equation}
+Comparing all stationary points with both endpoints gives the global
+minimum. Figure~\ref{fig:frontier} shows the sensitivity frontier
+and the benefit of selecting the compensation level continuously,
+compared with choosing only a rectangular $\pi$ pulse or short-CORPSE.
+For example, at $\lambda=1/(2\pi)$ the two endpoint pulses have the
+same leading budget. The minimum instead occurs at
+$L\simeq2.085\pi$, where partial compensation lowers that budget
+by about $4.91\%$. The gain comes from retaining most of the
+detuning suppression while reducing exposure to dissipation.
+
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\columnwidth]{frontier_working_point.pdf}
+\caption{\frontiercaption}
+\label{fig:frontier}
+\end{figure}
+
+
+The local behavior near the robust endpoint explains why some
+shortening is always beneficial when $\kappa>0$. Write
+$L_*=7\pi/3$ and let $h=L_*-L\downarrow0$. The sensitivity grows
+quadratically with the reduction in duration:
+\begin{equation}
+ \chi_{\min}(L_*-h)=\frac{h^2}{8}+O(h^3),
+ \label{eq:near-robust}
+\end{equation}
+and therefore
+\begin{equation}
+ \mathcal E_{\min}(L_*-h)-\mathcal E_{\min}(L_*)
+ =-\kappa h+\frac{s^2h^2}{8}+O(s^2h^3).
+ \label{eq:compensation-cost}
+\end{equation}
+The saved dissipative loss is linear in $h$, so it exceeds the
+quadratic detuning penalty for sufficiently small shortening.
+Consequently, full first-order cancellation does not minimize this
+budget at any positive dissipation rate. When dissipation is weak
+relative to detuning, the best duration remains close to the robust
+endpoint:
+\begin{equation*}
+ h=4\lambda+O(\lambda^2),\qquad \lambda\to0^+.
+\end{equation*}
+For larger ratios, the time cost can favor the rectangular pulse.
+The ratio therefore determines whether stronger compensation or
+faster execution gives the smaller total error.
+
+The relation to finite-noise gate fidelity follows from the orders
+in Eq.~\eqref{eq:combined-expansion}. Both leading losses are of
+order $\eta^2$, whereas the omitted contribution is of order
+$\eta^4$. For two fixed pulse choices at fixed relative noise
+strengths, a nonzero difference in the leading budget therefore
+determines their fidelity ordering as the noise weakens. If their
+leading budgets coincide, higher-order terms are needed to
+distinguish them. The scalar optimization identifies the best
+leading-order operating point and makes explicit the level of the
+weak-noise expansion at which that choice is resolved.
 
 \section{Discussion}
+\label{sec:discussion}
 
-The shortest error-free $\pi$ gate has duration $\pi/\Omega$:
-the endpoint condition~\eqref{eq:antipodes} requires a spherical
-distance $\pi$, and a constant drive at amplitude $\Omega$ attains
-that time. First-order cancellation of static detuning increases the
-exact minimum by a factor $7/3$. Geometrically, cancellation requires
-the integrated noise direction to return to the origin. Its turn rate
-is limited by the available drive, and the midpoint comparison
-quantifies the additional time required to balance that integral.
+The duration-dependent bound makes the time cost of detuning
+compensation quantitative. Its first zero fixes the factor $7/3$
+between the shortest first-order robust gate and the shortest nominal
+gate. The positive part supplies information that a minimum robust
+time alone cannot provide: it determines the residual that must remain
+when the allowed duration is shorter. Through
+Eq.~\eqref{eq:chi-curve}, the same curve gives the corresponding
+unavoidable quadratic infidelity. The known three-segment family
+therefore provides both a practical pulse at each duration and a
+benchmark that no other admissible two-axis control can improve.
 
-Allowing a second transverse component enlarges the set of possible
-noise-direction paths to spatial curves. Theorem~\ref{thm:sphere}
-bounds this full class with the same constant achieved by a planar
-three-arc trajectory. This is why independent phase control gives no
-time advantage for the stated $\pi$-gate task. The proof includes
-arbitrary switching and nonsaturated amplitudes through the single
-almost-everywhere speed bound.
+The mathematical mechanism is the common midpoint constraint on the
+two halves of the direction curve. A bounded drive prevents either
+half from moving arbitrarily far from the midpoint direction and
+still reaching its prescribed endpoint. The resulting projected
+integral stays positive until the robust time. This comparison acts
+directly on every admissible curve, avoiding a classification of
+extremal trajectories or an assumption that an optimal control exists.
+It applies to arbitrary measurable controls.
+We prove that the attaining three-segment pulse family gives the
+global minimum over all admissible two-axis controls and exhausts
+every equality case.
 
-The spatial lower bound establishes the optimality of the known
-$7\pi/3$ planar construction~\cite{kukita2022,sigalotti2006,kim2013}
-over the full control disk. Its equality conditions explain why the
-additional spatial freedom does not produce another minimizing control.
-The special
-antipodal endpoint identity is essential to the comparison. Other
-target angles carry different endpoint information and, for full gate
-synthesis, additional frame constraints. Determining their minimum
-robust times requires a separate analysis.
+The equality conditions explain the simple form of the optimal
+control. To reach the lower projection bound, the angular distance
+must change at its maximum allowed rate. No remaining speed is
+available for motion out of the plane, which forces the spherical
+curve onto a great circle. The full unitary target then selects its
+axis. Thus the lack of improvement from a second transverse control,
+reduced amplitudes, or additional switches follows from the equality
+structure of the bound. The complete gate condition is essential at
+this last step: opposite endpoint noise directions alone do not fix
+the action on every input state. For other target angles, both the
+endpoint geometry and the full-frame constraint change and require
+a separate analysis.
 
-The convex planar reference-arc hypothesis in classical Schur
-comparison~\cite[Theorem~5.1]{sullivan2008} is not satisfied by this
-three-arc return. Moser's sufficient global-optimality criterion for
-$\infty$-elastica~\cite[Theorem~3]{moser2022}, in the unweighted case,
-requires a nonzero
-auxiliary function $g$ satisfying $0\le g\le-\boldsymbol\lambda\cdot\nvec$
-for a constant vector $\boldsymbol\lambda$. Zero total displacement
-would force $\int g=0$, excluding that criterion here. The midpoint
-estimate supplies a comparison specifically adapted to antipodal
-tangents and zero displacement.
+The physical role of the continuous frontier is clearest when two
+error mechanisms favor different durations. Static detuning favors
+more compensation, whereas drive-independent weak Markovian
+dissipation penalizes the extra time. Because the latter loss is
+independent of the waveform to leading order, the geometric result
+reduces their competition to the analytic scalar budget in
+Eq.~\eqref{eq:budget}. The quadratic onset of sensitivity near the
+robust endpoint means that a small reduction in compensation can
+save more dissipative error than it adds in detuning error. Partial
+compensation is then a predictable choice based on the relative noise
+strengths, using the same pulse family as complete cancellation.
+If dissipation depends on the drive or the noise lies outside the
+quasistatic regime, the error model must be adjusted accordingly.
 
 \section{Conclusion}
 \label{sec:conclusion}
 
-Under the joint amplitude bound on arbitrary measurable transverse
-controls, the exact minimum time for a first-order detuning-robust qubit
-$\pi$ gate is $7\pi/(3\Omega)$. Only short-CORPSE and its overall
-negative attain this time, with segment durations
-$(\pi/3,5\pi/3,\pi/3)/\Omega$. The sharp midpoint comparison establishes
-both the time limit and the equality structure while preserving the full
-gate condition. Thus a second transverse control axis cannot reduce the
-time cost of first-order static-detuning cancellation for this gate.
+For a full nominal qubit $\pi$ gate under a joint transverse amplitude
+bound, we have determined the smallest first-order detuning residual
+at every duration from $\pi/\Omega$ to $7\pi/(3\Omega)$. With
+$L=\Omega T\in[\pi,7\pi/3]$, midpoint projection gives the bound
+\begin{equation*}
+ |\Rvec|\ge g(L)=4\cos\frac{L-\pi}{4}-2.
+\end{equation*}
+for every admissible measurable control. Only the stated single-axis
+three-segment family and its overall negative attain this bound.
+Its first zero establishes $7\pi/(3\Omega)$ as the minimum time for
+first-order detuning cancellation. Using the relation between the
+residual and the quadratic coefficient of average gate infidelity in
+Eq.~\eqref{eq:chi-curve}, we obtain the global minimum of this
+coefficient at fixed duration:
+\begin{equation*}
+ \begin{aligned}
+ \chi_{\min}(L)&=\min_u\chi[u]=\frac{g(L)^2}{6}\\
+ &=\frac16\left[4\cos\frac{L-\pi}{4}-2\right]^2.
+ \end{aligned}
+\end{equation*}
+
+With weak,
+drive-independent Markovian dissipation, the dimensionless duration
+and three-segment compensation parameter that minimize the leading
+total gate error satisfy
+\begin{equation*}
+\begin{aligned}
+ L_{\rm opt}&\in\underset{\pi\le L\le7\pi/3}{\arg\min}\,
+ [s^2\chi_{\min}(L)+\kappa L],\\
+ a_{\rm opt}&=\frac{L_{\rm opt}-\pi}{4}.
+\end{aligned}
+\end{equation*}
+Here $s^2$ and $\kappa$ are the noise parameters defined in
+Eq.~\eqref{eq:noise-parameters}, and $a_{\rm opt}$ fixes the three
+segment durations through Eq.~\eqref{eq:family-durations}. Near full
+compensation, shortening the pulse saves dissipative error linearly
+in the time reduction while adding detuning error only quadratically.
+For a positive dissipation rate, partial compensation can therefore lower
+the leading total gate error.
+
+The main mathematical results of this work have been formally proved
+in Lean.
 
 \begin{acknowledgments}
 [ACKNOWLEDGMENTS AND FUNDING TO BE COMPLETED]

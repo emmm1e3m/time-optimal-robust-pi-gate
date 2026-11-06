@@ -1,0 +1,10 @@
+'audit_original_model_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+audit_original_model_lower_bound {ux uy : ℝ → ℝ} {U : ℝ → ℝ → QubitMatrix} {Ω T : ℝ} (hΩ : 0 < Ω) (hT : 0 < T)
+  (hAC : ∀ (δ : ℝ), AbsolutelyContinuousOnInterval (U δ) 0 T) (hinit : ∀ (δ : ℝ), U δ 0 = 1)
+  (hODE :
+    ∀ (δ : ℝ),
+      ∀ᵐ (t : ℝ),
+        t ∈ Icc 0 T →
+          HasDerivAt (U δ) ((-Complex.I / 2) • (↑(ux t) • sigmaX + ↑(uy t) • sigmaY + ↑δ • sigmaZ) * U δ t) t)
+  (hamp : ∀ᵐ (t : ℝ), t ∈ Icc 0 T → ux t ^ 2 + uy t ^ 2 ≤ Ω ^ 2) (hgate : U 0 T = rx Real.pi ∨ U 0 T = -rx Real.pi)
+  (hrobust : HasDerivAt (fun δ => U δ T) 0 0) : 7 * Real.pi / (3 * Ω) ≤ T

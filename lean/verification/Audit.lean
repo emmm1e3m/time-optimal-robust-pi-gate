@@ -1,0 +1,34 @@
+import RobustPiGate.TimeScaling
+import RobustPiGate.ExactGeometric
+import RobustPiGate.Equality
+import RobustPiGate.ShortEvolution
+import RobustPiGate.LiftUniqueness
+
+-- 独立审查任务027：通过Lean环境读取实际公理依赖。
+#print axioms RobustPiGate.Dynamics.integral_eq_sub_of_ac_ae
+#print axioms RobustPiGate.Dynamics.lipschitzOnWith_of_ac_deriv_bound
+#print axioms RobustPiGate.Dynamics.solution_unique
+#print axioms RobustPiGate.Dynamics.duhamel
+#print axioms RobustPiGate.Dynamics.parameter_hasDerivAt
+#print axioms RobustPiGate.Dynamics.first_order_robust_iff
+#print axioms RobustPiGate.Dynamics.qubit_generator_model
+#print axioms RobustPiGate.Dynamics.qubit_parameter_hasDerivAt
+#print axioms RobustPiGate.Dynamics.qubit_first_order_robust_iff
+#print axioms RobustPiGate.Quantum.shortDetunedPropagator_isQubitEvolution
+#print axioms RobustPiGate.Quantum.shortDetunedPropagator_certificate
+#print axioms RobustPiGate.sphericalSpeedBound_of_euclideanSpeedBound
+#print axioms RobustPiGate.spherical_curve_length_lower_bound
+#print axioms RobustPiGate.ac_spherical_curve_length_lower_bound
+#print axioms RobustPiGate.spherical_curve_time_lower_bound
+#print axioms RobustPiGate.geometric_minimum
+#print axioms RobustPiGate.geometric_sInf
+#print axioms RobustPiGate.spherical_curve_equality_rigidity
+#print axioms RobustPiGate.Quantum.transverse_controls_unique
+#print axioms RobustPiGate.Quantum.terminal_axis_unique
+
+#check @RobustPiGate.Dynamics.IsACSolution
+#check @RobustPiGate.Dynamics.IsQubitEvolution
+#check @RobustPiGate.Dynamics.qubit_parameter_hasDerivAt
+#check @RobustPiGate.ac_spherical_curve_length_lower_bound
+#check @RobustPiGate.spherical_curve_equality_rigidity
+#check @RobustPiGate.Quantum.shortDetunedPropagator_certificate

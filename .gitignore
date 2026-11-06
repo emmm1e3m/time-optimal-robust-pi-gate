@@ -8,6 +8,8 @@
 *.synctex.gz
 *Notes.bib
 *.toc
+# 随形式化源码交付的构建与审计证据
+!lean/verification/*.log
 # Lean 依赖与本机构建
 .lake/
 *.olean

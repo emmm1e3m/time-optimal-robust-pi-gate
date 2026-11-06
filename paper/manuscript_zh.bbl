@@ -6,7 +6,7 @@
 %Control: page (0) single
 %Control: year (1) truncated
 %Control: production of eprint (0) enabled
-\begin{thebibliography}{12}%
+\begin{thebibliography}{23}%
 \makeatletter
 \providecommand \@ifxundefined [1]{%
  \@ifx{#1\undefined}
@@ -50,37 +50,40 @@
 \providecommand \BibitemShut  [1]{\csname bibitem#1\endcsname}%
 \let\auto@bib@innerbib\@empty
 %</preamble>
-\bibitem [{\citenamefont {Kukita}\ \emph {et~al.}(2022)\citenamefont {Kukita},
-  \citenamefont {Kiya},\ and\ \citenamefont {Kondo}}]{kukita2022}%
+\bibitem [{\citenamefont {Cummins}\ and\ \citenamefont
+  {Jones}(2000)}]{cummins2000}%
   \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
-  {Kukita}}, \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont {Kiya}},\ and\
-  \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Kondo}},\ }\bibfield
-  {title} {\bibinfo {title} {{General off-resonance-error-robust symmetric
-  composite pulses with three elementary operations}},\ }\href
-  {https://doi.org/10.1103/PhysRevA.106.042613} {\bibfield  {journal} {\bibinfo
-   {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {106}},\ \bibinfo
-  {pages} {042613} (\bibinfo {year} {2022})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Zeng}\ and\ \citenamefont {Barnes}(2018)}]{zeng2018}%
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.~K.}\ \bibnamefont
+  {Cummins}}\ and\ \bibinfo {author} {\bibfnamefont {J.~A.}\ \bibnamefont
+  {Jones}},\ }\bibfield  {title} {\bibinfo {title} {{Use of composite rotations
+  to correct systematic errors in NMR quantum computation}},\ }\href
+  {https://doi.org/10.1088/1367-2630/2/1/006} {\bibfield  {journal} {\bibinfo
+  {journal} {New J. Phys.}\ }\textbf {\bibinfo {volume} {2}},\ \bibinfo {pages}
+  {6} (\bibinfo {year} {2000})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Cummins}\ \emph {et~al.}(2003)\citenamefont
+  {Cummins}, \citenamefont {Llewellyn},\ and\ \citenamefont
+  {Jones}}]{cummins2003}%
   \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
-  {Zeng}}\ and\ \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Barnes}},\
-  }\bibfield  {title} {\bibinfo {title} {{Fastest pulses that implement
-  dynamically corrected single-qubit phase gates}},\ }\href
-  {https://doi.org/10.1103/PhysRevA.98.012301} {\bibfield  {journal} {\bibinfo
-  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {98}},\ \bibinfo
-  {pages} {012301} (\bibinfo {year} {2018})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Kukita}\ \emph {et~al.}(2024)\citenamefont {Kukita},
-  \citenamefont {Kiya},\ and\ \citenamefont {Kondo}}]{kukita2024}%
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.~K.}\ \bibnamefont
+  {Cummins}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Llewellyn}},\
+  and\ \bibinfo {author} {\bibfnamefont {J.~A.}\ \bibnamefont {Jones}},\
+  }\bibfield  {title} {\bibinfo {title} {{Tackling systematic errors in quantum
+  logic gates with composite rotations}},\ }\href
+  {https://doi.org/10.1103/PhysRevA.67.042308} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {67}},\ \bibinfo
+  {pages} {042308} (\bibinfo {year} {2003})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Poggi}\ \emph {et~al.}(2024)\citenamefont {Poggi},
+  \citenamefont {De~Chiara}, \citenamefont {Campbell},\ and\ \citenamefont
+  {Kiely}}]{poggi2024}%
   \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
-  {Kukita}}, \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont {Kiya}},\ and\
-  \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Kondo}},\ }\bibfield
-  {title} {\bibinfo {title} {{Optimal quantum controls robust against detuning
-  error}},\ }\href {https://doi.org/10.1088/1402-4896/ad8281} {\bibfield
-  {journal} {\bibinfo  {journal} {Phys. Scr.}\ }\textbf {\bibinfo {volume}
-  {99}},\ \bibinfo {pages} {115124} (\bibinfo {year} {2024})}\BibitemShut
-  {NoStop}%
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.~M.}\ \bibnamefont
+  {Poggi}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {De~Chiara}},
+  \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Campbell}},\ and\
+  \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Kiely}},\ }\bibfield
+  {title} {\bibinfo {title} {{Universally Robust Quantum Control}},\ }\href
+  {https://doi.org/10.1103/PhysRevLett.132.193801} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {132}},\
+  \bibinfo {pages} {193801} (\bibinfo {year} {2024})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Cao}\ \emph {et~al.}(2024)\citenamefont {Cao},
   \citenamefont {Cui}, \citenamefont {Yung},\ and\ \citenamefont
   {Wu}}]{cao2024}%
@@ -94,6 +97,73 @@
   {journal} {\bibinfo  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume}
   {110}},\ \bibinfo {pages} {022603} (\bibinfo {year} {2024})}\BibitemShut
   {NoStop}%
+\bibitem [{\citenamefont {Bataille}\ \emph {et~al.}(2026)\citenamefont
+  {Bataille}, \citenamefont {Nomura},\ and\ \citenamefont
+  {Endres}}]{bataille2026}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Bataille}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Nomura}},\
+  and\ \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Endres}},\ }\href
+  {https://doi.org/10.48550/arXiv.2608.27426} {\bibinfo {title} {{Detuning- and
+  Stark-robust Rydberg gates}}} (\bibinfo {year} {2026}),\ \Eprint
+  {https://arxiv.org/abs/2608.27426} {arXiv:2608.27426 [quant-ph]} \BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Kukita}\ \emph {et~al.}(2022)\citenamefont {Kukita},
+  \citenamefont {Kiya},\ and\ \citenamefont {Kondo}}]{kukita2022}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Kukita}}, \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont {Kiya}},\ and\
+  \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Kondo}},\ }\bibfield
+  {title} {\bibinfo {title} {{General off-resonance-error-robust symmetric
+  composite pulses with three elementary operations}},\ }\href
+  {https://doi.org/10.1103/PhysRevA.106.042613} {\bibfield  {journal} {\bibinfo
+   {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {106}},\ \bibinfo
+  {pages} {042613} (\bibinfo {year} {2022})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Kukita}\ \emph {et~al.}(2024)\citenamefont {Kukita},
+  \citenamefont {Kiya},\ and\ \citenamefont {Kondo}}]{kukita2024}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Kukita}}, \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont {Kiya}},\ and\
+  \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Kondo}},\ }\bibfield
+  {title} {\bibinfo {title} {{Optimal quantum controls robust against detuning
+  error}},\ }\href {https://doi.org/10.1088/1402-4896/ad8281} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Scr.}\ }\textbf {\bibinfo {volume}
+  {99}},\ \bibinfo {pages} {115124} (\bibinfo {year} {2024})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Zeng}\ and\ \citenamefont {Barnes}(2018)}]{zeng2018}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Zeng}}\ and\ \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Barnes}},\
+  }\bibfield  {title} {\bibinfo {title} {{Fastest pulses that implement
+  dynamically corrected single-qubit phase gates}},\ }\href
+  {https://doi.org/10.1103/PhysRevA.98.012301} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {98}},\ \bibinfo
+  {pages} {012301} (\bibinfo {year} {2018})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Zeng}\ \emph {et~al.}(2019)\citenamefont {Zeng},
+  \citenamefont {Yang}, \citenamefont {Dzurak},\ and\ \citenamefont
+  {Barnes}}]{zeng2019}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Zeng}}, \bibinfo {author} {\bibfnamefont {C.~H.}\ \bibnamefont {Yang}},
+  \bibinfo {author} {\bibfnamefont {A.~S.}\ \bibnamefont {Dzurak}},\ and\
+  \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Barnes}},\ }\bibfield
+  {title} {\bibinfo {title} {{Geometric formalism for constructing arbitrary
+  single-qubit dynamically corrected gates}},\ }\href
+  {https://doi.org/10.1103/PhysRevA.99.052321} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {99}},\ \bibinfo
+  {pages} {052321} (\bibinfo {year} {2019})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Piliouras}\ \emph {et~al.}(2026)\citenamefont
+  {Piliouras}, \citenamefont {Lucarelli},\ and\ \citenamefont
+  {Barnes}}]{piliouras2026}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Piliouras}}, \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
+  {Lucarelli}},\ and\ \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Barnes}},\ }\bibfield  {title} {\bibinfo {title} {{An automated geometric
+  space curve approach for designing dynamically corrected gates}},\ }\href
+  {https://doi.org/10.1038/s41534-026-01190-6} {\bibfield  {journal} {\bibinfo
+  {journal} {npj Quantum Inf.}\ }\textbf {\bibinfo {volume} {12}},\ \bibinfo
+  {pages} {46} (\bibinfo {year} {2026})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Sigalotti}\ and\ \citenamefont
   {Chitour}(2006)}]{sigalotti2006}%
   \BibitemOpen
@@ -165,16 +235,70 @@
   \bibinfo {editor} {\bibfnamefont {G.~M.}\ \bibnamefont {Ziegler}}}\ (\bibinfo
    {publisher} {Birkh\"auser},\ \bibinfo {year} {2008})\ pp.\ \bibinfo {pages}
   {137--161}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Piliouras}\ \emph {et~al.}(2026)\citenamefont
-  {Piliouras}, \citenamefont {Lucarelli},\ and\ \citenamefont
-  {Barnes}}]{piliouras2026}%
+\bibitem [{\citenamefont {Abad}\ \emph {et~al.}(2022)\citenamefont {Abad},
+  \citenamefont {Fern{\'a}ndez-Pend{\'a}s}, \citenamefont {Frisk~Kockum},\ and\
+  \citenamefont {Johansson}}]{abad2022}%
   \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
-  {Piliouras}}, \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
-  {Lucarelli}},\ and\ \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
-  {Barnes}},\ }\bibfield  {title} {\bibinfo {title} {{An automated geometric
-  space curve approach for designing dynamically corrected gates}},\ }\href
-  {https://doi.org/10.1038/s41534-026-01190-6} {\bibfield  {journal} {\bibinfo
-  {journal} {npj Quantum Inf.}\ }\textbf {\bibinfo {volume} {12}},\ \bibinfo
-  {pages} {46} (\bibinfo {year} {2026})}\BibitemShut {NoStop}%
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {T.}~\bibnamefont
+  {Abad}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Fern{\'a}ndez-Pend{\'a}s}}, \bibinfo {author} {\bibfnamefont
+  {A.}~\bibnamefont {Frisk~Kockum}},\ and\ \bibinfo {author} {\bibfnamefont
+  {G.}~\bibnamefont {Johansson}},\ }\bibfield  {title} {\bibinfo {title}
+  {{Universal Fidelity Reduction of Quantum Operations from Weak
+  Dissipation}},\ }\href {https://doi.org/10.1103/PhysRevLett.129.150504}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf
+  {\bibinfo {volume} {129}},\ \bibinfo {pages} {150504} (\bibinfo {year}
+  {2022})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Bowdrey}\ \emph {et~al.}(2002)\citenamefont
+  {Bowdrey}, \citenamefont {Oi}, \citenamefont {Short}, \citenamefont
+  {Banaszek},\ and\ \citenamefont {Jones}}]{bowdrey2002}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.~D.}\ \bibnamefont
+  {Bowdrey}}, \bibinfo {author} {\bibfnamefont {D.~K.~L.}\ \bibnamefont {Oi}},
+  \bibinfo {author} {\bibfnamefont {A.~J.}\ \bibnamefont {Short}}, \bibinfo
+  {author} {\bibfnamefont {K.}~\bibnamefont {Banaszek}},\ and\ \bibinfo
+  {author} {\bibfnamefont {J.~A.}\ \bibnamefont {Jones}},\ }\bibfield  {title}
+  {\bibinfo {title} {{Fidelity of single qubit maps}},\ }\href
+  {https://doi.org/10.1016/S0375-9601(02)00069-5} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Lett. A}\ }\textbf {\bibinfo {volume} {294}},\
+  \bibinfo {pages} {258} (\bibinfo {year} {2002})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Nielsen}(2002)}]{nielsen2002}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.~A.}\ \bibnamefont
+  {Nielsen}},\ }\bibfield  {title} {\bibinfo {title} {{A simple formula for the
+  average gate fidelity of a quantum dynamical operation}},\ }\href
+  {https://doi.org/10.1016/S0375-9601(02)01272-0} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Lett. A}\ }\textbf {\bibinfo {volume} {303}},\
+  \bibinfo {pages} {249} (\bibinfo {year} {2002})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Gorini}\ \emph {et~al.}(1976)\citenamefont {Gorini},
+  \citenamefont {Kossakowski},\ and\ \citenamefont {Sudarshan}}]{gorini1976}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {V.}~\bibnamefont
+  {Gorini}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Kossakowski}},\ and\ \bibinfo {author} {\bibfnamefont {E.~C.~G.}\
+  \bibnamefont {Sudarshan}},\ }\bibfield  {title} {\bibinfo {title}
+  {{Completely positive dynamical semigroups of N-level systems}},\ }\href
+  {https://doi.org/10.1063/1.522979} {\bibfield  {journal} {\bibinfo  {journal}
+  {J. Math. Phys.}\ }\textbf {\bibinfo {volume} {17}},\ \bibinfo {pages} {821}
+  (\bibinfo {year} {1976})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Lindblad}(1976)}]{lindblad1976}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.}~\bibnamefont
+  {Lindblad}},\ }\bibfield  {title} {\bibinfo {title} {{On the generators of
+  quantum dynamical semigroups}},\ }\href {https://doi.org/10.1007/BF01608499}
+  {\bibfield  {journal} {\bibinfo  {journal} {Commun. Math. Phys.}\ }\textbf
+  {\bibinfo {volume} {48}},\ \bibinfo {pages} {119} (\bibinfo {year}
+  {1976})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Fromonteil}\ \emph {et~al.}(2023)\citenamefont
+  {Fromonteil}, \citenamefont {Bluvstein},\ and\ \citenamefont
+  {Pichler}}]{fromonteil2023}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Fromonteil}}, \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
+  {Bluvstein}},\ and\ \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Pichler}},\ }\bibfield  {title} {\bibinfo {title} {{Protocols for Rydberg
+  Entangling Gates Featuring Robustness against Quasistatic Errors}},\ }\href
+  {https://doi.org/10.1103/PRXQuantum.4.020335} {\bibfield  {journal} {\bibinfo
+   {journal} {PRX Quantum}\ }\textbf {\bibinfo {volume} {4}},\ \bibinfo {pages}
+  {020335} (\bibinfo {year} {2023})}\BibitemShut {NoStop}%
 \end{thebibliography}%

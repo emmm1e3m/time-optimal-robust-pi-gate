@@ -1,2 +1,6 @@
 import RobustPiGate.Main
 import RobustPiGate.ExactGeometric
+import RobustPiGate.FrontierOptimization
+import RobustPiGate.FrontierCombinedNoise
+import RobustPiGate.FrontierFidelityRemainder
+import RobustPiGate.FrontierFidelitySymmetry

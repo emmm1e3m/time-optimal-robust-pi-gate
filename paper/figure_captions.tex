@@ -1,8 +1,66 @@
+% 中英文稿共用的英文图注；均为独立单栏图。
+\newcommand{\residualgeometrycaption}{Direction curve and accumulated
+first-order detuning error for a representative attaining path,
+with $a=(L-\pi)/4=\pi/4$ and $L=2\pi$.
+(a) The unit direction $\mathbf n(\tau)$ lies on a great circle in
+the $yz$ plane for this example. Its endpoints are antipodal,
+$\mathbf v=\mathbf n(c)$ at $c=L/2$, and their distances to
+$\mathbf v$ are $\alpha$ and $\pi-\alpha$; here $\alpha=\pi/2$.
+The dashed first and third segments lie on the same arcs as the solid
+second segment, traversed in opposite directions; gaps in the dashed
+traces reveal the overlapping second segment.
+(b) Integrating this direction gives the dimensionless error curve
+$\Omega\mathbf r$, whose unit tangent is $\mathbf n$.
+Its endpoint displacement is
+$\mathbf R=\Omega\mathbf r(T)=-(2\sqrt2-2)\mathbf e_y$.
+Numbers 1--3 and colors identify the same successive pulse segments
+in both panels; arrows indicate traversal and tangent directions.
+The midpoint bound applies also to nonplanar curves.}
+
+\newcommand{\midpointenvelopecaption}{Bounds on distance to the midpoint direction. Each half-curve is parameterized from its endpoint
+at $t=0$ toward the midpoint direction $\mathbf v$ at $t=c$.
+Its distance to $\mathbf v$ is at most
+$\min\{\beta+t,c-t,\pi\}$ (thick curve), where
+$\beta=\alpha$ for one half and $\beta=\pi-\alpha$ for the other.
+The three individual bounds are shown separately.
+For $c=7\pi/6$, (a) $\beta=\pi/2$ gives $c+\beta<2\pi$,
+so the two affine bounds meet below $\pi$;
+(b) $\beta=11\pi/12$ gives $c+\beta>2\pi$,
+so the spherical distance cap creates a plateau on
+$\pi-\beta\le t\le c-\pi$.
+Integrating the cosine of the envelope gives the two branches of
+$A(c,\beta)$.}
+
 % 两种语言版本共用英文图注。
-\newcommand{\shortcorpsecaption}{Short-CORPSE attaining the robust $\pi$-gate time.
+\newcommand{\shortcorpsecaption}{Short-CORPSE attaining the minimum
+first-order detuning-robust $\pi$-gate time $T=7\pi/(3\Omega)$.
 (a) The saturated control segments have durations
 $(\pi/3,5\pi/3,\pi/3)/\Omega$, with $u_y=0$.
 (b) The planar error curve consists of three unit-radius circular arcs
 in dimensionless coordinates $\Omega\mathbf r$. It returns to its
-starting point with opposite initial and final tangents. Colors identify
-the same control segments in both panels.}
+starting point with opposite initial and final tangents, canceling the
+first-order detuning error. Numbers 1--3 and colors identify the same
+successive segments in both panels; arrows show the direction of traversal
+and dots mark the segment endpoints.}
+
+% 两种语言版本共用英文图注。
+\newcommand{\frontiercaption}{Exact speed--sensitivity frontier and its
+weak-noise application.
+(a) The minimum coefficient
+$\chi=\lim_{f\to0}(1-F_{\mathrm{avg}})/f^2$, with $f=\delta/\Omega$,
+for a full nominal $\pi$ gate at dimensionless duration $L=\Omega T$.
+The shaded region is excluded for every measurable transverse control
+satisfying $u_x^2+u_y^2\leq\Omega^2$.
+The boundary is attained by the same-axis three-segment family, joining
+the ordinary $\pi$ pulse to short-CORPSE.
+(b) Leading error budget divided by $s^2$ for zero-mean quasistatic detuning
+and drive-independent weak Markovian relaxation and pure dephasing:
+$\chi_{\min}(L)+\lambda L$, where
+$s^2=\operatorname{Var}(\delta)/\Omega^2$,
+$\lambda=\kappa/s^2$, and
+$\kappa=(\Gamma_1+\Gamma_\phi)/(3\Omega)$.
+The solid curve minimizes this budget over duration; the dashed and dotted
+curves use the two endpoint pulses.
+At $\lambda=1/(2\pi)$, the endpoints have equal budgets, while partial
+compensation with $L_{\mathrm{opt}}\simeq2.085\pi$ lowers the leading budget
+by $4.91\%$. The optimization concerns the weak-noise coefficient.}
