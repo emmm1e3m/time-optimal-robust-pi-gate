@@ -191,9 +191,9 @@ def midpoint_envelope(output):
         if beta + c > 2 * PI:
             lo, hi = PI - beta, c - PI
             ax.scatter([lo / PI, hi / PI], [1, 1], s=11, color=INK, zorder=7)
-            ax.annotate(r"$\pi$ plateau", ((lo + hi) / (2 * PI), 1),
-                        (.54, 1.34), fontsize=8, va="center",
-                        arrowprops={"arrowstyle": "-", "color": GRAY, "lw": .7})
+            # 直接标在平台上方，避免引线看起来像额外的距离界。
+            ax.text((lo + hi) / (2 * PI), 1.30, r"$\pi$ plateau",
+                    fontsize=8, ha="center", va="bottom")
         else:
             switch = (c - beta) / 2
             ax.scatter(switch / PI, (c + beta) / (2 * PI), s=11, color=INK, zorder=7)

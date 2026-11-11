@@ -77,11 +77,11 @@ def build(output):
 
     plt.rcParams.update({
         "font.family": "Arial", "mathtext.fontset": "dejavusans",
-        "font.size": 9, "axes.labelsize": 9.5, "xtick.labelsize": 8.5,
-        "ytick.labelsize": 8.5, "text.color": INK, "axes.labelcolor": INK,
+        "font.size": 8.5, "axes.labelsize": 8.5, "xtick.labelsize": 8,
+        "ytick.labelsize": 8, "text.color": INK, "axes.labelcolor": INK,
         "xtick.color": INK, "ytick.color": INK, "axes.edgecolor": GRAY,
         "axes.spines.top": False, "axes.spines.right": False,
-        "axes.linewidth": 0.65, "pdf.fonttype": 42, "ps.fonttype": 42,
+        "axes.linewidth": 0.6, "pdf.fonttype": 42, "ps.fonttype": 42,
     })
     # 竖排双面板使单栏图能紧邻对应论述，保持原有数据与纵轴。
     fig, axes = plt.subplots(2, 1, figsize=(3.4, 4.85))
@@ -92,18 +92,17 @@ def build(output):
     ax.plot(x, chi(lengths), color=TEAL, lw=2)
     ax.scatter([1, 7 / 3], [2 / 3, 0], color=INK, s=18, zorder=4, clip_on=False)
     ax.text(1.035, 0.685, r"Ordinary $\pi$ pulse", fontsize=8.5, va="bottom")
-    ax.annotate("Short-CORPSE", (7 / 3, 0), xytext=(2.10, 0.24),
-                fontsize=8.5, ha="center",
-                arrowprops={"arrowstyle": "-", "color": GRAY, "lw": 0.75,
-                            "shrinkB": 5})
+    # 端点标签直接就近放置，分行避开曲线，不增加类似数据线的引线。
+    ax.text(7 / 3 - .015, .10, "Short-\nCORPSE", fontsize=8.5,
+            ha="right", va="bottom", linespacing=1.05)
     ax.text(1.39, 0.165, "Excluded for all\ntransverse controls", fontsize=8.5,
             color="#59656F", ha="center", va="center", linespacing=1.35)
-    ax.text(1.91, 0.59, r"$u_x^2+u_y^2\leq\Omega^2$", fontsize=9, ha="center")
+    ax.text(1.91, 0.59, r"$u_x^2+u_y^2\leq\Omega^2$", fontsize=8.5, ha="center")
     ax.set(xlim=(1, 7 / 3), ylim=(0, 0.75), xlabel=r"Duration $L/\pi=\Omega T/\pi$",
            ylabel=r"Detuning sensitivity $\chi$")
     ax.set_xticks([1, 1.5, 2, 7 / 3], ["1", "1.5", "2", r"$7/3$"])
     ax.set_yticks([0, 1 / 3, 2 / 3], ["0", r"$1/3$", r"$2/3$"])
-    ax.set_title("(a)  Exact sensitivity frontier", loc="left", fontsize=10, pad=10)
+    ax.set_title("(a)  Exact sensitivity frontier", loc="left", fontsize=9, pad=7)
 
     ax = axes[1]
     # 共用同一纵轴，保留连续补偿相对两端点的小幅收益。
@@ -118,18 +117,18 @@ def build(output):
     ax.annotate("Partial compensation\n" + r"$L_{\rm opt}=2.085\pi$" +
                 "\n4.91% below endpoints",
                 (ratio_crossing, highlight["budget_over_s2"]),
-                xytext=(0.102, 0.57), textcoords="data", fontsize=8.2,
-                linespacing=1.35, va="top",
+                xytext=(.174, .74), textcoords="data", fontsize=8,
+                linespacing=1.35, ha="center", va="top",
                 arrowprops={"arrowstyle": "-", "color": GRAY, "lw": 0.75})
     ax.set(xlim=(0, 0.24), ylim=(0, 1.8), xlabel=r"Noise ratio $\lambda=\kappa/s^2$",
            ylabel=r"Leading error budget / $s^2$")
     ax.set_xticks([0, .08, .16, .24], ["0", "0.08", "0.16", "0.24"])
     ax.set_yticks([0, .5, 1, 1.5], ["0", "0.5", "1.0", "1.5"])
-    ax.set_title("(b)  Weak-noise working point", loc="left", fontsize=10, pad=10)
-    ax.legend(frameon=False, fontsize=8.2, loc="upper left", handlelength=2.2,
+    ax.set_title("(b)  Weak-noise working point", loc="left", fontsize=9, pad=7)
+    ax.legend(frameon=False, fontsize=8, loc="upper left", handlelength=2.2,
               borderaxespad=0.2, labelspacing=0.35)
     for ax in axes:
-        ax.tick_params(length=3, width=0.65)
+        ax.tick_params(length=2.5, width=0.6)
         ax.set_axisbelow(True)
         ax.grid(axis="y", color=LIGHT, lw=0.5, alpha=0.55)
     fig.savefig(output / "frontier_working_point.pdf")
