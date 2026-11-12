@@ -114,7 +114,7 @@ def build(output):
             color=TEAL, lw=2, label="Minimum budget")
     ax.scatter([ratio_crossing], [highlight["budget_over_s2"]],
                s=17, color=TEAL, zorder=4)
-    ax.annotate("Partial compensation\n" + r"$L_{\rm opt}=2.085\pi$" +
+    ax.annotate("Partial compensation\n" + r"$L_{\rm opt}=2.08\pi$" +
                 "\n4.91% below endpoints",
                 (ratio_crossing, highlight["budget_over_s2"]),
                 xytext=(.174, .74), textcoords="data", fontsize=8,

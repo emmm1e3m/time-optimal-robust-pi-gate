@@ -70,7 +70,7 @@ expansion from the actual channel average, its fourth-order averaged
 remainder, and the global leading-budget working-point results.
 The geometric minimum is attained in every dimension d≥2.
 All 1237 project declarations passed an exhaustive axiom audit on 2026-11-04.
-The subsequently added explicit switching threshold and maximal 4.91070%
+The subsequently added explicit switching threshold and maximal 4.91%
 relative leading-budget gain are analytically derived and numerically checked;
 these refinements have not been added to the Lean formalization.
 
