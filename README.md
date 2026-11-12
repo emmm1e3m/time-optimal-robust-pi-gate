@@ -25,7 +25,7 @@ $\chi=|\mathbf R|^2/6$, the known weak-dissipation time cost, and the
 optimal compensation level in the leading combined-noise budget.
 Average gate fidelity, fidelity susceptibility and additive weak-noise
 budgets are established quantities, attributed to their original sources
-in Sec. V. The two manuscripts share 23 references.
+in Sec. V. The two manuscripts share 26 references.
 
 ## Papers
 
@@ -35,8 +35,9 @@ in Sec. V. The two manuscripts share 23 references.
 - [Author review notes / 作者校阅说明](AUTHOR_REVIEW.md)
 
 The two versions contain the same scientific results and use the PRA
-REVTeX 4.2 format. These are author-review manuscripts; acknowledgments,
-data/code availability and required declarations contain visible placeholders.
+REVTeX 4.2 format. The data and code availability statements link to the
+published reproducibility archive (version 1.0.0):
+[10.5281/zenodo.24154006](https://doi.org/10.5281/zenodo.24154006).
 No journal submission or acceptance is claimed.
 
 ## Reproduce the manuscripts
@@ -56,7 +57,7 @@ xelatex -interaction=nonstopmode -halt-on-error manuscript_zh.tex
 ```
 
 The checked-in PDFs and generated `.bbl` files correspond to the source
-files. Both languages share four scientific figures and English captions. The author-annotated revision contains 10 English pages and 8 Chinese pages; its 43 numbered equations are preserved, with dense inline relations moved to unnumbered displays.
+files. Both languages share four scientific figures and English captions. The author-annotated revision contains 11 English pages and 9 Chinese pages, with 48 numbered equations (the original 43 plus five budget equations).
 
 ## Lean 4 formalization
 
@@ -68,7 +69,10 @@ attaining control for arbitrary Ω>0. They also prove the weak Lindblad
 expansion from the actual channel average, its fourth-order averaged
 remainder, and the global leading-budget working-point results.
 The geometric minimum is attained in every dimension d≥2.
-All 1237 project declarations passed an exhaustive axiom audit.
+All 1237 project declarations passed an exhaustive axiom audit on 2026-11-04.
+The subsequently added explicit switching threshold and maximal 4.91070%
+relative leading-budget gain are analytically derived and numerically checked;
+these refinements have not been added to the Lean formalization.
 
 ```sh
 cd lean
@@ -86,6 +90,7 @@ on `propext`, `Classical.choice` and `Quot.sound`.
 ```sh
 python -m pip install -r requirements.txt
 python numerics/verify_solution.py
+python numerics/check_budget.py
 python paper/build_figure.py
 python paper/build_frontier_figure.py
 ```
@@ -94,10 +99,12 @@ The numerical script uses direct 2×2 matrix exponentials and Fréchet
 derivatives. Its recorded output is in [verification.json](numerics/verification.json).
 Floating-point calculations check conventions and implementation; the
 original robust-time result follows from the analytical and formal proofs.
+The standard-library budget check reproduces the explicit duration switch
+and maximal relative gain; its output is [numbers.json](numerics/numbers.json).
 The figure scripts reconstruct the direction and error curves, the two distance-envelope branches, the short-CORPSE pulse, and the analytical frontier with its leading-order working points. The working-point solver
 compares all stationary points with both endpoint pulses; its generated
 data accompany the figure in `paper/assets/`.
 
 本仓库包含中英双语论文、共享参考文献与科学图、Lean 4 证明及必要复现脚本。
 论文主线为“完整门与失谐响应—球面中点锐界—完整速度与敏感度边界—补偿程度选择”。
-作者待核定的非实质声明集中列在校阅说明中。
+本轮修订内容、验证结果与公开归档入口见作者校阅说明。

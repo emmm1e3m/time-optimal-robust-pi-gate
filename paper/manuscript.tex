@@ -70,6 +70,8 @@ completely?
 
 Gate fidelity susceptibility and robustness--duration trade-offs have
 been formulated in general quantum-control settings~\cite{poggi2024}.
+Related speed limits concern robust identity cycles under full
+control with prescribed error subspaces~\cite{balada2026}.
 For single-qubit gates, numerical optimization has estimated the
 minimum times needed at prescribed robustness orders~\cite{cao2024}.
 Partial detuning compensation is also a practical design variable in
@@ -78,11 +80,16 @@ relation between duration and residual error would allow the
 compensation level to be selected from the available time or from
 competition with other noise sources.
 
-For a qubit $\pi$ gate, the known short-CORPSE sequence achieves
+The required time depends on whether robustness is imposed on one
+state or on the full gate. For first-order detuning-robust population
+inversion, Van Damme et al. reported a minimum time of
+$2\pi/\Omega$~\cite{vandamme2017}.
+For a full qubit $\pi$ gate, the known short-CORPSE sequence achieves
 complete first-order detuning cancellation in time
 $7\pi/(3\Omega)$~\cite{cummins2003}. It is optimal within a symmetric
 family of three elementary pulses~\cite{kukita2022}.
-Pontryagin analysis identifies it as a time-optimal
+Pontryagin analyses have addressed selective and robust rotations
+under single-axis control~\cite{ansel2021} and identified short-CORPSE as a time-optimal
 candidate~\cite{kukita2024}, while numerical optimization gives
 first-order robust $X$-gate times near $2.33\pi/\Omega$~\cite{cao2024}.
 
@@ -235,7 +242,15 @@ $\nvec$ for the rescaled direction. The dimensionless residual is
  \Rvec=\int_0^L\nvec(\tau)\,\dd\tau=\Omega\rvec(T).
  \label{eq:rescaled-error}
 \end{equation}
-Every admissible full gate therefore gives an absolutely continuous
+For inversion of a $z$-axis eigenstate, first-order robustness requires
+$\Rvec\parallel\ez$, since this residual changes the state's phase
+without changing its Bloch vector. Full-gate robustness requires
+$\Rvec=0$. The robust state-inversion pulse of Ref.~\cite{vandamme2017},
+with $u_x=+\Omega$ for $3\pi/(2\Omega)$ followed by $u_x=-\Omega$
+for $\pi/(2\Omega)$ and $u_y=0$, has nominal gate $R_x(\pi)$ but
+$\Rvec=-2\ez$. It therefore retains a first-order full-gate error.
+
+Every admissible full gate gives an absolutely continuous
 unit-vector curve with antipodal endpoints and speed at most one.
 Figures~\ref{fig:geometry}(a) and \ref{fig:geometry}(b) show the two
 geometric views for a planar attaining example: $\nvec$ moves on the unit sphere, while its integral
@@ -543,7 +558,6 @@ shortest nominal gate are endpoints of one globally attaining family.
 \label{fig:attainment}
 \end{figure}
 
-\FloatBarrier
 \subsection{Geometric rigidity and uniqueness of the control}
 
 Equality in the integral bound is restrictive: each half of the
@@ -891,15 +905,71 @@ additional dissipative cost:
  J'(L)=\lambda-\frac{g(L)}{3}\sin\frac{L-\pi}{4}=0.
  \label{eq:working-point}
 \end{equation}
-Comparing all stationary points with both endpoints gives the global
-minimum. Figure~\ref{fig:frontier} shows the sensitivity frontier
-and the benefit of selecting the compensation level continuously,
-compared with choosing only a rectangular $\pi$ pulse or short-CORPSE.
-For example, at $\lambda=1/(2\pi)$ the two endpoint pulses have the
-same leading budget. The minimum instead occurs at
-$L\simeq2.085\pi$, where partial compensation lowers that budget
-by about $4.91\%$. The gain comes from retaining most of the
-detuning suppression while reducing exposure to dissipation.
+The global choice can be characterized explicitly. Write
+$a=(L-\pi)/4\in[0,\pi/3]$ and set
+\begin{equation}
+ p(a)=\frac23(2\cos a-1)\sin a.
+ \label{eq:budget-slope}
+\end{equation}
+Since $p'(a)=\frac23(4\cos^2a-\cos a-2)$, $p$ increases up to
+$a_m=\arccos[(1+\sqrt{33})/8]$ and then decreases to zero.
+For $\lambda>0$, the rectangular endpoint is a local minimum, the
+robust endpoint is not a minimum, and only the larger root of
+$p(a)=\lambda$ can be an interior minimum. At such a stationary
+point, the budget excess over the rectangular pulse is
+\begin{equation*}
+ D(a)=\chi_{\min}(\pi+4a)+4a p(a)-\frac23.
+\end{equation*}
+The identity $D'(a)=4a p'(a)$, together with $D(0)=0$ and
+$D(\pi/3)=-2/3$, shows that $D$ has exactly one zero $a_c$ on
+$(a_m,\pi/3)$. Equivalently,
+\begin{equation}
+ a_c(2\cos a_c-1)\sin a_c=\cos a_c(1-\cos a_c).
+ \label{eq:budget-transition}
+\end{equation}
+The associated threshold and duration are
+\begin{equation}
+ \begin{aligned}
+ \lambda_c&=p(a_c)\simeq0.17625857,\\
+ L_c&=\pi+4a_c\simeq2.04725676\pi.
+ \end{aligned}
+ \label{eq:budget-critical}
+\end{equation}
+For $0<\lambda<\lambda_c$, the unique optimal duration is the
+interior minimum. At $\lambda=\lambda_c$, $L=\pi$ and $L=L_c$
+are both global minima; for $\lambda>\lambda_c$, the unique optimal
+duration is $L=\pi$. The optimal duration thus jumps to
+$\pi$ at this threshold, even though all compensation levels in the
+pulse family are available.
+
+Figure~\ref{fig:frontier} shows the sensitivity frontier and the gain
+from selecting an intermediate compensation level. To compare with
+the better of the two endpoint pulses, define, for $\lambda>0$,
+\begin{equation}
+ \begin{aligned}
+ B(\lambda)&=\min\left\{\frac23+\pi\lambda,\frac{7\pi}{3}\lambda\right\},\\
+ G(\lambda)&=1-\frac{\min_{\pi\le L\le7\pi/3}J(L)}{B(\lambda)}.
+ \end{aligned}
+ \label{eq:relative-gain}
+\end{equation}
+The endpoint budgets cross at $\lambda_0=1/(2\pi)$. For each fixed
+$L$, the ratio $J(L)/B(\lambda)$ is nonincreasing before this
+crossing. After it, the derivative has the sign of
+$(2/3)L-\pi\chi_{\min}(L)\ge0$, since $L\ge\pi$ and
+$0\le\chi_{\min}\le2/3$.
+Taking the minimum over $L$ therefore places the maximum gain at
+$\lambda_0$; the strict inequalities for an optimizing interior pulse
+make this positive maximum unique. Numerically,
+\begin{equation}
+ \begin{aligned}
+ G(\lambda_0)&\simeq4.91070\%,\\
+ L_{\rm opt}(\lambda_0)&\simeq2.08454\pi.
+ \end{aligned}
+ \label{eq:maximum-gain}
+\end{equation}
+At this ratio, both endpoint budgets equal $7/6$. The gain comes
+from retaining most of the detuning suppression while reducing
+exposure to dissipation.
 
 
 \begin{figure}[!htb]
@@ -933,10 +1003,6 @@ endpoint:
 \begin{equation*}
  h=4\lambda+O(\lambda^2),\qquad \lambda\to0^+.
 \end{equation*}
-For larger ratios, the time cost can favor the rectangular pulse.
-The ratio therefore determines whether stronger compensation or
-faster execution gives the smaller total error.
-
 The relation to finite-noise gate fidelity follows from the orders
 in Eq.~\eqref{eq:combined-expansion}. Both leading losses are of
 order $\eta^2$, whereas the omitted contribution is of order
@@ -998,8 +1064,18 @@ robust endpoint means that a small reduction in compensation can
 save more dissipative error than it adds in detuning error. Partial
 compensation is then a predictable choice based on the relative noise
 strengths, using the same pulse family as complete cancellation.
-If dissipation depends on the drive or the noise lies outside the
-quasistatic regime, the error model must be adjusted accordingly.
+
+The attaining pulses share one control axis; at zero detuning their
+net signed rotation is $-\pi$ (or $+\pi$ for the overall negative), so they do not
+cancel a common multiplicative amplitude error. The nontrivial
+three-segment pulses also require instantaneous phase reversals.
+A finite slew-rate constraint reduces the admissible control class,
+preserving the lower bound while potentially preventing its attainment.
+If dissipation depends on the drive, its cost can vary with the
+waveform even at fixed duration; a pulse that minimizes the detuning
+residual need then no longer minimize the total error.
+For noise outside the quasistatic regime, the error model must also
+be adjusted.
 
 \section{Conclusion}
 \label{sec:conclusion}
@@ -1038,11 +1114,12 @@ total gate error satisfy
 \end{equation*}
 Here $s^2$ and $\kappa$ are the noise parameters defined in
 Eq.~\eqref{eq:noise-parameters}, and $a_{\rm opt}$ fixes the three
-segment durations through Eq.~\eqref{eq:family-durations}. Near full
-compensation, shortening the pulse saves dissipative error linearly
-in the time reduction while adding detuning error only quadratically.
-For a positive dissipation rate, partial compensation can therefore lower
-the leading total gate error.
+segment durations through Eq.~\eqref{eq:family-durations}. For $\kappa>0$,
+the linear saving in dissipative loss from slightly shortening a fully
+compensated gate outweighs the quadratic detuning penalty. For $s^2>0$,
+as the relative cost $\lambda=\kappa/s^2$ increases past $\lambda_c$,
+the optimal dimensionless duration jumps to the rectangular-pulse
+value $L=\pi$.
 
 The main mathematical results of this work have been formally proved
 in Lean.
@@ -1055,7 +1132,9 @@ the authors.
 \end{acknowledgments}
 
 \section*{Data and code availability}
-[DATA AND CODE AVAILABILITY TO BE CONFIRMED]
+The Lean code, numerical scripts, figure data, and reproduction
+instructions are archived on Zenodo at DOI:
+\href{https://doi.org/10.5281/zenodo.24154006}{10.5281/zenodo.24154006}.
 
 % PRA 自动采用 apsrev4-2，并由 longbibliography 启用文献题名。
 \bibliography{references}

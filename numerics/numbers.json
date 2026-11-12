@@ -1,0 +1,21 @@
+{
+  "a_peak": 0.567829372928644,
+  "lambda_peak": 0.24600581988546033,
+  "lambda_equal_endpoints": 0.15915494309189535,
+  "a_gain_max": 0.8517945568893026,
+  "L_gain_max": 6.548770881147004,
+  "L_gain_max_over_pi": 2.0845385138216255,
+  "chi_gain_max": 0.06710587793183467,
+  "J_gain_max": 1.1093751348426475,
+  "endpoint_budget_at_gain_max": 1.1666666666666667,
+  "relative_gain_max": 0.04910702727773075,
+  "relative_gain_max_percent": 4.910702727773075,
+  "stationarity_residual_at_gain_max": -5.551115123125783e-17,
+  "a_transition": 0.8225135391165108,
+  "lambda_transition": 0.17625856977898022,
+  "L_transition": 6.431646810055836,
+  "L_transition_over_pi": 2.0472567640832136,
+  "crossing_residual_at_transition": 2.220446049250313e-16,
+  "J_transition_rectangular": 1.2203992946165547,
+  "J_transition_partial": 1.2203992946165552
+}

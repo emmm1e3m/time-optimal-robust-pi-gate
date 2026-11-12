@@ -6,7 +6,7 @@
 %Control: page (0) single
 %Control: year (1) truncated
 %Control: production of eprint (0) enabled
-\begin{thebibliography}{23}%
+\begin{thebibliography}{26}%
 \makeatletter
 \providecommand \@ifxundefined [1]{%
  \@ifx{#1\undefined}
@@ -84,6 +84,14 @@
   {https://doi.org/10.1103/PhysRevLett.132.193801} {\bibfield  {journal}
   {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {132}},\
   \bibinfo {pages} {193801} (\bibinfo {year} {2024})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Balada~Gaggioli}(2026)}]{balada2026}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
+  {Balada~Gaggioli}},\ }\href {https://doi.org/10.48550/arXiv.2610.21596}
+  {\bibinfo {title} {{Time-optimal robust quantum control for partially known
+  errors}}} (\bibinfo {year} {2026}),\ \Eprint
+  {https://arxiv.org/abs/2610.21596} {arXiv:2610.21596 [quant-ph]} \BibitemShut
+  {NoStop}%
 \bibitem [{\citenamefont {Cao}\ \emph {et~al.}(2024)\citenamefont {Cao},
   \citenamefont {Cui}, \citenamefont {Yung},\ and\ \citenamefont
   {Wu}}]{cao2024}%
@@ -108,6 +116,19 @@
   Stark-robust Rydberg gates}}} (\bibinfo {year} {2026}),\ \Eprint
   {https://arxiv.org/abs/2608.27426} {arXiv:2608.27426 [quant-ph]} \BibitemShut
   {NoStop}%
+\bibitem [{\citenamefont {Van~Damme}\ \emph {et~al.}(2017)\citenamefont
+  {Van~Damme}, \citenamefont {Ansel}, \citenamefont {Glaser},\ and\
+  \citenamefont {Sugny}}]{vandamme2017}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
+  {Van~Damme}}, \bibinfo {author} {\bibfnamefont {Q.}~\bibnamefont {Ansel}},
+  \bibinfo {author} {\bibfnamefont {S.~J.}\ \bibnamefont {Glaser}},\ and\
+  \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Sugny}},\ }\bibfield
+  {title} {\bibinfo {title} {{Robust optimal control of two-level quantum
+  systems}},\ }\href {https://doi.org/10.1103/PhysRevA.95.063403} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume}
+  {95}},\ \bibinfo {pages} {063403} (\bibinfo {year} {2017})}\BibitemShut
+  {NoStop}%
 \bibitem [{\citenamefont {Kukita}\ \emph {et~al.}(2022)\citenamefont {Kukita},
   \citenamefont {Kiya},\ and\ \citenamefont {Kondo}}]{kukita2022}%
   \BibitemOpen
@@ -119,6 +140,17 @@
   {https://doi.org/10.1103/PhysRevA.106.042613} {\bibfield  {journal} {\bibinfo
    {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {106}},\ \bibinfo
   {pages} {042613} (\bibinfo {year} {2022})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Ansel}\ \emph {et~al.}(2021)\citenamefont {Ansel},
+  \citenamefont {Glaser},\ and\ \citenamefont {Sugny}}]{ansel2021}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Q.}~\bibnamefont
+  {Ansel}}, \bibinfo {author} {\bibfnamefont {S.~J.}\ \bibnamefont {Glaser}},\
+  and\ \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Sugny}},\ }\bibfield
+   {title} {\bibinfo {title} {{Selective and robust time-optimal rotations of
+  spin systems}},\ }\href {https://doi.org/10.1088/1751-8121/abdba1} {\bibfield
+   {journal} {\bibinfo  {journal} {J. Phys. A: Math. Theor.}\ }\textbf
+  {\bibinfo {volume} {54}},\ \bibinfo {pages} {085204} (\bibinfo {year}
+  {2021})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Kukita}\ \emph {et~al.}(2024)\citenamefont {Kukita},
   \citenamefont {Kiya},\ and\ \citenamefont {Kondo}}]{kukita2024}%
   \BibitemOpen

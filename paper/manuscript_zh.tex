@@ -43,9 +43,9 @@
 
 在共振时精确实现的量子门，仍可能随静态失谐发生一阶变化。复合脉冲通过将累积误差引向零来抑制这一变化，代价是更长的持续时间~\cite{cummins2000,cummins2003}。基本问题是：在给定时长下，残差能有多小，以及何时能够完全消除一阶误差。
 
-门保真度易感性（gate fidelity susceptibility）以及稳健性与持续时间之间的权衡，已经在一般量子控制框架中得到表述~\cite{poggi2024}。对于单量子比特门，数值优化已估计出实现指定稳健阶数所需的最短时间~\cite{cao2024}。在 Rydberg 门优化中，部分失谐补偿也成为一个实用的设计变量~\cite{bataille2026}。这些研究引出一个连续变化的问题：在精确实现标称门的条件下，每个允许时长对应的最小一阶失谐残差是多少？
+门保真度易感性（gate fidelity susceptibility）以及稳健性与持续时间之间的权衡，已经在一般量子控制框架中得到表述~\cite{poggi2024}。相关的速度极限研究还考虑了给定误差子空间时，全控制下的稳健恒等操作~\cite{balada2026}。对于单量子比特门，数值优化已估计出实现指定稳健阶数所需的最短时间~\cite{cao2024}。在 Rydberg 门优化中，部分失谐补偿也成为一个实用的设计变量~\cite{bataille2026}。这些研究引出一个连续变化的问题：在精确实现标称门的条件下，每个允许时长对应的最小一阶失谐残差是多少？
 
-对于完全消除一阶误差，已知 short-CORPSE 序列的持续时间为 $7\pi/(3\Omega)$~\cite{cummins2003}，且在三个基本脉冲构成的对称族内最优~\cite{kukita2022}。Pontryagin 分析将其确定为时间最优候选解~\cite{kukita2024}，数值优化则给出一阶稳健 $X$ 门的时长接近 $2.33\pi/\Omega$~\cite{cao2024}。
+所需时间取决于稳健性是针对指定输入态还是完整门。Van Damme 等报道了一阶失谐稳健布居反转的最短时间 $2\pi/\Omega$~\cite{vandamme2017}。对于完整量子比特 $\pi$ 门，已知 short-CORPSE 序列在 $7\pi/(3\Omega)$ 内完全消除一阶失谐响应~\cite{cummins2003}，且在三个基本脉冲构成的对称族内最优~\cite{kukita2022}。Pontryagin 分析研究了单轴控制下的选择性与稳健最短时间旋转~\cite{ansel2021}，并将 short-CORPSE 确定为时间最优候选解~\cite{kukita2024}；数值优化则给出一阶稳健 $X$ 门的时长接近 $2.33\pi/\Omega$~\cite{cao2024}。
 
 在联合幅度受限、零失谐时精确实现完整量子比特 $\pi$ 门的条件下，本文研究以下问题：
 \begin{enumerate}
@@ -136,7 +136,9 @@
  \Rvec=\int_0^L\nvec(\tau)\,\dd\tau=\Omega\rvec(T).
  \label{eq:rescaled-error}
 \end{equation}
-因此，每个允许的完整量子门都给出一条绝对连续的单位向量曲线，其端点互为反极，速度不超过一。图~\ref{fig:geometry} 区分了两个几何对象：$\nvec$ 描述单位球面上的误差方向，积分曲线的切向量则为 $\nvec$，其端点位移就是残差 $\Rvec$。图中采用一条平面取等轨迹作示例，一般控制所产生的曲线无须共面。下面的定理确定完整门约束下的最小残差。
+对于初始 Bloch 向量为 $\ez$ 的态，式~\eqref{eq:variation} 表明，$\Rvec\parallel\ez$ 时一阶误差仅改变该态的整体相位；完整门的一阶抵消则要求 $\Rvec=0$。例如，文献~\cite{vandamme2017} 的两段稳健反转脉冲依次采用 $u_x=+\Omega,-\Omega$，持续时间为 $(3\pi/2,\pi/2)/\Omega$。这一脉冲实现标称门 $R_x(\pi)$，但其残差为 $\Rvec=-2\ez$，因此能够保护该输入态，却不能消除完整门的一阶失谐响应。
+
+结合上述速度与端点条件，每个允许的完整量子门都给出一条绝对连续的单位向量曲线，其端点互为反极，速度不超过一。图~\ref{fig:geometry} 区分了两个几何对象：$\nvec$ 描述单位球面上的误差方向，积分曲线的切向量则为 $\nvec$，其端点位移就是残差 $\Rvec$。图中采用一条平面取等轨迹作示例，一般控制所产生的曲线无须共面。下面的定理确定完整门约束下的最小残差。
 
 
 
@@ -337,7 +339,6 @@ $\Theta$ 依次从 $-\pi/2$ 走到 $-\Theta_{\rm SB}$、再到 $+\Theta_{\rm SB}
 \label{fig:attainment}
 \end{figure}
 
-\FloatBarrier
 \subsection{几何刚性与控制唯一性}
 
 本节沿下界证明逐步追踪等号条件：先确定中点取向，再确定曲线形状，最后用完整门条件选出上述两种控制。
@@ -557,7 +558,47 @@ $\lambda$ 较小时，失谐抑制更重要；$\lambda$ 较大时，额外的门
  J'(L)=\lambda-\frac{g(L)}{3}\sin\frac{L-\pi}{4}=0.
  \label{eq:working-point}
 \end{equation}
-比较所有此类驻点与两个端点，即得到这一标量预算的全局最小值。图~\ref{fig:frontier} 展示了敏感度边界，并将这一选择与采用矩形 $\pi$ 脉冲或 short-CORPSE 的结果比较。例如，在 $\lambda=1/(2\pi)$ 时，两个端点的预算相同，而连续优化的最优值对应 $L\simeq2.085\pi$，其预算比端点低约 $4.91\%$。
+全局最优时长可以进一步明确确定。令 $a=(L-\pi)/4\in[0,\pi/3]$，并记
+\begin{equation}
+ p(a)=\frac23(2\cos a-1)\sin a.
+ \label{eq:budget-slope}
+\end{equation}
+由于 $p'(a)=\frac23(4\cos^2a-\cos a-2)$，$p$ 在 $a_m=\arccos[(1+\sqrt{33})/8]$ 之前递增，之后递减至零。对于 $\lambda>0$，矩形端点始终是局部极小值，稳健端点则不是极小值；方程 $p(a)=\lambda$ 的内部根中，只有较大根可能给出极小值。在这样的驻点处，相对矩形脉冲的预算差为
+\begin{equation*}
+ D(a)=\chi_{\min}(\pi+4a)+4a p(a)-\frac23.
+\end{equation*}
+由 $D'(a)=4a p'(a)$、$D(0)=0$ 和 $D(\pi/3)=-2/3$ 可知，$D$ 在 $(a_m,\pi/3)$ 上恰有一个零点 $a_c$。其满足
+\begin{equation}
+ a_c(2\cos a_c-1)\sin a_c=\cos a_c(1-\cos a_c).
+ \label{eq:budget-transition}
+\end{equation}
+对应的临界噪声比和时长为
+\begin{equation}
+ \begin{aligned}
+ \lambda_c&=p(a_c)\simeq0.17625857,\\
+ L_c&=\pi+4a_c\simeq2.04725676\pi.
+ \end{aligned}
+ \label{eq:budget-critical}
+\end{equation}
+当 $0<\lambda<\lambda_c$ 时，唯一最优时长对应上述内部极小值；在 $\lambda=\lambda_c$ 时，$L=\pi$ 与 $L=L_c$ 并列为全局最小点；当 $\lambda>\lambda_c$ 时，唯一最优时长为 $L=\pi$，由矩形脉冲实现。因此，尽管脉冲族中的补偿程度连续可调，最优时长仍会在这一阈值处跳至 $\pi$。
+
+图~\ref{fig:frontier} 展示了敏感度边界及选择中间补偿程度的收益。为与两个端点脉冲中较优者比较，对 $\lambda>0$ 定义
+\begin{equation}
+ \begin{aligned}
+ B(\lambda)&=\min\left\{\frac23+\pi\lambda,\frac{7\pi}{3}\lambda\right\},\\
+ G(\lambda)&=1-\frac{\min_{\pi\le L\le7\pi/3}J(L)}{B(\lambda)}.
+ \end{aligned}
+ \label{eq:relative-gain}
+\end{equation}
+两端点预算在 $\lambda_0=1/(2\pi)$ 相交。固定 $L$ 时，比值 $J(L)/B(\lambda)$ 在交点之前随 $\lambda$ 不增，之后不减：第一支中的失谐贡献与 $1/\lambda$ 成正比，而第二支导数的符号由 $(2/3)L-\pi\chi_{\min}(L)\ge0$ 决定，这里用到了 $L\ge\pi$ 和 $0\le\chi_{\min}\le2/3$。对 $L$ 取最小值仍保持这两侧的单调性，故最大收益出现在 $\lambda_0$；最优内部脉冲对应的严格不等式又保证这一正的最大值唯一。数值上，
+\begin{equation}
+ \begin{aligned}
+ G(\lambda_0)&\simeq4.91070\%,\\
+ L_{\rm opt}(\lambda_0)&\simeq2.08454\pi.
+ \end{aligned}
+ \label{eq:maximum-gain}
+\end{equation}
+此时两个端点预算均为 $7/6$，上述数值就是相对较优端点的最大主导阶收益。部分补偿保留了大部分失谐抑制能力，同时缩短了耗散作用的时间。
 
 
 \begin{figure}[!htb]
@@ -585,7 +626,7 @@ $\lambda$ 较小时，失谐抑制更重要；$\lambda$ 较大时，额外的门
 \begin{equation*}
  h=4\lambda+O(\lambda^2),\qquad \lambda\to0^+.
 \end{equation*}
-耗散相对更强时，节省时间的重要性进一步增加，最短矩形脉冲也可能成为最优选择。式~\eqref{eq:combined-expansion} 说明这一选择的精度：当前比较保留 $\eta^2$ 阶门误差，而高阶修正从 $\eta^4$ 阶开始。因而在噪声趋弱、两种脉冲的主导误差存在非零差别时，这一比较决定了实际误差的先后次序；若主导项相同或噪声不再足够弱，就需保留更高阶项来判断。
+式~\eqref{eq:combined-expansion} 说明这一选择的精度：当前比较保留 $\eta^2$ 阶门误差，而高阶修正从 $\eta^4$ 阶开始。因而在噪声趋弱、两种脉冲的主导误差存在非零差别时，这一比较决定了实际误差的先后次序；若主导项相同或噪声不再足够弱，就需保留更高阶项来判断。
 
 \section{讨论}
 \label{sec:discussion}
@@ -598,7 +639,9 @@ $\lambda$ 较小时，失谐抑制更重要；$\lambda$ 较大时，额外的门
 
 保真度关系给这一几何结论以直接的物理读出。累积误差方向决定传播算符对小失谐的线性偏离，其长度的平方决定平均门不保真度的二次系数。于是，残差最小值同时给出可达到的最小失谐敏感度；几何上闭合与否，对应这一领先误差项是否消失。
 
-加入不依赖驱动的弱耗散后，补偿程度取决于两类误差的竞争。固定时长的耗散损失不随波形改变，所以整类控制的优化仍由同一三段脉冲族实现，只须选择其持续时间。完全补偿附近的线性耗散节省与二次失谐代价说明，为何少量残差可以换来更小的总门误差。如果耗散依赖于驱动，或噪声不属于准静态范围，则需要相应调整误差模型。
+加入不依赖驱动的弱耗散后，补偿程度取决于两类误差的竞争。固定时长的耗散损失不随波形改变，所以整类控制的优化仍由同一三段脉冲族实现，只须选择其持续时间。完全补偿附近的线性耗散节省与二次失谐代价说明，为何少量残差可以换来更小的总门误差。
+
+实际采用这一脉冲族时，还需考虑失谐模型之外的控制误差。同轴三段在零失谐时具有净转角 $-\pi$（整体取负时为 $+\pi$），共同的乘性幅度误差会直接改变这一转角，因此该族仍对幅度误差一阶敏感。部分或完全补偿的取等脉冲还依赖瞬时反向；有限带宽或切换速率进一步限制可行控制，本文的残差界仍成立，但原三段族未必能够达到它。若耗散速率随驱动改变，耗散损失也须随波形重新计算，此时失谐残差最小的控制未必使总误差最小；非准静态噪声同样需要调整误差模型。
 
 \section{结论}
 \label{sec:conclusion}
@@ -622,7 +665,7 @@ $\lambda$ 较小时，失谐抑制更重要；$\lambda$ 较大时，额外的门
  a_{\rm opt}&=\frac{L_{\rm opt}-\pi}{4}.
  \end{aligned}
 \end{equation*}
-在完全补偿附近略微缩短脉冲时，耗散损失的减少量与缩短量成正比，而新增失谐代价仅为其二次项，因此正耗散率下部分补偿能够降低总主导误差。
+当 $\kappa>0$ 时，从完全补偿端点略微缩短脉冲，节省的耗散为缩短量的一次项，新增失谐代价却只有二次项，因而更短的门更有利。对于 $s^2>0$，当相对代价 $\lambda=\kappa/s^2$ 增大并越过 $\lambda_c$ 时，最优无量纲时长跳变到矩形脉冲对应的 $L=\pi$。
 
 本文的主要数学结果已在 Lean 中完成形式化证明。
 
@@ -631,7 +674,8 @@ $\lambda$ 较小时，失谐抑制更重要；$\lambda$ 较大时，额外的门
 \end{acknowledgments}
 
 \section*{数据与代码可用性}
-[DATA AND CODE AVAILABILITY TO BE CONFIRMED]
+Lean 代码、数值脚本、图形数据及复现说明已归档于 Zenodo，DOI 为：
+\href{https://doi.org/10.5281/zenodo.24154006}{10.5281/zenodo.24154006}。
 
 % PRA 自动采用 apsrev4-2，并由 longbibliography 启用文献题名。
 \bibliography{references}
