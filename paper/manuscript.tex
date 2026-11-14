@@ -47,15 +47,13 @@ the midpoint noise direction and avoids classifying control
 extremals. The result yields a sharp duration-dependent lower bound
 on the coefficient of the quadratic term in the small-detuning
 expansion of average gate infidelity. With weak, drive-independent
-Markovian dissipation, it also
-reduces the choice of compensation level to an optimization over gate
-duration. Slightly shortening a fully compensated gate saves
-dissipative error to first order in the time reduction, while its
-detuning penalty enters only at second order. Partial compensation
-can therefore lower the leading gate error relative to complete
-first-order cancellation. As the relative dissipative cost increases
-past a threshold, the optimal duration jumps to that of the
-rectangular pulse.
+Markovian dissipation, optimizing the duration selects the best
+compensation level. Near complete cancellation, shortening the gate
+reduces dissipative loss linearly while the detuning penalty grows
+quadratically. Partial compensation reduces the leading gate error
+by up to $4.91\%$ relative to the better of a rectangular pulse and
+short-CORPSE. As the relative dissipative cost increases past a
+threshold, the optimal duration jumps to that of the rectangular pulse.
 \end{abstract}
 \maketitle
 
@@ -132,20 +130,15 @@ pulse to short-CORPSE.
 family and its overall negative. The first zero of the minimum
 residual gives the shortest first-order robust gate time,
 $7\pi/(3\Omega)$.
-\item A midpoint projection argument proves the
-bound by projecting onto the noise direction at the midpoint of the
-gate. The argument applies in every dimension $d\ge2$, avoids
-classifying control extremals, and determines the geometric equality
-cases. Equality forces the curve into one plane, and the full gate
+\item The midpoint projection method gives the bound in every
+dimension $d\ge2$ without classifying control extremals. Its equality
+conditions force the curve into one plane, and the full gate
 condition fixes the control axis.
-\item The residual bound gives the minimum coefficient of the
-quadratic detuning contribution to average gate infidelity. Combining
-it with the known first-order effect of weak Markovian
-dissipation~\cite{abad2022} determines the compensation level that
-minimizes the leading total gate error through a single optimization
-over duration. This optimization gives the switching threshold and a
-maximal leading-error reduction of $4.91\%$ relative to the better of
-the rectangular and short-CORPSE endpoints.
+\item The residual bound fixes the minimum quadratic detuning
+coefficient in average gate infidelity. Together with the first-order
+effect of weak Markovian dissipation~\cite{abad2022}, it determines
+the compensation level that minimizes the leading gate error and its
+switching threshold.
 \end{enumerate}
 
 \section{Control model and minimum detuning residual}
@@ -301,8 +294,8 @@ all full-gate equality cases in Sec.~\ref{sec:attainment}.
 \section{Proof of the geometric lower bound}
 \label{sec:midpoint}
 
-The proof uses the tangent-projection idea underlying Schur
-comparison~\cite{sullivan2008}. We choose the detuning direction at
+The key idea is tangent projection, as used in the proof of Schur's
+comparison theorem~\cite{sullivan2008}. We choose the detuning direction at
 the midpoint of the gate as the projection axis. On each half of the
 trajectory, the speed limit bounds the angular distance from that
 midpoint direction. Integrating the resulting lower bound on the
