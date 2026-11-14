@@ -32,7 +32,7 @@ in Sec. V. The two manuscripts share 28 references.
 - [English manuscript (PDF)](paper/manuscript.pdf) · [LaTeX](paper/manuscript.tex)
 - [中文论文（PDF）](paper/manuscript_zh.pdf) · [LaTeX](paper/manuscript_zh.tex)
 - [Shared bibliography](paper/references.bib)
-- [Author review notes / 作者校阅说明](AUTHOR_REVIEW.md)
+- [Author review notes / 作者校阅说明（含七项优化建议的落实与理由）](AUTHOR_REVIEW.md)
 
 The two versions contain the same scientific results and use the PRA
 REVTeX 4.2 format. The data and code availability statements link to the
