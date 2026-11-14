@@ -53,7 +53,9 @@ duration. Slightly shortening a fully compensated gate saves
 dissipative error to first order in the time reduction, while its
 detuning penalty enters only at second order. Partial compensation
 can therefore lower the leading gate error relative to complete
-first-order cancellation.
+first-order cancellation. As the relative dissipative cost increases
+past a threshold, the optimal duration jumps to that of the
+rectangular pulse.
 \end{abstract}
 \maketitle
 
@@ -111,6 +113,10 @@ three-arc return with reversed tangent occurs in the controllability
 construction of Sigalotti and Chitour~\cite{sigalotti2006},
 and its shortest length $7\pi/3$ is given explicitly by Kim and
 Cheong~\cite{kim2013}.
+For planar curves at fixed duration, minimizing the residual amounts
+to finding the reachable position nearest the origin in the Dubins
+model with terminal heading opposite to the initial
+heading~\cite{cockayne1975,patsko2003}.
 Spatial shortest-path and reachability problems admit additional,
 nonplanar extremals~\cite{sussmann1995,bae2025,bae2026,moser2022}.
 A planar construction therefore establishes an achievable duration,
@@ -126,7 +132,7 @@ pulse to short-CORPSE.
 family and its overall negative. The first zero of the minimum
 residual gives the shortest first-order robust gate time,
 $7\pi/(3\Omega)$.
-\item A Schur-type tangent comparison~\cite{sullivan2008} proves the
+\item A midpoint projection argument proves the
 bound by projecting onto the noise direction at the midpoint of the
 gate. The argument applies in every dimension $d\ge2$, avoids
 classifying control extremals, and determines the geometric equality
@@ -137,7 +143,9 @@ quadratic detuning contribution to average gate infidelity. Combining
 it with the known first-order effect of weak Markovian
 dissipation~\cite{abad2022} determines the compensation level that
 minimizes the leading total gate error through a single optimization
-over duration.
+over duration. This optimization gives the switching threshold and a
+maximal leading-error reduction of $4.91\%$ relative to the better of
+the rectangular and short-CORPSE endpoints.
 \end{enumerate}
 
 \section{Control model and minimum detuning residual}
@@ -293,8 +301,9 @@ all full-gate equality cases in Sec.~\ref{sec:attainment}.
 \section{Proof of the geometric lower bound}
 \label{sec:midpoint}
 
-The central step is to project the accumulated detuning direction
-onto its value at the midpoint of the gate. On each half of the
+The proof uses the tangent-projection idea underlying Schur
+comparison~\cite{sullivan2008}. We choose the detuning direction at
+the midpoint of the gate as the projection axis. On each half of the
 trajectory, the speed limit bounds the angular distance from that
 midpoint direction. Integrating the resulting lower bound on the
 projection gives a lower bound on the residual norm. The argument
@@ -918,10 +927,10 @@ robust endpoint is not a minimum, and only the larger root of
 $p(a)=\lambda$ can be an interior minimum. At such a stationary
 point, the budget excess over the rectangular pulse is
 \begin{equation*}
- D(a)=\chi_{\min}(\pi+4a)+4a p(a)-\frac23.
+ \Delta(a)=\chi_{\min}(\pi+4a)+4a p(a)-\frac23.
 \end{equation*}
-The identity $D'(a)=4a p'(a)$, together with $D(0)=0$ and
-$D(\pi/3)=-2/3$, shows that $D$ has exactly one zero $a_c$ on
+The identity $\Delta'(a)=4a p'(a)$, together with $\Delta(0)=0$ and
+$\Delta(\pi/3)=-2/3$, shows that $\Delta$ has exactly one zero $a_c$ on
 $(a_m,\pi/3)$. Equivalently,
 \begin{equation}
  a_c(2\cos a_c-1)\sin a_c=\cos a_c(1-\cos a_c).
@@ -958,8 +967,13 @@ crossing. After it, the derivative has the sign of
 $(2/3)L-\pi\chi_{\min}(L)\ge0$, since $L\ge\pi$ and
 $0\le\chi_{\min}\le2/3$.
 Taking the minimum over $L$ therefore places the maximum gain at
-$\lambda_0$; the strict inequalities for an optimizing interior pulse
-make this positive maximum unique. Numerically,
+$\lambda_0$. The gain there is positive: the endpoint budgets are
+equal, and $J'(7\pi/3)=\lambda_0>0$ makes a slightly shorter pulse
+better. At any other ratio with positive gain, the optimizing
+duration is interior. Evaluating that same pulse at $\lambda_0$
+strictly lowers its budget ratio. The minimum ratio at $\lambda_0$
+is no larger than this improved value, proving that the positive
+maximum is unique. Numerically,
 \begin{equation}
  \begin{aligned}
  G(\lambda_0)&\simeq4.91\%,\\

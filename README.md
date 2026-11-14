@@ -25,7 +25,7 @@ $\chi=|\mathbf R|^2/6$, the known weak-dissipation time cost, and the
 optimal compensation level in the leading combined-noise budget.
 Average gate fidelity, fidelity susceptibility and additive weak-noise
 budgets are established quantities, attributed to their original sources
-in Sec. V. The two manuscripts share 26 references.
+in Sec. V. The two manuscripts share 28 references.
 
 ## Papers
 

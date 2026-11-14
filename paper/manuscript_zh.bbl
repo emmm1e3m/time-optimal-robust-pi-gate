@@ -6,7 +6,7 @@
 %Control: page (0) single
 %Control: year (1) truncated
 %Control: production of eprint (0) enabled
-\begin{thebibliography}{26}%
+\begin{thebibliography}{28}%
 \makeatletter
 \providecommand \@ifxundefined [1]{%
  \@ifx{#1\undefined}
@@ -214,6 +214,28 @@
   }\href {https://doi.org/10.1016/j.comgeo.2012.10.008} {\bibfield  {journal}
   {\bibinfo  {journal} {Comput. Geom.}\ }\textbf {\bibinfo {volume} {46}},\
   \bibinfo {pages} {648} (\bibinfo {year} {2013})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Cockayne}\ and\ \citenamefont
+  {Hall}(1975)}]{cockayne1975}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.~J.}\ \bibnamefont
+  {Cockayne}}\ and\ \bibinfo {author} {\bibfnamefont {G.~W.~C.}\ \bibnamefont
+  {Hall}},\ }\bibfield  {title} {\bibinfo {title} {{Plane Motion of a Particle
+  Subject to Curvature Constraints}},\ }\href {https://doi.org/10.1137/0313012}
+  {\bibfield  {journal} {\bibinfo  {journal} {SIAM J. Control}\ }\textbf
+  {\bibinfo {volume} {13}},\ \bibinfo {pages} {197} (\bibinfo {year}
+  {1975})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Patsko}\ \emph {et~al.}(2003)\citenamefont {Patsko},
+  \citenamefont {Pyatko},\ and\ \citenamefont {Fedotov}}]{patsko2003}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {V.~S.}\ \bibnamefont
+  {Patsko}}, \bibinfo {author} {\bibfnamefont {S.~G.}\ \bibnamefont {Pyatko}},\
+  and\ \bibinfo {author} {\bibfnamefont {A.~A.}\ \bibnamefont {Fedotov}},\
+  }\bibfield  {title} {\bibinfo {title} {{Three-dimensional reachability set
+  for a nonlinear control system}},\ }\href
+  {https://www.researchgate.net/publication/266979439_Three-dimensional_reachability_set_for_a_nonlinear_control_system}
+  {\bibfield  {journal} {\bibinfo  {journal} {J. Comput. Syst. Sci. Int.}\
+  }\textbf {\bibinfo {volume} {42}},\ \bibinfo {pages} {320} (\bibinfo {year}
+  {2003})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Sussmann}(1995)}]{sussmann1995}%
   \BibitemOpen
   \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.~J.}\ \bibnamefont
@@ -254,19 +276,6 @@
   {https://doi.org/10.1353/ajm.2022.0030} {\bibfield  {journal} {\bibinfo
   {journal} {Amer. J. Math.}\ }\textbf {\bibinfo {volume} {144}},\ \bibinfo
   {pages} {1299} (\bibinfo {year} {2022})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Sullivan}(2008)}]{sullivan2008}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~M.}\ \bibnamefont
-  {Sullivan}},\ }\bibfield  {title} {\bibinfo {title} {{Curves of Finite Total
-  Curvature}},\ }in\ \href {https://doi.org/10.1007/978-3-7643-8621-4_7} {\emph
-  {\bibinfo {booktitle} {Discrete Differential Geometry}}},\ \bibinfo {series}
-  {Oberwolfach Seminars}, Vol.~\bibinfo {volume} {38},\ \bibinfo {editor}
-  {edited by\ \bibinfo {editor} {\bibfnamefont {A.~I.}\ \bibnamefont
-  {Bobenko}}, \bibinfo {editor} {\bibfnamefont {P.}~\bibnamefont {Schr\"oder}},
-  \bibinfo {editor} {\bibfnamefont {J.~M.}\ \bibnamefont {Sullivan}},\ and\
-  \bibinfo {editor} {\bibfnamefont {G.~M.}\ \bibnamefont {Ziegler}}}\ (\bibinfo
-   {publisher} {Birkh\"auser},\ \bibinfo {year} {2008})\ pp.\ \bibinfo {pages}
-  {137--161}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Abad}\ \emph {et~al.}(2022)\citenamefont {Abad},
   \citenamefont {Fern{\'a}ndez-Pend{\'a}s}, \citenamefont {Frisk~Kockum},\ and\
   \citenamefont {Johansson}}]{abad2022}%
@@ -281,6 +290,19 @@
   {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf
   {\bibinfo {volume} {129}},\ \bibinfo {pages} {150504} (\bibinfo {year}
   {2022})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Sullivan}(2008)}]{sullivan2008}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~M.}\ \bibnamefont
+  {Sullivan}},\ }\bibfield  {title} {\bibinfo {title} {{Curves of Finite Total
+  Curvature}},\ }in\ \href {https://doi.org/10.1007/978-3-7643-8621-4_7} {\emph
+  {\bibinfo {booktitle} {Discrete Differential Geometry}}},\ \bibinfo {series}
+  {Oberwolfach Seminars}, Vol.~\bibinfo {volume} {38},\ \bibinfo {editor}
+  {edited by\ \bibinfo {editor} {\bibfnamefont {A.~I.}\ \bibnamefont
+  {Bobenko}}, \bibinfo {editor} {\bibfnamefont {P.}~\bibnamefont {Schr\"oder}},
+  \bibinfo {editor} {\bibfnamefont {J.~M.}\ \bibnamefont {Sullivan}},\ and\
+  \bibinfo {editor} {\bibfnamefont {G.~M.}\ \bibnamefont {Ziegler}}}\ (\bibinfo
+   {publisher} {Birkh\"auser},\ \bibinfo {year} {2008})\ pp.\ \bibinfo {pages}
+  {137--161}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Bowdrey}\ \emph {et~al.}(2002)\citenamefont
   {Bowdrey}, \citenamefont {Oi}, \citenamefont {Short}, \citenamefont
   {Banaszek},\ and\ \citenamefont {Jones}}]{bowdrey2002}%
