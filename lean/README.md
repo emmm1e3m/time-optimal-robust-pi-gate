@@ -21,6 +21,8 @@
 | [FrontierBudgetEndpoints.lean](RobustPiGate/FrontierBudgetEndpoints.lean) | λ≥2/3 时矩形 π 脉冲全局最优的充分条件 |
 | [Main.lean](RobustPiGate/Main.lean)：`exact_time_and_all_minimizers` | 保留原零敏感度端点的精确时间与全部控制分类 |
 
+详细的定理、公式及数值图覆盖见 [论文—Lean 对应表](paper-coverage.md)，其中包括式 (41) 的驻点条件，并区分显式切换、最大收益与有限噪声数值验证。
+
 ## 构建与审计
 
 ```powershell

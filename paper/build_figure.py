@@ -174,7 +174,7 @@ def midpoint_envelope(output):
                 ls=(0, (2, 1.8)), label=r"$c-t$")
         ax.axhline(1, color=PURPLE, lw=1.05, ls=(0, (5, 1.5, 1, 1.5)),
                    label=r"$\pi$")
-        ax.plot(t / PI, envelope / PI, color=INK, lw=2.0,
+        ax.plot(t / PI, envelope / PI, color=INK, lw=1.25,
                 label=r"$\min\{\beta+t,c-t,\pi\}$")
         ax.fill_between(t / PI, 0, envelope / PI, color="#EEF1F3", zorder=0)
         ax.set_title(title, loc="left", fontsize=9, pad=7)

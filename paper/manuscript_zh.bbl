@@ -1,358 +1,225 @@
-%apsrev4-2.bst 2019-01-14 (MD) hand-edited version of apsrev4-1.bst
-%Control: key (0)
-%Control: author (8) initials jnrlst
-%Control: editor formatted (1) identically to author
-%Control: production of article title (0) allowed
-%Control: page (0) single
-%Control: year (1) truncated
-%Control: production of eprint (0) enabled
-\begin{thebibliography}{28}%
-\makeatletter
-\providecommand \@ifxundefined [1]{%
- \@ifx{#1\undefined}
-}%
-\providecommand \@ifnum [1]{%
- \ifnum #1\expandafter \@firstoftwo
- \else \expandafter \@secondoftwo
- \fi
-}%
-\providecommand \@ifx [1]{%
- \ifx #1\expandafter \@firstoftwo
- \else \expandafter \@secondoftwo
- \fi
-}%
-\providecommand \natexlab [1]{#1}%
-\providecommand \enquote  [1]{``#1''}%
-\providecommand \bibnamefont  [1]{#1}%
-\providecommand \bibfnamefont [1]{#1}%
-\providecommand \citenamefont [1]{#1}%
-\providecommand \href@noop [0]{\@secondoftwo}%
-\providecommand \href [0]{\begingroup \@sanitize@url \@href}%
-\providecommand \@href[1]{\@@startlink{#1}\@@href}%
-\providecommand \@@href[1]{\endgroup#1\@@endlink}%
-\providecommand \@sanitize@url [0]{\catcode `\\12\catcode `\$12\catcode
-  `\&12\catcode `\#12\catcode `\^12\catcode `\_12\catcode `\%12\relax}%
-\providecommand \@@startlink[1]{}%
-\providecommand \@@endlink[0]{}%
-\providecommand \url  [0]{\begingroup\@sanitize@url \@url }%
-\providecommand \@url [1]{\endgroup\@href {#1}{\urlprefix }}%
-\providecommand \urlprefix  [0]{URL }%
-\providecommand \Eprint [0]{\href }%
-\providecommand \doibase [0]{https://doi.org/}%
-\providecommand \selectlanguage [0]{\@gobble}%
-\providecommand \bibinfo  [0]{\@secondoftwo}%
-\providecommand \bibfield  [0]{\@secondoftwo}%
-\providecommand \translation [1]{[#1]}%
-\providecommand \BibitemOpen [0]{}%
-\providecommand \bibitemStop [0]{}%
-\providecommand \bibitemNoStop [0]{.\EOS\space}%
-\providecommand \EOS [0]{\spacefactor3000\relax}%
-\providecommand \BibitemShut  [1]{\csname bibitem#1\endcsname}%
-\let\auto@bib@innerbib\@empty
-%</preamble>
-\bibitem [{\citenamefont {Cummins}\ and\ \citenamefont
-  {Jones}(2000)}]{cummins2000}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.~K.}\ \bibnamefont
-  {Cummins}}\ and\ \bibinfo {author} {\bibfnamefont {J.~A.}\ \bibnamefont
-  {Jones}},\ }\bibfield  {title} {\bibinfo {title} {{Use of composite rotations
-  to correct systematic errors in NMR quantum computation}},\ }\href
-  {https://doi.org/10.1088/1367-2630/2/1/006} {\bibfield  {journal} {\bibinfo
-  {journal} {New J. Phys.}\ }\textbf {\bibinfo {volume} {2}},\ \bibinfo {pages}
-  {6} (\bibinfo {year} {2000})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Cummins}\ \emph {et~al.}(2003)\citenamefont
-  {Cummins}, \citenamefont {Llewellyn},\ and\ \citenamefont
-  {Jones}}]{cummins2003}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.~K.}\ \bibnamefont
-  {Cummins}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Llewellyn}},\
-  and\ \bibinfo {author} {\bibfnamefont {J.~A.}\ \bibnamefont {Jones}},\
-  }\bibfield  {title} {\bibinfo {title} {{Tackling systematic errors in quantum
-  logic gates with composite rotations}},\ }\href
-  {https://doi.org/10.1103/PhysRevA.67.042308} {\bibfield  {journal} {\bibinfo
-  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {67}},\ \bibinfo
-  {pages} {042308} (\bibinfo {year} {2003})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Poggi}\ \emph {et~al.}(2024)\citenamefont {Poggi},
-  \citenamefont {De~Chiara}, \citenamefont {Campbell},\ and\ \citenamefont
-  {Kiely}}]{poggi2024}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.~M.}\ \bibnamefont
-  {Poggi}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {De~Chiara}},
-  \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Campbell}},\ and\
-  \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Kiely}},\ }\bibfield
-  {title} {\bibinfo {title} {{Universally Robust Quantum Control}},\ }\href
-  {https://doi.org/10.1103/PhysRevLett.132.193801} {\bibfield  {journal}
-  {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {132}},\
-  \bibinfo {pages} {193801} (\bibinfo {year} {2024})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Balada~Gaggioli}(2026)}]{balada2026}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
-  {Balada~Gaggioli}},\ }\href {https://doi.org/10.48550/arXiv.2610.21596}
-  {\bibinfo {title} {{Time-optimal robust quantum control for partially known
-  errors}}} (\bibinfo {year} {2026}),\ \Eprint
-  {https://arxiv.org/abs/2610.21596} {arXiv:2610.21596 [quant-ph]} \BibitemShut
-  {NoStop}%
-\bibitem [{\citenamefont {Cao}\ \emph {et~al.}(2024)\citenamefont {Cao},
-  \citenamefont {Cui}, \citenamefont {Yung},\ and\ \citenamefont
-  {Wu}}]{cao2024}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {X.}~\bibnamefont
-  {Cao}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Cui}}, \bibinfo
-  {author} {\bibfnamefont {M.~H.}\ \bibnamefont {Yung}},\ and\ \bibinfo
-  {author} {\bibfnamefont {R.-B.}\ \bibnamefont {Wu}},\ }\bibfield  {title}
-  {\bibinfo {title} {{Robust Control of Single-Qubit Gates at the Quantum Speed
-  Limit}},\ }\href {https://doi.org/10.1103/PhysRevA.110.022603} {\bibfield
-  {journal} {\bibinfo  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume}
-  {110}},\ \bibinfo {pages} {022603} (\bibinfo {year} {2024})}\BibitemShut
-  {NoStop}%
-\bibitem [{\citenamefont {Bataille}\ \emph {et~al.}(2026)\citenamefont
-  {Bataille}, \citenamefont {Nomura},\ and\ \citenamefont
-  {Endres}}]{bataille2026}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
-  {Bataille}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Nomura}},\
-  and\ \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Endres}},\ }\href
-  {https://doi.org/10.48550/arXiv.2608.27426} {\bibinfo {title} {{Detuning- and
-  Stark-robust Rydberg gates}}} (\bibinfo {year} {2026}),\ \Eprint
-  {https://arxiv.org/abs/2608.27426} {arXiv:2608.27426 [quant-ph]} \BibitemShut
-  {NoStop}%
-\bibitem [{\citenamefont {Van~Damme}\ \emph {et~al.}(2017)\citenamefont
-  {Van~Damme}, \citenamefont {Ansel}, \citenamefont {Glaser},\ and\
-  \citenamefont {Sugny}}]{vandamme2017}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
-  {Van~Damme}}, \bibinfo {author} {\bibfnamefont {Q.}~\bibnamefont {Ansel}},
-  \bibinfo {author} {\bibfnamefont {S.~J.}\ \bibnamefont {Glaser}},\ and\
-  \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Sugny}},\ }\bibfield
-  {title} {\bibinfo {title} {{Robust optimal control of two-level quantum
-  systems}},\ }\href {https://doi.org/10.1103/PhysRevA.95.063403} {\bibfield
-  {journal} {\bibinfo  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume}
-  {95}},\ \bibinfo {pages} {063403} (\bibinfo {year} {2017})}\BibitemShut
-  {NoStop}%
-\bibitem [{\citenamefont {Kukita}\ \emph {et~al.}(2022)\citenamefont {Kukita},
-  \citenamefont {Kiya},\ and\ \citenamefont {Kondo}}]{kukita2022}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
-  {Kukita}}, \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont {Kiya}},\ and\
-  \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Kondo}},\ }\bibfield
-  {title} {\bibinfo {title} {{General off-resonance-error-robust symmetric
-  composite pulses with three elementary operations}},\ }\href
-  {https://doi.org/10.1103/PhysRevA.106.042613} {\bibfield  {journal} {\bibinfo
-   {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {106}},\ \bibinfo
-  {pages} {042613} (\bibinfo {year} {2022})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Ansel}\ \emph {et~al.}(2021)\citenamefont {Ansel},
-  \citenamefont {Glaser},\ and\ \citenamefont {Sugny}}]{ansel2021}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Q.}~\bibnamefont
-  {Ansel}}, \bibinfo {author} {\bibfnamefont {S.~J.}\ \bibnamefont {Glaser}},\
-  and\ \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Sugny}},\ }\bibfield
-   {title} {\bibinfo {title} {{Selective and robust time-optimal rotations of
-  spin systems}},\ }\href {https://doi.org/10.1088/1751-8121/abdba1} {\bibfield
-   {journal} {\bibinfo  {journal} {J. Phys. A: Math. Theor.}\ }\textbf
-  {\bibinfo {volume} {54}},\ \bibinfo {pages} {085204} (\bibinfo {year}
-  {2021})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Kukita}\ \emph {et~al.}(2024)\citenamefont {Kukita},
-  \citenamefont {Kiya},\ and\ \citenamefont {Kondo}}]{kukita2024}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
-  {Kukita}}, \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont {Kiya}},\ and\
-  \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Kondo}},\ }\bibfield
-  {title} {\bibinfo {title} {{Optimal quantum controls robust against detuning
-  error}},\ }\href {https://doi.org/10.1088/1402-4896/ad8281} {\bibfield
-  {journal} {\bibinfo  {journal} {Phys. Scr.}\ }\textbf {\bibinfo {volume}
-  {99}},\ \bibinfo {pages} {115124} (\bibinfo {year} {2024})}\BibitemShut
-  {NoStop}%
-\bibitem [{\citenamefont {Zeng}\ and\ \citenamefont {Barnes}(2018)}]{zeng2018}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
-  {Zeng}}\ and\ \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Barnes}},\
-  }\bibfield  {title} {\bibinfo {title} {{Fastest pulses that implement
-  dynamically corrected single-qubit phase gates}},\ }\href
-  {https://doi.org/10.1103/PhysRevA.98.012301} {\bibfield  {journal} {\bibinfo
-  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {98}},\ \bibinfo
-  {pages} {012301} (\bibinfo {year} {2018})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Zeng}\ \emph {et~al.}(2019)\citenamefont {Zeng},
-  \citenamefont {Yang}, \citenamefont {Dzurak},\ and\ \citenamefont
-  {Barnes}}]{zeng2019}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
-  {Zeng}}, \bibinfo {author} {\bibfnamefont {C.~H.}\ \bibnamefont {Yang}},
-  \bibinfo {author} {\bibfnamefont {A.~S.}\ \bibnamefont {Dzurak}},\ and\
-  \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Barnes}},\ }\bibfield
-  {title} {\bibinfo {title} {{Geometric formalism for constructing arbitrary
-  single-qubit dynamically corrected gates}},\ }\href
-  {https://doi.org/10.1103/PhysRevA.99.052321} {\bibfield  {journal} {\bibinfo
-  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {99}},\ \bibinfo
-  {pages} {052321} (\bibinfo {year} {2019})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Piliouras}\ \emph {et~al.}(2026)\citenamefont
-  {Piliouras}, \citenamefont {Lucarelli},\ and\ \citenamefont
-  {Barnes}}]{piliouras2026}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
-  {Piliouras}}, \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
-  {Lucarelli}},\ and\ \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
-  {Barnes}},\ }\bibfield  {title} {\bibinfo {title} {{An automated geometric
-  space curve approach for designing dynamically corrected gates}},\ }\href
-  {https://doi.org/10.1038/s41534-026-01190-6} {\bibfield  {journal} {\bibinfo
-  {journal} {npj Quantum Inf.}\ }\textbf {\bibinfo {volume} {12}},\ \bibinfo
-  {pages} {46} (\bibinfo {year} {2026})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Sigalotti}\ and\ \citenamefont
-  {Chitour}(2006)}]{sigalotti2006}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
-  {Sigalotti}}\ and\ \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont
-  {Chitour}},\ }\bibfield  {title} {\bibinfo {title} {{Dubins' Problem on
-  Surfaces II: Nonpositive Curvature}},\ }\href
-  {https://doi.org/10.1137/040619739} {\bibfield  {journal} {\bibinfo
-  {journal} {SIAM J. Control Optim.}\ }\textbf {\bibinfo {volume} {45}},\
-  \bibinfo {pages} {457} (\bibinfo {year} {2006})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Kim}\ and\ \citenamefont {Cheong}(2013)}]{kim2013}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.-S.}\ \bibnamefont
-  {Kim}}\ and\ \bibinfo {author} {\bibfnamefont {O.}~\bibnamefont {Cheong}},\
-  }\bibfield  {title} {\bibinfo {title} {{The cost of bounded curvature}},\
-  }\href {https://doi.org/10.1016/j.comgeo.2012.10.008} {\bibfield  {journal}
-  {\bibinfo  {journal} {Comput. Geom.}\ }\textbf {\bibinfo {volume} {46}},\
-  \bibinfo {pages} {648} (\bibinfo {year} {2013})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Cockayne}\ and\ \citenamefont
-  {Hall}(1975)}]{cockayne1975}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.~J.}\ \bibnamefont
-  {Cockayne}}\ and\ \bibinfo {author} {\bibfnamefont {G.~W.~C.}\ \bibnamefont
-  {Hall}},\ }\bibfield  {title} {\bibinfo {title} {{Plane Motion of a Particle
-  Subject to Curvature Constraints}},\ }\href {https://doi.org/10.1137/0313012}
-  {\bibfield  {journal} {\bibinfo  {journal} {SIAM J. Control}\ }\textbf
-  {\bibinfo {volume} {13}},\ \bibinfo {pages} {197} (\bibinfo {year}
-  {1975})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Patsko}\ \emph {et~al.}(2003)\citenamefont {Patsko},
-  \citenamefont {Pyatko},\ and\ \citenamefont {Fedotov}}]{patsko2003}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {V.~S.}\ \bibnamefont
-  {Patsko}}, \bibinfo {author} {\bibfnamefont {S.~G.}\ \bibnamefont {Pyatko}},\
-  and\ \bibinfo {author} {\bibfnamefont {A.~A.}\ \bibnamefont {Fedotov}},\
-  }\bibfield  {title} {\bibinfo {title} {{Three-dimensional reachability set
-  for a nonlinear control system}},\ }\href
-  {https://www.researchgate.net/publication/266979439_Three-dimensional_reachability_set_for_a_nonlinear_control_system}
-  {\bibfield  {journal} {\bibinfo  {journal} {J. Comput. Syst. Sci. Int.}\
-  }\textbf {\bibinfo {volume} {42}},\ \bibinfo {pages} {320} (\bibinfo {year}
-  {2003})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Sussmann}(1995)}]{sussmann1995}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.~J.}\ \bibnamefont
-  {Sussmann}},\ }\bibfield  {title} {\bibinfo {title} {{Shortest 3-dimensional
-  paths with a prescribed curvature bound}},\ }in\ \href
-  {https://doi.org/10.1109/CDC.1995.478997} {\emph {\bibinfo {booktitle}
-  {Proceedings of the 34th IEEE Conference on Decision and Control}}},\
-  Vol.~\bibinfo {volume} {4}\ (\bibinfo {year} {1995})\ pp.\ \bibinfo {pages}
-  {3306--3312}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Bae}\ \emph {et~al.}(2025)\citenamefont {Bae},
-  \citenamefont {Bai}, \citenamefont {Lee}, \citenamefont {Lee},\ and\
-  \citenamefont {Lee}}]{bae2025}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
-  {Bae}}, \bibinfo {author} {\bibfnamefont {J.~H.}\ \bibnamefont {Bai}},
-  \bibinfo {author} {\bibfnamefont {B.-Y.}\ \bibnamefont {Lee}}, \bibinfo
-  {author} {\bibfnamefont {J.-Y.}\ \bibnamefont {Lee}},\ and\ \bibinfo {author}
-  {\bibfnamefont {C.-H.}\ \bibnamefont {Lee}},\ }\bibfield  {title} {\bibinfo
-  {title} {{On the Reachability of 3-Dimensional Paths with a Prescribed
-  Curvature Bound}},\ }\href {https://doi.org/10.1016/j.automatica.2025.112359}
-  {\bibfield  {journal} {\bibinfo  {journal} {Automatica}\ }\textbf {\bibinfo
-  {volume} {178}},\ \bibinfo {pages} {112359} (\bibinfo {year}
-  {2025})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Bae}\ and\ \citenamefont {Choi}(2026)}]{bae2026}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
-  {Bae}}\ and\ \bibinfo {author} {\bibfnamefont {H.-L.}\ \bibnamefont {Choi}},\
-  }\bibfield  {title} {\bibinfo {title} {{Fixed-Time State Transfer via
-  Pontryagin Extremals}},\ }\href
-  {https://doi.org/10.1016/j.automatica.2026.113146} {\bibfield  {journal}
-  {\bibinfo  {journal} {Automatica}\ }\textbf {\bibinfo {volume} {192}},\
-  \bibinfo {pages} {113146} (\bibinfo {year} {2026})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Moser}(2022)}]{moser2022}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {R.}~\bibnamefont
-  {Moser}},\ }\bibfield  {title} {\bibinfo {title} {{Structure and
-  classification results for the $\infty$-elastica problem}},\ }\href
-  {https://doi.org/10.1353/ajm.2022.0030} {\bibfield  {journal} {\bibinfo
-  {journal} {Amer. J. Math.}\ }\textbf {\bibinfo {volume} {144}},\ \bibinfo
-  {pages} {1299} (\bibinfo {year} {2022})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Abad}\ \emph {et~al.}(2022)\citenamefont {Abad},
-  \citenamefont {Fern{\'a}ndez-Pend{\'a}s}, \citenamefont {Frisk~Kockum},\ and\
-  \citenamefont {Johansson}}]{abad2022}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {T.}~\bibnamefont
-  {Abad}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
-  {Fern{\'a}ndez-Pend{\'a}s}}, \bibinfo {author} {\bibfnamefont
-  {A.}~\bibnamefont {Frisk~Kockum}},\ and\ \bibinfo {author} {\bibfnamefont
-  {G.}~\bibnamefont {Johansson}},\ }\bibfield  {title} {\bibinfo {title}
-  {{Universal Fidelity Reduction of Quantum Operations from Weak
-  Dissipation}},\ }\href {https://doi.org/10.1103/PhysRevLett.129.150504}
-  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf
-  {\bibinfo {volume} {129}},\ \bibinfo {pages} {150504} (\bibinfo {year}
-  {2022})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Sullivan}(2008)}]{sullivan2008}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~M.}\ \bibnamefont
-  {Sullivan}},\ }\bibfield  {title} {\bibinfo {title} {{Curves of Finite Total
-  Curvature}},\ }in\ \href {https://doi.org/10.1007/978-3-7643-8621-4_7} {\emph
-  {\bibinfo {booktitle} {Discrete Differential Geometry}}},\ \bibinfo {series}
-  {Oberwolfach Seminars}, Vol.~\bibinfo {volume} {38},\ \bibinfo {editor}
-  {edited by\ \bibinfo {editor} {\bibfnamefont {A.~I.}\ \bibnamefont
-  {Bobenko}}, \bibinfo {editor} {\bibfnamefont {P.}~\bibnamefont {Schr\"oder}},
-  \bibinfo {editor} {\bibfnamefont {J.~M.}\ \bibnamefont {Sullivan}},\ and\
-  \bibinfo {editor} {\bibfnamefont {G.~M.}\ \bibnamefont {Ziegler}}}\ (\bibinfo
-   {publisher} {Birkh\"auser},\ \bibinfo {year} {2008})\ pp.\ \bibinfo {pages}
-  {137--161}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Bowdrey}\ \emph {et~al.}(2002)\citenamefont
-  {Bowdrey}, \citenamefont {Oi}, \citenamefont {Short}, \citenamefont
-  {Banaszek},\ and\ \citenamefont {Jones}}]{bowdrey2002}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.~D.}\ \bibnamefont
-  {Bowdrey}}, \bibinfo {author} {\bibfnamefont {D.~K.~L.}\ \bibnamefont {Oi}},
-  \bibinfo {author} {\bibfnamefont {A.~J.}\ \bibnamefont {Short}}, \bibinfo
-  {author} {\bibfnamefont {K.}~\bibnamefont {Banaszek}},\ and\ \bibinfo
-  {author} {\bibfnamefont {J.~A.}\ \bibnamefont {Jones}},\ }\bibfield  {title}
-  {\bibinfo {title} {{Fidelity of single qubit maps}},\ }\href
-  {https://doi.org/10.1016/S0375-9601(02)00069-5} {\bibfield  {journal}
-  {\bibinfo  {journal} {Phys. Lett. A}\ }\textbf {\bibinfo {volume} {294}},\
-  \bibinfo {pages} {258} (\bibinfo {year} {2002})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Nielsen}(2002)}]{nielsen2002}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.~A.}\ \bibnamefont
-  {Nielsen}},\ }\bibfield  {title} {\bibinfo {title} {{A simple formula for the
-  average gate fidelity of a quantum dynamical operation}},\ }\href
-  {https://doi.org/10.1016/S0375-9601(02)01272-0} {\bibfield  {journal}
-  {\bibinfo  {journal} {Phys. Lett. A}\ }\textbf {\bibinfo {volume} {303}},\
-  \bibinfo {pages} {249} (\bibinfo {year} {2002})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Gorini}\ \emph {et~al.}(1976)\citenamefont {Gorini},
-  \citenamefont {Kossakowski},\ and\ \citenamefont {Sudarshan}}]{gorini1976}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {V.}~\bibnamefont
-  {Gorini}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
-  {Kossakowski}},\ and\ \bibinfo {author} {\bibfnamefont {E.~C.~G.}\
-  \bibnamefont {Sudarshan}},\ }\bibfield  {title} {\bibinfo {title}
-  {{Completely positive dynamical semigroups of N-level systems}},\ }\href
-  {https://doi.org/10.1063/1.522979} {\bibfield  {journal} {\bibinfo  {journal}
-  {J. Math. Phys.}\ }\textbf {\bibinfo {volume} {17}},\ \bibinfo {pages} {821}
-  (\bibinfo {year} {1976})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Lindblad}(1976)}]{lindblad1976}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.}~\bibnamefont
-  {Lindblad}},\ }\bibfield  {title} {\bibinfo {title} {{On the generators of
-  quantum dynamical semigroups}},\ }\href {https://doi.org/10.1007/BF01608499}
-  {\bibfield  {journal} {\bibinfo  {journal} {Commun. Math. Phys.}\ }\textbf
-  {\bibinfo {volume} {48}},\ \bibinfo {pages} {119} (\bibinfo {year}
-  {1976})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Fromonteil}\ \emph {et~al.}(2023)\citenamefont
-  {Fromonteil}, \citenamefont {Bluvstein},\ and\ \citenamefont
-  {Pichler}}]{fromonteil2023}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
-  {Fromonteil}}, \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
-  {Bluvstein}},\ and\ \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
-  {Pichler}},\ }\bibfield  {title} {\bibinfo {title} {{Protocols for Rydberg
-  Entangling Gates Featuring Robustness against Quasistatic Errors}},\ }\href
-  {https://doi.org/10.1103/PRXQuantum.4.020335} {\bibfield  {journal} {\bibinfo
-   {journal} {PRX Quantum}\ }\textbf {\bibinfo {volume} {4}},\ \bibinfo {pages}
-  {020335} (\bibinfo {year} {2023})}\BibitemShut {NoStop}%
-\end{thebibliography}%
+\begin{thebibliography}{32}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Cummins and Jones(2000)]{cummins2000}
+H.~K. Cummins and J.~A. Jones.
+\newblock {Use of composite rotations to correct systematic errors in NMR
+  quantum computation}.
+\newblock \emph{New J. Phys.}, 2:\penalty0 6, 2000.
+\newblock \doi{10.1088/1367-2630/2/1/006}.
+
+\bibitem[Cummins et~al.(2003)Cummins, Llewellyn, and Jones]{cummins2003}
+H.~K. Cummins, G.~Llewellyn, and J.~A. Jones.
+\newblock {Tackling systematic errors in quantum logic gates with composite
+  rotations}.
+\newblock \emph{Phys. Rev. A}, 67:\penalty0 042308, 2003.
+\newblock \doi{10.1103/PhysRevA.67.042308}.
+
+\bibitem[Krantz et~al.(2019)Krantz, Kjaergaard, Yan, Orlando, Gustavsson, and
+  Oliver]{krantz2019}
+P.~Krantz, M.~Kjaergaard, F.~Yan, T.~P. Orlando, S.~Gustavsson, and W.~D.
+  Oliver.
+\newblock {A quantum engineer's guide to superconducting qubits}.
+\newblock \emph{Appl. Phys. Rev.}, 6\penalty0 (2):\penalty0 021318, 2019.
+\newblock \doi{10.1063/1.5089550}.
+
+\bibitem[Ball et~al.(2016)Ball, Oliver, and Biercuk]{ball2016}
+H.~Ball, W.~D. Oliver, and M.~J. Biercuk.
+\newblock {The role of master clock stability in quantum information
+  processing}.
+\newblock \emph{npj Quantum Inf.}, 2:\penalty0 16033, 2016.
+\newblock \doi{10.1038/npjqi.2016.33}.
+
+\bibitem[Abad et~al.(2022)Abad, Fern{\'a}ndez-Pend{\'a}s, Frisk~Kockum, and
+  Johansson]{abad2022}
+T.~Abad, J.~Fern{\'a}ndez-Pend{\'a}s, A.~Frisk~Kockum, and G.~Johansson.
+\newblock {Universal Fidelity Reduction of Quantum Operations from Weak
+  Dissipation}.
+\newblock \emph{Phys. Rev. Lett.}, 129:\penalty0 150504, 2022.
+\newblock \doi{10.1103/PhysRevLett.129.150504}.
+
+\bibitem[Poggi et~al.(2024)Poggi, De~Chiara, Campbell, and Kiely]{poggi2024}
+P.~M. Poggi, G.~De~Chiara, S.~Campbell, and A.~Kiely.
+\newblock {Universally Robust Quantum Control}.
+\newblock \emph{Phys. Rev. Lett.}, 132:\penalty0 193801, 2024.
+\newblock \doi{10.1103/PhysRevLett.132.193801}.
+
+\bibitem[Balada~Gaggioli(2026)]{balada2026}
+L.~Balada~Gaggioli.
+\newblock {Time-optimal robust quantum control for partially known errors},
+  2026.
+\newblock URL \url{https://arxiv.org/abs/2610.21596}.
+
+\bibitem[Cao et~al.(2024)Cao, Cui, Yung, and Wu]{cao2024}
+X.~Cao, J.~Cui, M.~H. Yung, and R.-B. Wu.
+\newblock {Robust Control of Single-Qubit Gates at the Quantum Speed Limit}.
+\newblock \emph{Phys. Rev. A}, 110:\penalty0 022603, 2024.
+\newblock \doi{10.1103/PhysRevA.110.022603}.
+
+\bibitem[Bataille et~al.(2026)Bataille, Nomura, and Endres]{bataille2026}
+E.~Bataille, G.~Nomura, and M.~Endres.
+\newblock {Detuning- and Stark-robust Rydberg gates}, 2026.
+\newblock URL \url{https://arxiv.org/abs/2608.27426}.
+
+\bibitem[Jeon and Cai(2026)]{jeon2026}
+M.~Jeon and Z.~Cai.
+\newblock {Noise-aware time-optimal quantum control}.
+\newblock \emph{Quantum Sci. Technol.}, 11\penalty0 (3):\penalty0 035020, 2026.
+\newblock \doi{10.1088/2058-9565/ae7750}.
+
+\bibitem[Van~Damme et~al.(2017)Van~Damme, Ansel, Glaser, and
+  Sugny]{vandamme2017}
+L.~Van~Damme, Q.~Ansel, S.~J. Glaser, and D.~Sugny.
+\newblock {Robust optimal control of two-level quantum systems}.
+\newblock \emph{Phys. Rev. A}, 95:\penalty0 063403, 2017.
+\newblock \doi{10.1103/PhysRevA.95.063403}.
+
+\bibitem[Kukita et~al.(2022)Kukita, Kiya, and Kondo]{kukita2022}
+S.~Kukita, H.~Kiya, and Y.~Kondo.
+\newblock {General off-resonance-error-robust symmetric composite pulses with
+  three elementary operations}.
+\newblock \emph{Phys. Rev. A}, 106:\penalty0 042613, 2022.
+\newblock \doi{10.1103/PhysRevA.106.042613}.
+
+\bibitem[Ansel et~al.(2021)Ansel, Glaser, and Sugny]{ansel2021}
+Q.~Ansel, S.~J. Glaser, and D.~Sugny.
+\newblock {Selective and robust time-optimal rotations of spin systems}.
+\newblock \emph{J. Phys. A: Math. Theor.}, 54:\penalty0 085204, 2021.
+\newblock \doi{10.1088/1751-8121/abdba1}.
+
+\bibitem[Kukita et~al.(2024)Kukita, Kiya, and Kondo]{kukita2024}
+S.~Kukita, H.~Kiya, and Y.~Kondo.
+\newblock {Optimal quantum controls robust against detuning error}.
+\newblock \emph{Phys. Scr.}, 99:\penalty0 115124, 2024.
+\newblock \doi{10.1088/1402-4896/ad8281}.
+
+\bibitem[Zeng and Barnes(2018)]{zeng2018}
+J.~Zeng and E.~Barnes.
+\newblock {Fastest pulses that implement dynamically corrected single-qubit
+  phase gates}.
+\newblock \emph{Phys. Rev. A}, 98:\penalty0 012301, 2018.
+\newblock \doi{10.1103/PhysRevA.98.012301}.
+
+\bibitem[Zeng et~al.(2019)Zeng, Yang, Dzurak, and Barnes]{zeng2019}
+J.~Zeng, C.~H. Yang, A.~S. Dzurak, and E.~Barnes.
+\newblock {Geometric formalism for constructing arbitrary single-qubit
+  dynamically corrected gates}.
+\newblock \emph{Phys. Rev. A}, 99:\penalty0 052321, 2019.
+\newblock \doi{10.1103/PhysRevA.99.052321}.
+
+\bibitem[Piliouras et~al.(2026)Piliouras, Lucarelli, and Barnes]{piliouras2026}
+E.~Piliouras, D.~Lucarelli, and E.~Barnes.
+\newblock {An automated geometric space curve approach for designing
+  dynamically corrected gates}.
+\newblock \emph{npj Quantum Inf.}, 12:\penalty0 46, 2026.
+\newblock \doi{10.1038/s41534-026-01190-6}.
+
+\bibitem[Sigalotti and Chitour(2006)]{sigalotti2006}
+M.~Sigalotti and Y.~Chitour.
+\newblock {Dubins' Problem on Surfaces II: Nonpositive Curvature}.
+\newblock \emph{SIAM J. Control Optim.}, 45\penalty0 (2):\penalty0 457--482,
+  2006.
+\newblock \doi{10.1137/040619739}.
+
+\bibitem[Kim and Cheong(2013)]{kim2013}
+H.-S. Kim and O.~Cheong.
+\newblock {The cost of bounded curvature}.
+\newblock \emph{Comput. Geom.}, 46\penalty0 (6):\penalty0 648--672, 2013.
+\newblock \doi{10.1016/j.comgeo.2012.10.008}.
+
+\bibitem[Cockayne and Hall(1975)]{cockayne1975}
+E.~J. Cockayne and G.~W.~C. Hall.
+\newblock {Plane Motion of a Particle Subject to Curvature Constraints}.
+\newblock \emph{SIAM J. Control}, 13\penalty0 (1):\penalty0 197--220, 1975.
+\newblock \doi{10.1137/0313012}.
+
+\bibitem[Patsko et~al.(2003)Patsko, Pyatko, and Fedotov]{patsko2003}
+V.~S. Patsko, S.~G. Pyatko, and A.~A. Fedotov.
+\newblock {Three-dimensional reachability set for a nonlinear control system}.
+\newblock \emph{J. Comput. Syst. Sci. Int.}, 42\penalty0 (3):\penalty0
+  320--328, 2003.
+\newblock URL
+  \url{https://www.researchgate.net/publication/266979439_Three-dimensional_reachability_set_for_a_nonlinear_control_system}.
+
+\bibitem[Sussmann(1995)]{sussmann1995}
+H.~J. Sussmann.
+\newblock {Shortest 3-dimensional paths with a prescribed curvature bound}.
+\newblock In \emph{Proceedings of the 34th IEEE Conference on Decision and
+  Control}, volume~4, pages 3306--3312, 1995.
+\newblock \doi{10.1109/CDC.1995.478997}.
+
+\bibitem[Bae et~al.(2025)Bae, Bai, Lee, Lee, and Lee]{bae2025}
+J.~Bae, J.~H. Bai, B.-Y. Lee, J.-Y. Lee, and C.-H. Lee.
+\newblock {On the Reachability of 3-Dimensional Paths with a Prescribed
+  Curvature Bound}.
+\newblock \emph{Automatica}, 178:\penalty0 112359, 2025.
+\newblock \doi{10.1016/j.automatica.2025.112359}.
+
+\bibitem[Bae and Choi(2026)]{bae2026}
+J.~Bae and H.-L. Choi.
+\newblock {Fixed-Time State Transfer via Pontryagin Extremals}.
+\newblock \emph{Automatica}, 192:\penalty0 113146, 2026.
+\newblock \doi{10.1016/j.automatica.2026.113146}.
+
+\bibitem[Moser(2022)]{moser2022}
+R.~Moser.
+\newblock {Structure and classification results for the $\infty$-elastica
+  problem}.
+\newblock \emph{Amer. J. Math.}, 144\penalty0 (5):\penalty0 1299--1329, 2022.
+\newblock \doi{10.1353/ajm.2022.0030}.
+
+\bibitem[Sullivan(2008)]{sullivan2008}
+J.~M. Sullivan.
+\newblock {Curves of Finite Total Curvature}.
+\newblock In A.~I. Bobenko, P.~Schr\"oder, J.~M. Sullivan, and G.~M. Ziegler,
+  editors, \emph{Discrete Differential Geometry}, volume~38 of
+  \emph{Oberwolfach Seminars}, pages 137--161. Birkh\"auser, 2008.
+\newblock \doi{10.1007/978-3-7643-8621-4_7}.
+
+\bibitem[Bowdrey et~al.(2002)Bowdrey, Oi, Short, Banaszek, and
+  Jones]{bowdrey2002}
+M.~D. Bowdrey, D.~K.~L. Oi, A.~J. Short, K.~Banaszek, and J.~A. Jones.
+\newblock {Fidelity of single qubit maps}.
+\newblock \emph{Phys. Lett. A}, 294\penalty0 (5-6):\penalty0 258--260, 2002.
+\newblock \doi{10.1016/S0375-9601(02)00069-5}.
+
+\bibitem[Nielsen(2002)]{nielsen2002}
+M.~A. Nielsen.
+\newblock {A simple formula for the average gate fidelity of a quantum
+  dynamical operation}.
+\newblock \emph{Phys. Lett. A}, 303\penalty0 (4):\penalty0 249--252, 2002.
+\newblock \doi{10.1016/S0375-9601(02)01272-0}.
+
+\bibitem[Gorini et~al.(1976)Gorini, Kossakowski, and Sudarshan]{gorini1976}
+V.~Gorini, A.~Kossakowski, and E.~C.~G. Sudarshan.
+\newblock {Completely positive dynamical semigroups of N-level systems}.
+\newblock \emph{J. Math. Phys.}, 17:\penalty0 821--825, 1976.
+\newblock \doi{10.1063/1.522979}.
+
+\bibitem[Lindblad(1976)]{lindblad1976}
+G.~Lindblad.
+\newblock {On the generators of quantum dynamical semigroups}.
+\newblock \emph{Commun. Math. Phys.}, 48:\penalty0 119--130, 1976.
+\newblock \doi{10.1007/BF01608499}.
+
+\bibitem[Fromonteil et~al.(2023)Fromonteil, Bluvstein, and
+  Pichler]{fromonteil2023}
+C.~Fromonteil, D.~Bluvstein, and H.~Pichler.
+\newblock {Protocols for Rydberg Entangling Gates Featuring Robustness against
+  Quasistatic Errors}.
+\newblock \emph{PRX Quantum}, 4:\penalty0 020335, 2023.
+\newblock \doi{10.1103/PRXQuantum.4.020335}.
+
+\bibitem[Zhang and Cen(2026)]{zhang2026archive}
+Tingyu Zhang and Yan Cen.
+\newblock {Lean proofs and reproducibility data for Minimum first-order
+  detuning residual for qubit $\pi$ gates at fixed duration}.
+\newblock Zenodo, November 2026.
+\newblock URL \url{https://doi.org/10.5281/zenodo.24154006}.
+\newblock Version 1.0.0.
+
+\end{thebibliography}

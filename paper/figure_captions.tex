@@ -1,4 +1,4 @@
-% 中英文稿共用的英文图注；均为独立单栏图。
+% 中英文稿共用的英文图注；按单栏模板宽度排版。
 \newcommand{\residualgeometrycaption}{Direction curve and accumulated
 first-order detuning error for a representative attaining path,
 with $a=(L-\pi)/4=\pi/4$ and $L=2\pi$.
@@ -21,7 +21,7 @@ The midpoint bound applies also to nonplanar curves.}
 \newcommand{\midpointenvelopecaption}{Bounds on distance to the midpoint direction. Each half-curve is parameterized from its endpoint
 at $t=0$ toward the midpoint direction $\mathbf v$ at $t=c$.
 Its distance to $\mathbf v$ is at most
-$\min\{\beta+t,c-t,\pi\}$ (thick curve), where
+$\min\{\beta+t,c-t,\pi\}$ (black solid curve), where
 $\beta=\alpha$ for one half and $\beta=\pi-\alpha$ for the other.
 The three individual bounds are shown separately.
 For $c=7\pi/6$, (a) $\beta=\pi/2$ gives $c+\beta<2\pi$,
@@ -45,6 +45,7 @@ successive segments in both panels; arrows show the direction of traversal
 and dots mark the segment endpoints.}
 
 % 两种语言版本共用英文图注。
+% 图4替换现有同名宏；图5新增宏。两种语言共用英文 captions。
 \newcommand{\frontiercaption}{Exact speed--sensitivity frontier and its
 weak-noise application.
 (a) The minimum coefficient
@@ -67,4 +68,26 @@ At $\lambda=1/(2\pi)$, the endpoints have equal budgets, while partial
 compensation with $L_{\mathrm{opt}}\simeq2.08\pi$ lowers the leading budget
 by $4.91\%$, the maximum relative reduction over $\lambda>0$
 compared with the better endpoint pulse at this order.
-The optimization concerns the weak-noise coefficient.}
+(c) The corresponding optimal duration jumps at
+$\lambda_c\simeq0.176$. The gray dashed lines mark $\lambda_c$ and $L_c/\pi$.
+The two filled points at $\lambda_c$ represent
+the simultaneous global minima $L=\pi$ and $L=L_c\simeq2.047\pi$;
+no intermediate duration is optimal there.
+The optimizations in (b) and (c) concern the leading weak-noise budget.}
+
+\newcommand{\fullchannelcaption}{Finite-noise check of the leading-budget
+prescription along the sensitivity-minimizing three-segment family.
+The detuning is Gaussian with $s=\operatorname{std}(\delta)/\Omega=0.03$,
+and the drive-independent Markov rates are
+$\Gamma_1=0$ and $\Gamma_\phi/\Omega=3\lambda s^2$.
+The three panels use (a) $\lambda=0.025$,
+(b) $\lambda=\lambda_c\simeq0.176$, and (c) $\lambda=0.22$.
+Solid curves and circles give the full average gate infidelity obtained
+from segmentwise Bloch-matrix exponentials and 32-point Gauss--Hermite quadrature;
+dashed curves give $s^2[\chi_{\min}(L)+\lambda L]$.
+Black diamonds show full-channel values computed directly at every
+duration selected by the leading budget; open squares mark the other
+endpoint pulses. The vertical ranges differ among the panels.
+In (b), the leading budgets at $L=\pi$ and $L=L_c$ are equal,
+whereas the full infidelity at $\pi$ is $0.234\%$ lower than that at
+$L_c$, resolving the degeneracy at this finite noise strength.}

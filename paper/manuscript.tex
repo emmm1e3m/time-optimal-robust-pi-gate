@@ -1,13 +1,22 @@
-\documentclass[aps,pra,reprint,raggedbottom,superscriptaddress,longbibliography]{revtex4-2}
+\documentclass[12pt]{iopjournal}
 
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{microtype}
 \usepackage{graphicx}
 \usepackage[section]{placeins}
-\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage[numbers,sort&compress]{natbib}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
 \graphicspath{{assets/}}
 
+% 保留官方类文件；投稿稿不显示期刊卷页、出版日期和Crossmark占位。
+\fancyhead{}
+\fancyhfoffset[L]{0pt}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\articletype}[1]{\noindent{\small\sffamily\MakeUppercase{#1}}\par\vspace{1em}}
+
+\renewcommand{\data}[1]{\section*{Data and code availability}#1}
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}{Corollary}
 \newcommand{\dd}{\mathrm{d}}
@@ -22,14 +31,19 @@
 
 \begin{document}
 
+\articletype{Paper}
+
 \title{Minimum first-order detuning residual for qubit
 \texorpdfstring{$\pi$}{pi} gates at fixed duration}
-\author{Tingyu Zhang}
-\email{23300190021@m.fudan.edu.cn}
-\affiliation{Department of Physics, Fudan University, Shanghai, China}
-\author{Yan Cen}
-\email[Corresponding author: ]{cenyan@fudan.edu.cn}
-\affiliation{Department of Physics, Fudan University, Shanghai, China}
+\author{Tingyu Zhang$^1$ and Yan Cen$^{1,*}$}
+
+\affil{$^1$Department of Physics, Fudan University, Shanghai, China}
+
+\affil{$^*$Author to whom any correspondence should be addressed.}
+
+\email{23300190021@m.fudan.edu.cn (Tingyu Zhang); cenyan@fudan.edu.cn (Yan Cen)}
+
+\keywords{quantum control, composite pulses, detuning robustness, quantum speed limits}
 
 \begin{abstract}
 Suppressing static detuning errors in a quantum gate requires additional
@@ -55,7 +69,6 @@ gate error relative to complete first-order cancellation.
 As the relative dissipative cost increases past a
 threshold, the optimal duration jumps to that of the rectangular pulse.
 \end{abstract}
-\maketitle
 
 \section{Introduction}
 
@@ -68,6 +81,20 @@ question: how much detuning error can be removed within a given time,
 and how much time is needed to remove its first-order contribution
 completely?
 
+Slow frequency fluctuations provide a physical setting for
+static-detuning control. In superconducting qubits, low-frequency flux
+noise away from a flux-insensitive operating point, or charge noise
+when appreciable charge dispersion remains, can shift the transition
+frequency~\cite{krantz2019}. Frequency fluctuations of the local
+oscillator likewise produce an effective detuning in trapped-ion
+control~\cite{ball2016}. Components that vary little over one gate can
+be treated as an unknown constant detuning. With bounded transverse
+drive, suppressing this error costs time, while independent,
+drive-independent weak Markovian relaxation and pure dephasing add a
+leading loss proportional to duration~\cite{abad2022}. The available
+drive strength and noise budget therefore determine how much
+compensation is worthwhile.
+
 Gate fidelity susceptibility and robustness--duration trade-offs have
 been formulated in general quantum-control settings~\cite{poggi2024}.
 Related speed limits concern robust identity cycles under full
@@ -75,27 +102,38 @@ control with prescribed error subspaces~\cite{balada2026}.
 For single-qubit gates, numerical optimization has estimated the
 minimum times needed at prescribed robustness orders~\cite{cao2024}.
 Partial detuning compensation is also a practical design variable in
-Rydberg-gate optimization~\cite{bataille2026}. A continuous
+Rydberg-gate optimization~\cite{bataille2026}. Noise-aware numerical
+optimization can vary pulse duration together with the control
+parameters~\cite{jeon2026}. A continuous
 relation between duration and residual error would allow the
 compensation level to be selected from the available time or from
 competition with other noise sources.
 
 The required time depends on whether robustness is imposed on one
 state or on the full gate. For first-order detuning-robust population
-inversion, Van Damme et al. reported a minimum time of
-$2\pi/\Omega$~\cite{vandamme2017}.
+inversion, a minimum time of $2\pi/\Omega$ has been
+reported~\cite{vandamme2017}; this state-transfer result does not
+determine the minimum time for a robust full gate.
 For a full qubit $\pi$ gate, the known short-CORPSE sequence achieves
 complete first-order detuning cancellation in time
 $7\pi/(3\Omega)$~\cite{cummins2003}. It is optimal within a symmetric
 family of three elementary pulses~\cite{kukita2022}.
 Pontryagin analyses have addressed selective and robust rotations
 under single-axis control~\cite{ansel2021} and identified short-CORPSE as a time-optimal
-candidate~\cite{kukita2024}, while numerical optimization gives
+candidate without establishing its global optimality~\cite{kukita2024},
+while numerical optimization gives
 first-order robust $X$-gate times near $2.33\pi/\Omega$~\cite{cao2024}.
 
-With the full nominal $\pi$ gate imposed exactly and two transverse
-controls subject to a joint amplitude bound, the main research
-questions are:
+Here the two transverse controls are arbitrary measurable functions
+satisfying the joint disk bound $u_x^2+u_y^2\le\Omega^2$, with no
+independent longitudinal drive. They must implement the full nominal
+gate $\pm R_x(\pi)$ and cannot depend on the unknown constant detuning.
+We minimize the first-order detuning residual at fixed duration,
+including partial compensation and its complete-cancellation endpoint.
+This provides an attainable benchmark for selecting the duration and
+compensation level within a given noise budget.
+
+The main research questions are:
 \begin{enumerate}
 \item What is the smallest first-order detuning residual at each
 prescribed duration?
@@ -107,29 +145,29 @@ minimum over all measurable two-axis controls?
 The geometric representation of detuning errors turns these questions
 into a problem about curves with bounded
 curvature~\cite{zeng2018,zeng2019,piliouras2026}. The planar
-three-arc return with reversed tangent occurs in the controllability
-construction of Sigalotti and Chitour~\cite{sigalotti2006},
-and its shortest length $7\pi/3$ is given explicitly by Kim and
-Cheong~\cite{kim2013}.
+three-arc return with reversed tangent appears in a controllability
+construction~\cite{sigalotti2006}, and its shortest length $7\pi/3$
+has been determined explicitly~\cite{kim2013}.
 For planar curves at fixed duration, minimizing the residual amounts
 to finding the reachable position nearest the origin in the Dubins
 model with terminal heading opposite to the initial
 heading~\cite{cockayne1975,patsko2003}.
 Spatial shortest-path and reachability problems admit additional,
 nonplanar extremals~\cite{sussmann1995,bae2025,bae2026,moser2022}.
-A planar construction therefore establishes an achievable duration,
-but a lower bound for the full two-axis control class must also account
-for nonplanar curves.
+The planar optimum does not exclude shorter nonplanar error curves
+allowed by two transverse controls. A bound over the full control
+class must account for these competitors and, at each shorter
+duration, determine the smallest residual that can remain.
 
 The main results are:
 \begin{enumerate}
 \item We determine the minimum first-order detuning residual over
 the entire duration interval from the shortest rectangular $\pi$
 pulse to short-CORPSE.
-\item The attaining controls are exactly the single-axis three-segment
-family and its overall negative. The first zero of the minimum
-residual gives the shortest first-order robust gate time,
-$7\pi/(3\Omega)$.
+\item We prove that the attaining controls are exactly the single-axis
+three-segment family and its overall negative. From the first zero
+of the minimum residual, we obtain the shortest first-order robust
+gate time, $7\pi/(3\Omega)$.
 \item The midpoint projection method gives the bound in every
 dimension $d\ge2$ without classifying control extremals. Its equality
 conditions force the curve into one plane, and the full gate
@@ -138,7 +176,9 @@ condition fixes the control axis.
 coefficient in average gate infidelity. Together with the first-order
 effect of weak Markovian dissipation~\cite{abad2022}, it determines
 the compensation level that minimizes the leading gate error and its
-switching threshold.
+switching threshold. Relative to the better of a rectangular $\pi$
+pulse and short-CORPSE, optimal partial compensation reduces this
+leading error budget by up to approximately $4.9\%$.
 \end{enumerate}
 
 \section{Control model and minimum detuning residual}
@@ -207,7 +247,7 @@ the error curve, $\rvec(T)=0$.
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=\columnwidth]{residual_geometry.pdf}
+\includegraphics[width=0.60\linewidth]{residual_geometry.pdf}
 \caption{\residualgeometrycaption}
 \label{fig:geometry}
 \end{figure}
@@ -287,9 +327,10 @@ At $L=\pi$ the two outer segments have zero duration.
 The minimum decreases from $2$ at $L=\pi$ to zero at $L=7\pi/3$.
 It therefore quantifies the best possible partial compensation at
 every duration before complete first-order cancellation becomes
-possible. We prove the geometric lower bound in
-Sec.~\ref{sec:midpoint}, then establish attainment and characterize
-all full-gate equality cases in Sec.~\ref{sec:attainment}.
+possible. The proof of Theorem~\ref{thm:gate} has two parts:
+Sec.~\ref{sec:midpoint} establishes the geometric lower bound, and
+Sec.~\ref{sec:attainment} constructs attaining controls and classifies
+all full-gate equality cases.
 
 \section{Proof of the geometric lower bound}
 \label{sec:midpoint}
@@ -299,10 +340,11 @@ comparison theorem~\cite{sullivan2008}. We choose the detuning direction at
 the midpoint of the gate as the projection axis. On each half of the
 trajectory, the speed limit bounds the angular distance from that
 midpoint direction. Integrating the resulting lower bound on the
-projection gives a lower bound on the residual norm. The argument
-uses only the antipodal endpoints and the speed limit, so it applies
-to a larger class of curves than those produced by the physical
-control model.
+projection gives a lower bound on the residual norm.
+The following theorem supplies the geometric lower bound needed for
+Theorem~\ref{thm:gate}, using only the antipodal endpoints and the speed
+limit. We prove the inequality here; the planar construction in
+Sec.~\ref{sec:attainment} establishes attainment.
 
 \begin{theorem}[Antipodal spherical curves]
 \label{thm:sphere}
@@ -318,7 +360,7 @@ The bound is attained for every $L$ in the stated interval and every
 $d\ge2$.
 \end{theorem}
 
-\begin{proof}
+\begin{proof}[Proof of the lower bound]
 Set $c=L/2$ and let $d_S$ denote spherical geodesic distance. For unit
 vectors $\mathbf p$ and $\mathbf q$, this distance is the angle
 between them:
@@ -377,7 +419,7 @@ smallest allowed projection. Integrating this lower bound yields
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[width=\columnwidth]{midpoint_envelope.pdf}
+\includegraphics[width=0.60\linewidth]{midpoint_envelope.pdf}
 \caption{\midpointenvelopecaption}
 \label{fig:envelope}
 \end{figure}
@@ -458,11 +500,11 @@ Combining the two cases yields
  \label{eq:scalar-bound}
 \end{equation}
 with equality only at $\alpha=\pi/2$. Since $|\vvec|=1$ and
-$g(L)\ge0$, this proves~\eqref{eq:sphere-bound}. The planar family
-constructed next attains the bound and embeds into every dimension
-$d\ge2$.
+$g(L)\ge0$, this proves~\eqref{eq:sphere-bound}.
 \end{proof}
 
+The planar family constructed in the next section attains the bound
+and embeds into every dimension $d\ge2$.
 In the error-curve picture, the theorem bounds the endpoint displacement
 of every unit-speed curve of length $L$ with curvature at most one and
 opposite endpoint tangents. A nonzero lower bound prevents that curve
@@ -555,7 +597,7 @@ shortest nominal gate are endpoints of one globally attaining family.
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[width=\columnwidth]{short_corpse_geometry.pdf}
+\includegraphics[width=0.60\linewidth]{short_corpse_geometry.pdf}
 \caption{\shortcorpsecaption}
 \label{fig:attainment}
 \end{figure}
@@ -654,8 +696,12 @@ to $\Rvec=0$. The antipodal endpoint condition already requires
 $L\ge\pi$, and $g(L)>0$ for $\pi\le L<7\pi/3$.
 Theorem~\ref{thm:gate} therefore excludes cancellation before
 $7\pi/(3\Omega)$ and shows that the two stated controls attain this
-time. Its equality classification also gives their uniqueness up to
-changes on sets of measure zero.
+time. Any canceling control at $L=7\pi/3$ satisfies
+$|\Rvec|=0=g(7\pi/3)$ and therefore attains equality in
+Theorem~\ref{thm:gate}. Its equality classification forces the
+three-segment family with $a=(L-\pi)/4=\pi/3$, leaving only
+short-CORPSE and its overall negative, up to changes on sets of
+measure zero.
 \end{proof}
 
 \section{Physical consequences of the residual bound}
@@ -837,14 +883,25 @@ including the cubic detuning term and the leading mixed
 detuning--dissipation term. The first omitted contributions are of
 order $\eta^4$: fourth order in detuning, second order in the decay
 rates, or second order in detuning together with first order in a
-decay rate. The finite fourth moment controls the averaged detuning
-remainder. Combining the static-error expansion with
+decay rate. Combining the static-error expansion with
 Eq.~\eqref{eq:weak-dissipation} therefore gives
 \begin{equation}
  \mathbb E[1-F_{\rm avg}]
  =s^2\chi[u]+\kappa L+O(\eta^4).
  \label{eq:combined-expansion}
 \end{equation}
+For fixed $\Omega$ and $\gamma_j$, this remainder is uniform over all
+admissible controls with $L\in[\pi,7\pi/3]$.
+In the ideal rotating frame, conjugation preserves the generator norms,
+and the antisymmetric detuning term together with negative-semidefinite
+damping makes the homogeneous noisy Bloch propagator contractive.
+Expanding its integral equation through third order, while retaining
+the leading terms and all resulting odd powers of $\xi$, leaves an
+error bounded by $C\eta^4(1+\xi^4)$, with $C$ independent of the control
+and duration in this interval.
+Symmetry cancels those odd terms on averaging, and the finite fourth
+moment gives the stated uniform remainder.
+
 For the attaining single-axis family, the unitary fidelity is already
 even in $\delta$ before averaging. Indeed,
 \begin{equation*}
@@ -913,18 +970,17 @@ $a=(L-\pi)/4\in[0,\pi/3]$ and set
  p(a)=\frac23(2\cos a-1)\sin a.
  \label{eq:budget-slope}
 \end{equation}
-Since $p'(a)=\frac23(4\cos^2a-\cos a-2)$, $p$ increases up to
+The function $p$ increases up to
 $a_m=\arccos[(1+\sqrt{33})/8]$ and then decreases to zero.
-For $\lambda>0$, the rectangular endpoint is a local minimum, the
-robust endpoint is not a minimum, and only the larger root of
-$p(a)=\lambda$ can be an interior minimum. At such a stationary
+For $\lambda>0$, only the rectangular endpoint and the larger root
+of $p(a)=\lambda$ can minimize $J$. At such an interior stationary
 point, the budget excess over the rectangular pulse is
 \begin{equation*}
  \Delta(a)=\chi_{\min}(\pi+4a)+4a p(a)-\frac23.
 \end{equation*}
-The identity $\Delta'(a)=4a p'(a)$, together with $\Delta(0)=0$ and
-$\Delta(\pi/3)=-2/3$, shows that $\Delta$ has exactly one zero $a_c$ on
-$(a_m,\pi/3)$. Equivalently,
+Since $\Delta'(a)=4a p'(a)$, this excess first increases from
+$\Delta(0)=0$ and then decreases to $\Delta(\pi/3)=-2/3$.
+It therefore vanishes exactly once on $(a_m,\pi/3)$, at $a_c$ defined by
 \begin{equation}
  a_c(2\cos a_c-1)\sin a_c=\cos a_c(1-\cos a_c).
  \label{eq:budget-transition}
@@ -932,8 +988,8 @@ $(a_m,\pi/3)$. Equivalently,
 The associated threshold and duration are
 \begin{equation}
  \begin{aligned}
- \lambda_c&=p(a_c)\simeq0.18,\\
- L_c&=\pi+4a_c\simeq2.05\pi.
+ \lambda_c&=p(a_c)\simeq0.176,\\
+ L_c&=\pi+4a_c\simeq2.047\pi.
  \end{aligned}
  \label{eq:budget-critical}
 \end{equation}
@@ -944,8 +1000,24 @@ duration is $L=\pi$. The optimal duration thus jumps to
 $\pi$ at this threshold, even though all compensation levels in the
 pulse family are available.
 
-Figure~\ref{fig:frontier} shows the sensitivity frontier and the gain
-from selecting an intermediate compensation level. To compare with
+To apply this rule, take the maximum Rabi angular frequency $\Omega$,
+the quasistatic detuning variance $\sigma_\delta^2>0$, and the
+independent, drive-independent Markovian rates $\Gamma_1$ and
+$\Gamma_\phi$. Their ratio is
+\begin{equation*}
+ \lambda=\frac{\Omega(\Gamma_1+\Gamma_\phi)}{3\sigma_\delta^2}.
+\end{equation*}
+Select the optimal $L$ using the threshold in
+Eq.~\eqref{eq:budget-critical} and the classification immediately
+following it. Set $a=(L-\pi)/4$ and use segment durations
+$(a,\pi+2a,a)/\Omega$ with drive directions $(+x,-x,+x)$.
+Here $\Gamma_\phi$ includes only Markovian pure dephasing; the
+quasistatic broadening already included in $\sigma_\delta^2$ must
+not be counted again.
+
+Figure~\ref{fig:frontier} shows the sensitivity frontier, the gain
+from selecting an intermediate compensation level, and the jump
+in optimal duration. To compare with
 the better of the two endpoint pulses, define, for $\lambda>0$,
 \begin{equation}
  \begin{aligned}
@@ -954,19 +1026,17 @@ the better of the two endpoint pulses, define, for $\lambda>0$,
  \end{aligned}
  \label{eq:relative-gain}
 \end{equation}
-The endpoint budgets cross at $\lambda_0=1/(2\pi)$. For each fixed
-$L$, the ratio $J(L)/B(\lambda)$ is nonincreasing before this
-crossing. After it, the derivative has the sign of
-$(2/3)L-\pi\chi_{\min}(L)\ge0$, since $L\ge\pi$ and
-$0\le\chi_{\min}\le2/3$.
-Taking the minimum over $L$ therefore places the maximum gain at
-$\lambda_0$. The gain there is positive: the endpoint budgets are
-equal, and $J'(7\pi/3)=\lambda_0>0$ makes a slightly shorter pulse
-better. At any other ratio with positive gain, the optimizing
-duration is interior. Evaluating that same pulse at $\lambda_0$
-strictly lowers its budget ratio. The minimum ratio at $\lambda_0$
-is no larger than this improved value, proving that the positive
-maximum is unique. Numerically,
+The endpoint budgets cross at $\lambda_0=1/(2\pi)$.
+For every fixed interior duration, $J(L)/B(\lambda)$ strictly
+decreases up to $\lambda_0$ and strictly increases thereafter.
+The gain at $\lambda_0$ is positive, since
+$J'(7\pi/3)=\lambda_0>0$ allows a slightly shorter pulse to improve
+on the common endpoint budget.
+At any other ratio with positive gain, the optimizing duration is
+interior; evaluating that same duration at $\lambda_0$ strictly
+reduces its budget ratio. Optimizing there can only improve this
+comparison, so $\lambda_0$ is the unique global maximum of $G$.
+Numerically,
 \begin{equation}
  \begin{aligned}
  G(\lambda_0)&\simeq4.91\%,\\
@@ -1017,9 +1087,34 @@ $\eta^4$. For two fixed pulse choices at fixed relative noise
 strengths, a nonzero difference in the leading budget therefore
 determines their fidelity ordering as the noise weakens. If their
 leading budgets coincide, higher-order terms are needed to
-distinguish them. The scalar optimization identifies the best
-leading-order operating point and makes explicit the level of the
-weak-noise expansion at which that choice is resolved.
+distinguish them.
+
+To test the prescription at finite noise strength, we take
+$s=0.03$, a weak-noise example with detuning standard deviation
+equal to $3\%$ of the maximum Rabi angular frequency.
+We propagate the complete Bloch channel for Gaussian quasistatic
+detuning with $\Gamma_1=0$ and $\Gamma_\phi/\Omega=3\lambda s^2$
+(Fig.~\ref{fig:fullchannel}). Across the three displayed scans, the maximum
+deviation of the full infidelity relative to the leading budget is $2.65\%$.
+At $\lambda_c$, the leading budgets at $L=\pi$ and $L=L_c$ are equal,
+but the full infidelity of the rectangular pulse is $0.234\%$ lower
+than that of the $L_c$ pulse.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\linewidth]{frontier_full_channel.pdf}
+\caption{\fullchannelcaption}
+\label{fig:fullchannel}
+\end{figure}
+
+For the same $s=0.03$ example, we evaluate
+$\lambda_0=1/(2\pi)$, where the endpoint budgets coincide and the
+leading relative gain is largest. The leading-budget choice gives
+a full average infidelity of $1.00\times10^{-3}$, a $4.64\%$
+reduction relative to the better endpoint pulse.
+Numerically reoptimizing the duration over $\pi\le L\le7\pi/3$
+within the same three-segment family yields a further relative reduction
+of only $1.44\times10^{-5}$ in this infidelity.
 
 \section{Discussion}
 \label{sec:discussion}
@@ -1128,21 +1223,32 @@ as the relative cost $\lambda=\kappa/s^2$ increases past $\lambda_c$,
 the optimal dimensionless duration jumps to the rectangular-pulse
 value $L=\pi$.
 
-The main mathematical results of this work have been formally proved
-in Lean.
+Full-channel calculations at finite weak noise test this operating-point
+prescription and resolve the leading-budget degeneracy at the switching
+threshold.
 
-\begin{acknowledgments}
+The main mathematical results of this work have been formally proved in Lean.
+
+\ack{
 We used OpenAI Codex (GPT-6 Astra) to assist in translating the
 mathematical proofs in this paper into Lean code and to check the
 manuscript for grammatical errors. All AI outputs were reviewed by
 the authors.
-\end{acknowledgments}
+}
 
-\section*{Data and code availability}
-The Lean code, numerical scripts, figure data, and reproduction
+\roles{
+\textbf{Tingyu Zhang:} Investigation, Formal analysis,
+Writing -- original draft. \textbf{Yan Cen:} Writing -- review
+\& editing, Supervision.
+}
+
+\data{
+The Lean code, numerical scripts, and reproduction
 instructions are archived on Zenodo at DOI:
-\href{https://doi.org/10.5281/zenodo.24154006}{10.5281/zenodo.24154006}.
+\href{https://doi.org/10.5281/zenodo.24154006}{10.5281/zenodo.24154006}~\cite{zhang2026archive}.
+}
 
-% PRA 自动采用 apsrev4-2，并由 longbibliography 启用文献题名。
+% 采用数字顺序引用，保留文献题名与DOI。
+\bibliographystyle{unsrtnat}
 \bibliography{references}
 \end{document}

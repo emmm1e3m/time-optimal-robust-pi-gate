@@ -1,15 +1,16 @@
 {
-  "model": "chi_min(L)+lambda*L; weak-noise leading budget, not finite-noise optimization",
+  "model": "chi_min(L)+lambda*L; weak-noise leading budget",
   "definitions": {
     "L": "Omega*T",
     "s2": "Var(delta)/Omega**2",
     "kappa": "(Gamma1+Gamma_phi)/(3*Omega)",
     "lambda": "kappa/s2"
   },
-  "assumptions": "Full nominal pi gate; ux**2+uy**2<=Omega**2; zero-mean quasistatic detuning; drive-independent weak Markovian relaxation and pure dephasing",
   "transition": {
-    "lambda": 0.17625856977898025,
-    "Lopt_over_pi": 2.0472567640832136
+    "a": 0.8225135391165107,
+    "lambda": 0.17625856977898016,
+    "L": 6.431646810055836,
+    "L_over_pi": 2.0472567640832136
   },
   "highlight": {
     "lambda": 0.15915494309189535,
@@ -30,8 +31,7 @@
     ]
   },
   "verification": {
-    "maximum_dense_grid_shortfall": 0.0,
-    "stationary_candidates": "Both monotone branches and both endpoints"
+    "maximum_dense_grid_shortfall": 0.0
   },
   "frontier": [
     {
@@ -8811,17 +8811,17 @@
       ]
     },
     {
-      "lambda": 0.17625856977898025,
+      "lambda": 0.17625856977898016,
       "Lopt_over_pi": 1.0,
-      "budget_over_s2": 1.220399294616555,
-      "ordinary_pi_budget_over_s2": 1.220399294616555,
-      "short_corpse_budget_over_s2": 1.2920427985497391,
-      "best_endpoint_budget_over_s2": 1.220399294616555,
+      "budget_over_s2": 1.2203992946165547,
+      "ordinary_pi_budget_over_s2": 1.2203992946165547,
+      "short_corpse_budget_over_s2": 1.2920427985497387,
+      "best_endpoint_budget_over_s2": 1.2203992946165547,
       "relative_gain": 0.0,
       "candidate_L_over_pi": [
         1.0,
         2.333333333333333,
-        1.373383836953996,
+        1.3733838369539957,
         2.0472567640832136
       ],
       "minimizer_L_over_pi": [

@@ -1,19 +1,29 @@
-\documentclass[aps,pra,reprint,raggedbottom,superscriptaddress,amsmath,amssymb,longbibliography]{revtex4-2}
+\documentclass[12pt]{iopjournal}
 \usepackage[UTF8,scheme=plain]{ctex}
-\usepackage{amsthm}
+\usepackage{amsmath,amssymb,amsthm}
 \usepackage{graphicx}
 \usepackage[section]{placeins}
-\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage[numbers,sort&compress]{natbib}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
 \graphicspath{{assets/}}
+
+% 保留官方类文件；投稿稿不显示期刊卷页、出版日期和Crossmark占位。
+\fancyhead{}
+\fancyhfoffset[L]{0pt}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\articletype}[1]{\noindent{\small\sffamily\MakeUppercase{#1}}\par\vspace{1em}}
 
 \theoremstyle{definition}
 \newtheorem{theorem}{定理}
 \newtheorem{corollary}{推论}
 \renewcommand{\proofname}{证明}
-\renewcommand{\acknowledgmentsname}{致谢}
+\renewcommand{\ack}[1]{\section*{致谢}#1}
+\renewcommand{\roles}[1]{\section*{作者贡献}#1}
+\renewcommand{\data}[1]{\section*{数据与代码可用性}#1}
 \renewcommand{\refname}{参考文献}
-\renewcommand{\figurename}{FIG.}
-\renewcommand{\abstractname}{摘要}
+\renewcommand{\figurename}{Figure}
+\usepackage{etoolbox}
+\patchcmd{\abstract}{Abstract}{摘要}{}{}
 \newcommand{\dd}{\mathrm{d}}
 \newcommand{\nvec}{\mathbf n}
 \newcommand{\rvec}{\mathbf r}
@@ -26,28 +36,43 @@
 
 \begin{document}
 
+\articletype{Paper}
+
 \title{固定时长量子比特 \texorpdfstring{$\pi$}{π} 门的最小一阶失谐残差}
-\author{Tingyu Zhang}
-\email{23300190021@m.fudan.edu.cn}
-\affiliation{Department of Physics, Fudan University, Shanghai, China}
-\author{Yan Cen}
-\email[Corresponding author: ]{cenyan@fudan.edu.cn}
-\affiliation{Department of Physics, Fudan University, Shanghai, China}
+\author{Tingyu Zhang$^1$ and Yan Cen$^{1,*}$}
+
+\affil{$^1$Department of Physics, Fudan University, Shanghai, China}
+
+\affil{$^*$Author to whom any correspondence should be addressed.}
+
+\email{23300190021@m.fudan.edu.cn (Tingyu Zhang); cenyan@fudan.edu.cn (Yan Cen)}
+
+\keywords{quantum control, composite pulses, detuning robustness, quantum speed limits}
 
 \begin{abstract}
 抑制量子门的静态失谐误差需要延长控制时间，这也可能增加耗散损失。对于联合幅度受限、由任意可测横向控制驱动的完整量子比特 $\pi$ 门，我们确定了从最短标称门到最短一阶稳健门之间，每个时长所能达到的最小一阶失谐残差。全部取等控制仅由一个单轴三段脉冲族及其整体负号构成。该族连续连接矩形 $\pi$ 脉冲与 short-CORPSE，并确立了整个双轴控制类中完全抵消一阶失谐所需的最短时间 $7\pi/(3\Omega)$，其中 $\Omega$ 为最大驱动幅度。证明通过向时间中点的误差方向作几何投影得到下界，无需分类控制极值轨迹。所得边界同时确定了固定时长下，弱失谐引起的平均门不保真度二次系数的最小值。结合不依赖驱动的弱马尔可夫耗散，优化门时长即可确定最优补偿程度。在完全补偿附近，缩短脉冲带来的耗散降低与缩短量成正比，而失谐代价仅按其平方增长。因此，部分补偿可比完全抵消一阶失谐得到更低的主导阶门误差。当相对耗散代价超过一个阈值时，最优时长跳至矩形脉冲的时长。
 \end{abstract}
-\maketitle
 
 \section{引言}
 
 在共振时精确实现的量子门，仍可能随静态失谐发生一阶变化。复合脉冲通过将累积误差引向零来抑制这一变化，代价是更长的持续时间~\cite{cummins2000,cummins2003}。基本问题是：在给定时长下，残差能有多小，以及何时能够完全消除一阶误差。
 
-门保真度易感性（gate fidelity susceptibility）以及稳健性与持续时间之间的权衡，已经在一般量子控制框架中得到表述~\cite{poggi2024}。相关的速度极限研究还考虑了给定误差子空间时，全控制下的稳健恒等操作~\cite{balada2026}。对于单量子比特门，数值优化已估计出实现指定稳健阶数所需的最短时间~\cite{cao2024}。在 Rydberg 门优化中，部分失谐补偿也成为一个实用的设计变量~\cite{bataille2026}。这些研究引出一个连续变化的问题：在精确实现标称门的条件下，每个允许时长对应的最小一阶失谐残差是多少？
+缓慢的频率涨落为静态失谐控制提供了一类物理背景。在超导量子比特中，
+偏离磁通不敏感工作点的低频磁通噪声，或电荷色散仍不可忽略时的电荷噪声，
+都可引起跃迁频率漂移~\cite{krantz2019}。离子阱控制中，本振的频率涨落
+同样会产生有效失谐~\cite{ball2016}。在一次门操作内变化很小的分量，
+可用未知的常数失谐描述。横向驱动幅度有限时，抑制这一误差需要付出时间，
+而独立、与驱动无关的弱马尔可夫弛豫和纯退相干带来与时长成正比的前导
+损失~\cite{abad2022}。因此，可用驱动强度和噪声预算共同决定值得采取
+多大程度的补偿。
 
-所需时间取决于稳健性是针对指定输入态还是完整门。Van Damme 等报道了一阶失谐稳健布居反转的最短时间 $2\pi/\Omega$~\cite{vandamme2017}。对于完整量子比特 $\pi$ 门，已知 short-CORPSE 序列在 $7\pi/(3\Omega)$ 内完全消除一阶失谐响应~\cite{cummins2003}，且在三个基本脉冲构成的对称族内最优~\cite{kukita2022}。Pontryagin 分析研究了单轴控制下的选择性与稳健最短时间旋转~\cite{ansel2021}，并将 short-CORPSE 确定为时间最优候选解~\cite{kukita2024}；数值优化则给出一阶稳健 $X$ 门的时长接近 $2.33\pi/\Omega$~\cite{cao2024}。
+门保真度易感性（gate fidelity susceptibility）以及稳健性与持续时间之间的权衡，已经在一般量子控制框架中得到表述~\cite{poggi2024}。相关的速度极限研究还考虑了给定误差子空间时，全控制下的稳健恒等操作~\cite{balada2026}。对于单量子比特门，数值优化已估计出实现指定稳健阶数所需的最短时间~\cite{cao2024}。在 Rydberg 门优化中，部分失谐补偿也成为一个实用的设计变量~\cite{bataille2026}。考虑噪声的数值优化还可同时调整脉冲时长与控制参数~\cite{jeon2026}。这些研究引出一个连续变化的问题：在精确实现标称门的条件下，每个允许时长对应的最小一阶失谐残差是多少？
 
-在联合幅度受限、零失谐时精确实现完整量子比特 $\pi$ 门的条件下，本文研究以下问题：
+所需时间取决于稳健性是针对指定输入态还是完整门。已有研究给出一阶失谐稳健布居反转的最短时间 $2\pi/\Omega$~\cite{vandamme2017}，但这一态转移结果不能确定完整稳健门的最短时间。对于完整量子比特 $\pi$ 门，已知 short-CORPSE 序列在 $7\pi/(3\Omega)$ 内完全消除一阶失谐响应~\cite{cummins2003}，且在三个基本脉冲构成的对称族内最优~\cite{kukita2022}。Pontryagin 分析研究了单轴控制下的选择性与稳健最短时间旋转~\cite{ansel2021}，并将 short-CORPSE 确定为时间最优候选解，但未建立其全局最优性~\cite{kukita2024}；数值优化则给出一阶稳健 $X$ 门的时长接近 $2.33\pi/\Omega$~\cite{cao2024}。
+
+这里的两路横向控制是满足联合圆盘上限 $u_x^2+u_y^2\le\Omega^2$ 的任意可测函数，没有独立的纵向驱动。控制须实现完整标称门 $\pm R_x(\pi)$，且不能依赖未知常数失谐的实际值。我们求固定时长下的最小一阶失谐残差，涵盖部分补偿及其完全抵消端点，为给定噪声预算下的时长和补偿程度选择提供可达到的基准。
+
+本文研究以下问题：
 \begin{enumerate}
 \rightskip=0pt plus1fil
 \item 每个给定时长的最小一阶失谐残差是多少？
@@ -55,21 +80,21 @@
 \item 哪些控制能够达到残差下界？
 \end{enumerate}
 
-借助失谐误差的几何表示，可将该问题转化为曲率有界的路径问题~\cite{zeng2018,zeng2019,piliouras2026}。回到起点而切向反向的平面三弧轨迹出现在 Sigalotti 和 Chitour 的可控性构造中~\cite{sigalotti2006}，Kim 和 Cheong 则明确给出了其最短长度 $7\pi/3$~\cite{kim2013}。在平面情形，固定时长的残差最小化等价于：在 Dubins 可达集中取终朝向与初朝向相反的部分，再寻找距起点最近的位置~\cite{cockayne1975,patsko2003}。空间最短路径与可达性问题允许额外的非平面极值轨迹~\cite{sussmann1995,bae2025,bae2026,moser2022}。因此，平面构造本身不足以约束完整的双轴控制类。
+借助失谐误差的几何表示，可将该问题转化为曲率有界的路径问题~\cite{zeng2018,zeng2019,piliouras2026}。回到起点而切向反向的平面三弧轨迹已用于可控性构造~\cite{sigalotti2006}，其最短长度 $7\pi/3$ 也已明确给出~\cite{kim2013}。在平面情形，固定时长的残差最小化等价于：在 Dubins 可达集中取终朝向与初朝向相反的部分，再寻找距起点最近的位置~\cite{cockayne1975,patsko2003}。空间最短路径与可达性问题允许额外的非平面极值轨迹~\cite{sussmann1995,bae2025,bae2026,moser2022}。平面最优性不能排除双横向控制所允许的更短非平面误差曲线。完整控制类上的下界须纳入这些竞争者，并确定每个更短时长下能够保留的最小残差。
 
 本文的主要结果如下：
 \begin{enumerate}
 \rightskip=0pt plus1fil
 \item 确定一阶失谐残差随时长变化的最小值，覆盖从最短矩形脉冲到 short-CORPSE 的整个区间。
-\item 全部取等控制恰为上述单轴三段脉冲族及其整体负号；残差首次降为零的时长给出最短稳健时间 $7\pi/(3\Omega)$。
+\item 证明全部取等控制恰为上述单轴三段脉冲族及其整体负号；根据残差首次降为零的时长，确定最短稳健时间 $7\pi/(3\Omega)$。
 \item 采用中点投影法得到任意维数 $d\ge2$ 下的几何下界，无需分类控制极值轨迹。等号条件迫使曲线位于同一平面，完整门条件进一步确定控制轴。
-\item 将残差边界转化为平均门不保真度关于失谐的二次系数下界，并结合弱马尔可夫耗散的一阶效应~\cite{abad2022}，确定使主导阶门误差最小的补偿程度及其切换阈值。
+\item 将残差边界转化为平均门不保真度关于失谐的二次系数下界，并结合弱马尔可夫耗散的一阶效应~\cite{abad2022}，确定使主导阶门误差最小的补偿程度及其切换阈值。相对矩形 $\pi$ 脉冲与 short-CORPSE 两端点中较优者，最优部分补偿使这一前导误差预算最多降低约 $4.9\%$。
 \end{enumerate}
 
 \section{控制模型与最小失谐残差}
 \label{sec:model}
 
-本章先明确可使用的控制，再将失谐的一阶响应表示为误差曲线的位移，从而把门误差的优化转化为几何问题。
+本节先明确可使用的控制，再将失谐的一阶响应表示为误差曲线的位移，从而把门误差的优化转化为几何问题。
 
 我们只允许沿 $x$、$y$ 方向的横向驱动，没有独立的纵向控制。控制相位的改变仅改变此后的驱动方向，不施加额外的瞬时量子门；允许降低幅度、关闭驱动以及任意改变相位。失谐 $\delta$ 在一次门操作期间保持不变，控制函数不依赖这一未知失谐。取 $\hbar=1$，Pauli 矩阵的本征值为 $\pm1$，传播算符满足
 \begin{equation}
@@ -112,7 +137,7 @@
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=\columnwidth]{residual_geometry.pdf}
+\includegraphics[width=0.60\linewidth]{residual_geometry.pdf}
 \caption{\residualgeometrycaption}
 \label{fig:geometry}
 \end{figure}
@@ -160,12 +185,14 @@
 在 $L=\pi$ 时，外侧两段的持续时间为零。
 \end{theorem}
 
-最小值从 $2$（对应 $L=\pi$）降至 $L=7\pi/3$ 时的零。第~\ref{sec:midpoint} 章证明几何下界，第~\ref{sec:attainment} 章随后验证可达性并分类全部完整门等号情形。
+最小值从 $2$（对应 $L=\pi$）降至 $L=7\pi/3$ 时的零。定理~\ref{thm:gate} 的证明分为两部分：第~\ref{sec:midpoint} 节建立几何下界，第~\ref{sec:attainment} 节构造达到该界的控制，并分类全部满足完整门条件的取等情形。
 
 \section{几何下界的证明}
 \label{sec:midpoint}
 
-本章借鉴 Schur 比较定理证明中的切向投影思想~\cite{sullivan2008}，将向量残差的估计化为标量积分。选取时间中点的误差方向作为投影轴后，曲线的每一半段既受到自身端点的约束，又必须及时到达这一中点。速度界限制了它能偏离投影轴多远，因此也限制了负投影能够抵消多少正投影。对这一距离约束积分，就得到残差下界。
+本节借鉴 Schur 比较定理证明中的切向投影思想~\cite{sullivan2008}，将向量残差的估计化为标量积分。选取时间中点的误差方向作为投影轴后，曲线的每一半段既受到自身端点的约束，又必须及时到达这一中点。速度界限制了它能偏离投影轴多远，因此也限制了负投影能够抵消多少正投影。对这一距离约束积分，就得到残差下界。
+
+下面的定理仅利用反极端点与速度界，给出定理~\ref{thm:gate} 所需的几何下界。本节证明这一不等式，可达性由第~\ref{sec:attainment} 节的平面构造给出。
 
 \begin{theorem}[端点反极的球面曲线]
 \label{thm:sphere}
@@ -177,7 +204,7 @@
 对于所述区间内的每个 $L$ 和每个 $d\ge2$，该界均可达到。
 \end{theorem}
 
-\begin{proof}
+\begin{proof}[下界的证明]
 令 $c=L/2$，用 $d_S$ 表示球面测地距离，即两个单位向量的夹角，
 \begin{equation*}
  d_S(\mathbf p,\mathbf q)=\arccos(\mathbf p\cdot\mathbf q).
@@ -214,7 +241,7 @@
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[width=\columnwidth]{midpoint_envelope.pdf}
+\includegraphics[width=0.60\linewidth]{midpoint_envelope.pdf}
 \caption{\midpointenvelopecaption}
 \label{fig:envelope}
 \end{figure}
@@ -267,15 +294,15 @@
  P(c,\alpha)\ge4\sin(c/2+\pi/4)-2=g(L),
  \label{eq:scalar-bound}
 \end{equation}
-且只有在 $\alpha=\pi/2$ 时取等。由于 $|\vvec|=1$ 且 $g(L)\ge0$，式~\eqref{eq:sphere-bound} 得证。下面构造的平面脉冲族达到该界，并可嵌入任意 $d\ge2$ 维空间。
+且只有在 $\alpha=\pi/2$ 时取等。由于 $|\vvec|=1$ 且 $g(L)\ge0$，式~\eqref{eq:sphere-bound} 得证。
 \end{proof}
 
-等价地，该定理约束了每条长度为 $L$、曲率不超过一且两端切向相反的单位速率曲线的端点位移。在 $L=7\pi/3$ 时，最小位移首次降至零。
+下一节构造的平面脉冲族达到该界，并可嵌入任意 $d\ge2$ 维空间。等价地，该定理约束了每条长度为 $L$、曲率不超过一且两端切向相反的单位速率曲线的端点位移。在 $L=7\pi/3$ 时，最小位移首次降至零。
 
 \section{下界的可达性与全部等号情形}
 \label{sec:attainment}
 
-本章构造达到下界的控制，并确定全部取等控制。几何比较只使用误差方向的端点和速度约束；要把几何最小值确认为量子门的最小值，还须验证构造实现了完整目标门，并用这一条件确定控制轴。
+本节构造达到下界的控制，并确定全部取等控制。几何比较只使用误差方向的端点和速度约束；要把几何最小值确认为量子门的最小值，还须验证构造实现了完整目标门，并用这一条件确定控制轴。
 
 \FloatBarrier
 \subsection{达到边界的三段脉冲族}
@@ -334,7 +361,7 @@ $\Theta$ 依次从 $-\pi/2$ 走到 $-\Theta_{\rm SB}$、再到 $+\Theta_{\rm SB}
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[width=\columnwidth]{short_corpse_geometry.pdf}
+\includegraphics[width=0.60\linewidth]{short_corpse_geometry.pdf}
 \caption{\shortcorpsecaption}
 \label{fig:attainment}
 \end{figure}
@@ -392,13 +419,13 @@ $\Theta$ 依次从 $-\pi/2$ 走到 $-\Theta_{\rm SB}$、再到 $+\Theta_{\rm SB}
 \end{corollary}
 
 \begin{proof}
-式~\eqref{eq:variation} 使一阶误差抵消等价于 $\Rvec=0$。反极端点条件已要求 $L\ge\pi$，且 $g(L)>0$ 对 $\pi\le L<7\pi/3$ 成立。因此，定理~\ref{thm:gate} 排除了在 $7\pi/(3\Omega)$ 之前抵消误差的可能，并表明上述两种控制达到这一时间。其等号分类还给出它们在忽略零测集改动后的唯一性。
+式~\eqref{eq:variation} 使一阶误差抵消等价于 $\Rvec=0$。反极端点条件已要求 $L\ge\pi$，且 $g(L)>0$ 对 $\pi\le L<7\pi/3$ 成立。因此，定理~\ref{thm:gate} 排除了在 $7\pi/(3\Omega)$ 之前抵消误差的可能，并表明上述两种控制达到这一时间。任何在 $L=7\pi/3$ 时抵消一阶误差的控制都满足 $|\Rvec|=0=g(7\pi/3)$，因而必在定理~\ref{thm:gate} 中取等。其等号分类将控制限制为 $a=(L-\pi)/4=\pi/3$ 的三段族，故除零测集上的改动外，只剩 short-CORPSE 及其整体负号。
 \end{proof}
 
 \section{残差界的物理推论}
 \label{sec:dissipation}
 
-残差衡量传播算符对失谐的一阶响应，实际门性能则常用平均门保真度衡量。本章先建立两者的联系，再加入耗散损失，说明在有限相干时间内如何选择补偿程度以最小化总门误差。
+残差衡量传播算符对失谐的一阶响应，实际门性能则常用平均门保真度衡量。本节先建立两者的联系，再加入耗散损失，说明在有限相干时间内如何选择补偿程度以最小化总门误差。
 
 \FloatBarrier
 \subsection{失谐敏感度与平均门不保真度}
@@ -519,12 +546,14 @@ $\Theta$ 依次从 $-\pi/2$ 走到 $-\Theta_{\rm SB}$、再到 $+\Theta_{\rm SB}
  \kappa=\frac{\Gamma_1+\Gamma_\phi}{3\Omega}.
  \label{eq:noise-parameters}
 \end{equation}
-在联合展开中，对称分布使所有关于 $\delta$ 的奇次项平均为零，其中包括 $\delta\Gamma_j$ 型的三阶混合项。剩余的失谐四次项、失谐二次项与耗散的混合项以及耗散二次项均从 $\eta^4$ 阶开始；有限四阶矩保证可对余项取平均。结合静态误差展开和式~\eqref{eq:weak-dissipation}，得到
+在联合展开中，对称分布使所有关于 $\delta$ 的奇次项平均为零，其中包括 $\delta\Gamma_j$ 型的三阶混合项。剩余的失谐四次项、失谐二次项与耗散的混合项以及耗散二次项均从 $\eta^4$ 阶开始。结合静态误差展开和式~\eqref{eq:weak-dissipation}，得到
 \begin{equation}
  \mathbb E[1-F_{\rm avg}]
  =s^2\chi[u]+\kappa L+O(\eta^4).
  \label{eq:combined-expansion}
 \end{equation}
+固定 $\Omega$ 和 $\gamma_j$ 时，上式的余项可对所有满足 $L\in[\pi,7\pi/3]$ 的允许控制一致估计。在理想旋转参考系中，共轭不改变生成元的范数，而反对称的失谐项与负半定阻尼使含噪声的齐次 Bloch 传播矩阵具有压缩性。将其积分方程展开至三阶，保留主导项及展开中出现的所有 $\xi$ 奇次项后，剩余误差由 $C\eta^4(1+\xi^4)$ 控制，其中 $C$ 与控制和该区间内的时长无关。分布对称性在平均时消去这些奇次项，有限四阶矩便给出上述一致余项。
+
 对于达到边界的单轴脉冲族，还可直接看到其酉演化保真度为何为失谐的偶函数：
 \begin{equation*}
  H_{-\delta}=\sigma_xH_\delta\sigma_x,
@@ -558,23 +587,17 @@ $\lambda$ 较小时，失谐抑制更重要；$\lambda$ 较大时，额外的门
  J'(L)=\lambda-\frac{g(L)}{3}\sin\frac{L-\pi}{4}=0.
  \label{eq:working-point}
 \end{equation}
-\begin{figure}[!htb]
-\centering
-\includegraphics[width=\columnwidth]{frontier_working_point.pdf}
-\caption{\frontiercaption}
-\label{fig:frontier}
-\end{figure}
 
 全局最优时长可以进一步明确确定。令 $a=(L-\pi)/4\in[0,\pi/3]$，并记
 \begin{equation}
  p(a)=\frac23(2\cos a-1)\sin a.
  \label{eq:budget-slope}
 \end{equation}
-由于 $p'(a)=\frac23(4\cos^2a-\cos a-2)$，$p$ 在 $a_m=\arccos[(1+\sqrt{33})/8]$ 之前递增，之后递减至零。对于 $\lambda>0$，矩形端点始终是局部极小值，稳健端点则不是极小值；方程 $p(a)=\lambda$ 的内部根中，只有较大根可能给出极小值。在这样的驻点处，相对矩形脉冲的预算差为
+$p$ 在 $a_m=\arccos[(1+\sqrt{33})/8]$ 之前递增，之后递减至零。对于 $\lambda>0$，只有矩形端点与方程 $p(a)=\lambda$ 的较大根可能使 $J$ 最小。在这样的内部驻点处，相对矩形脉冲的预算差为
 \begin{equation*}
  \Delta(a)=\chi_{\min}(\pi+4a)+4a p(a)-\frac23.
 \end{equation*}
-由 $\Delta'(a)=4a p'(a)$、$\Delta(0)=0$ 和 $\Delta(\pi/3)=-2/3$ 可知，$\Delta$ 在 $(a_m,\pi/3)$ 上恰有一个零点 $a_c$。其满足
+由 $\Delta'(a)=4a p'(a)$，这一差值从 $\Delta(0)=0$ 先增后减，最终降至 $\Delta(\pi/3)=-2/3$，因而在 $(a_m,\pi/3)$ 上恰有一个零点 $a_c$，满足
 \begin{equation}
  a_c(2\cos a_c-1)\sin a_c=\cos a_c(1-\cos a_c).
  \label{eq:budget-transition}
@@ -582,14 +605,20 @@ $\lambda$ 较小时，失谐抑制更重要；$\lambda$ 较大时，额外的门
 对应的临界噪声比和时长为
 \begin{equation}
  \begin{aligned}
- \lambda_c&=p(a_c)\simeq0.18,\\
- L_c&=\pi+4a_c\simeq2.05\pi.
+ \lambda_c&=p(a_c)\simeq0.176,\\
+ L_c&=\pi+4a_c\simeq2.047\pi.
  \end{aligned}
  \label{eq:budget-critical}
 \end{equation}
 当 $0<\lambda<\lambda_c$ 时，唯一最优时长对应上述内部极小值；在 $\lambda=\lambda_c$ 时，$L=\pi$ 与 $L=L_c$ 并列为全局最小点；当 $\lambda>\lambda_c$ 时，唯一最优时长为 $L=\pi$，由矩形脉冲实现。因此，尽管脉冲族中的补偿程度连续可调，最优时长仍会在这一阈值处跳至 $\pi$。
 
-图~\ref{fig:frontier} 展示了敏感度边界及选择中间补偿程度的收益。为与两个端点脉冲中较优者比较，对 $\lambda>0$ 定义
+使用这一规则时，从最大 Rabi 角频率 $\Omega$、准静态失谐方差 $\sigma_\delta^2>0$ 及独立且与驱动无关的马尔可夫速率 $\Gamma_1$、$\Gamma_\phi$ 得到
+\begin{equation*}
+ \lambda=\frac{\Omega(\Gamma_1+\Gamma_\phi)}{3\sigma_\delta^2}.
+\end{equation*}
+根据式~\eqref{eq:budget-critical} 给出的阈值及随后的分类选定最优 $L$，再令 $a=(L-\pi)/4$，使用时长为 $(a,\pi+2a,a)/\Omega$、驱动方向为 $(+x,-x,+x)$ 的三段脉冲。这里 $\Gamma_\phi$ 只计入马尔可夫纯退相干，不能将已计入 $\sigma_\delta^2$ 的准静态展宽再次计入。
+
+图~\ref{fig:frontier} 展示了敏感度边界、选择中间补偿程度的收益及最优时长的跳变。为与两个端点脉冲中较优者比较，对 $\lambda>0$ 定义
 \begin{equation}
  \begin{aligned}
  B(\lambda)&=\min\left\{\frac23+\pi\lambda,\frac{7\pi}{3}\lambda\right\},\\
@@ -597,7 +626,7 @@ $\lambda$ 较小时，失谐抑制更重要；$\lambda$ 较大时，额外的门
  \end{aligned}
  \label{eq:relative-gain}
 \end{equation}
-两端点预算在 $\lambda_0=1/(2\pi)$ 相交。固定 $L$ 时，比值 $J(L)/B(\lambda)$ 在交点之前随 $\lambda$ 不增，之后不减：第一支中的失谐贡献与 $1/\lambda$ 成正比，而第二支导数的符号由 $(2/3)L-\pi\chi_{\min}(L)\ge0$ 决定，这里用到了 $L\ge\pi$ 和 $0\le\chi_{\min}\le2/3$。对 $L$ 取最小值仍保持这两侧的单调性，故最大收益出现在 $\lambda_0$。该处收益为正：两个端点预算相等，而 $J'(7\pi/3)=\lambda_0>0$ 表明略微缩短脉冲即可降低预算。对任一其他具有正收益的噪声比，其最优时长必在内部；将同一脉冲放到 $\lambda_0$ 下评价，预算比值严格降低，而该处的最小比值不高于此值。因此，正的最大收益唯一。数值上，
+两端点预算在 $\lambda_0=1/(2\pi)$ 相交。对每个固定的内部时长，$J(L)/B(\lambda)$ 在 $\lambda_0$ 之前严格递减，之后严格递增。该处收益为正，因为 $J'(7\pi/3)=\lambda_0>0$ 表明略微缩短脉冲即可优于两端点的共同预算。对任一其他具有正收益的噪声比，其最优时长必在内部；将同一时长放到 $\lambda_0$ 下评价，预算比值严格降低。在 $\lambda_0$ 再作优化不会增大这一比值，因此 $\lambda_0$ 是 $G$ 的唯一全局最大点。数值上，
 \begin{equation}
  \begin{aligned}
  G(\lambda_0)&\simeq4.91\%,\\
@@ -607,6 +636,13 @@ $\lambda$ 较小时，失谐抑制更重要；$\lambda$ 较大时，额外的门
 \end{equation}
 此时两个端点预算均为 $7/6$，上述数值就是相对较优端点的最大主导阶收益。部分补偿保留了大部分失谐抑制能力，同时缩短了耗散作用的时间。
 
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\columnwidth]{frontier_working_point.pdf}
+\caption{\frontiercaption}
+\label{fig:frontier}
+\end{figure}
 
 在稳健端点 $L_*=7\pi/3$ 附近，部分补偿的优势尤其直观。对于 $h=L_*-L\downarrow0$，
 \begin{equation}
@@ -621,11 +657,23 @@ $\lambda$ 较小时，失谐抑制更重要；$\lambda$ 较大时，额外的门
 \end{equation}
 式~\eqref{eq:compensation-cost} 解释了部分补偿的优势：从完全补偿端点略微缩短时间，节省的耗散为 $\kappa h$，新产生的失谐损失却只有 $s^2h^2/8$。对于足够小的正 $h$，线性收益总会超过二次代价。因此，只要耗散率为正，完全补偿就不会使主导阶误差最小。
 
+
 当 $\lambda\to0^+$ 时，平衡这两项的导数得到最优缩短量
 \begin{equation*}
  h=4\lambda+O(\lambda^2),\qquad \lambda\to0^+.
 \end{equation*}
 式~\eqref{eq:combined-expansion} 说明这一选择的精度：当前比较保留 $\eta^2$ 阶门误差，而高阶修正从 $\eta^4$ 阶开始。因而在噪声趋弱、两种脉冲的主导误差存在非零差别时，这一比较决定了实际误差的先后次序；若主导项相同或噪声不再足够弱，就需保留更高阶项来判断。
+
+为检验这一处方在有限噪声强度下的表现，取失谐标准差为最大 Rabi 角频率的 $3\%$，即 $s=0.03$，作为弱噪声数值示例。对高斯准静态失谐采用 $\Gamma_1=0$ 和 $\Gamma_\phi/\Omega=3\lambda s^2$，传播完整 Bloch 信道（图~\ref{fig:fullchannel}）。三组所示扫描中，完整信道不保真度相对前导预算的最大偏差为 $2.65\%$。在 $\lambda_c$ 处，$L=\pi$ 与 $L=L_c$ 的前导预算相等，但矩形脉冲的完整不保真度比 $L_c$ 脉冲低 $0.234\%$。
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\linewidth]{frontier_full_channel.pdf}
+\caption{\fullchannelcaption}
+\label{fig:fullchannel}
+\end{figure}
+
+沿用上述 $s=0.03$ 的示例，在两端点预算相等且前导相对收益最大的 $\lambda_0=1/(2\pi)$ 处评估，得到前导预算所选脉冲的完整平均门不保真度为 $1.00\times10^{-3}$，相对两个端点中较优者降低 $4.64\%$。在同一三段族内对 $\pi\le L\le7\pi/3$ 的时长重新作数值优化，这一不保真度的进一步相对降幅仅为 $1.44\times10^{-5}$。
 
 \section{讨论}
 \label{sec:discussion}
@@ -666,16 +714,24 @@ $\lambda$ 较小时，失谐抑制更重要；$\lambda$ 较大时，额外的门
 \end{equation*}
 当 $\kappa>0$ 时，从完全补偿端点略微缩短脉冲，节省的耗散为缩短量的一次项，新增失谐代价却只有二次项，因而更短的门更有利。对于 $s^2>0$，当相对代价 $\lambda=\kappa/s^2$ 增大并越过 $\lambda_c$ 时，最优无量纲时长跳变到矩形脉冲对应的 $L=\pi$。
 
+有限弱噪声下的完整信道计算检验了这一工作点处方，并区分了切换阈值处前导预算并列的两个选择。
+
 本文的主要数学结果已在 Lean 中完成形式化证明。
 
-\begin{acknowledgments}
+\ack{
 我们使用 OpenAI Codex（GPT-6 Astra）辅助将本文的数学证明转写为 Lean 代码，并检查稿件中的语法错误。所有 AI 输出均由作者审阅。
-\end{acknowledgments}
+}
 
-\section*{数据与代码可用性}
-Lean 代码、数值脚本、图形数据及复现说明已归档于 Zenodo，DOI 为：
-\href{https://doi.org/10.5281/zenodo.24154006}{10.5281/zenodo.24154006}。
+\roles{
+\textbf{Tingyu Zhang：}研究实施、形式分析、论文初稿撰写。\textbf{Yan Cen：}论文审阅与修改、研究指导。
+}
 
-% PRA 自动采用 apsrev4-2，并由 longbibliography 启用文献题名。
+\data{
+Lean 代码、数值脚本及复现说明已归档于 Zenodo，DOI 为：
+\href{https://doi.org/10.5281/zenodo.24154006}{10.5281/zenodo.24154006}~\cite{zhang2026archive}。
+}
+
+% 采用数字顺序引用，保留文献题名与DOI。
+\bibliographystyle{unsrtnat}
 \bibliography{references}
 \end{document}
