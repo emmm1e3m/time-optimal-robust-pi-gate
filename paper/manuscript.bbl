@@ -1,4 +1,4 @@
-\begin{thebibliography}{32}
+\begin{thebibliography}{31}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -213,13 +213,5 @@ C.~Fromonteil, D.~Bluvstein, and H.~Pichler.
   Quasistatic Errors}.
 \newblock \emph{PRX Quantum}, 4:\penalty0 020335, 2023.
 \newblock \doi{10.1103/PRXQuantum.4.020335}.
-
-\bibitem[Zhang and Cen(2026)]{zhang2026archive}
-Tingyu Zhang and Yan Cen.
-\newblock {Lean proofs and reproducibility data for Minimum first-order
-  detuning residual for qubit $\pi$ gates at fixed duration}.
-\newblock Zenodo, November 2026.
-\newblock URL \url{https://doi.org/10.5281/zenodo.24154006}.
-\newblock Version 1.0.0.
 
 \end{thebibliography}
